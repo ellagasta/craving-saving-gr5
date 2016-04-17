@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheet.css">
     <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Questrial'>
-    <script> var user = JSON.parse('<%- JSON.stringify(user) %>'); </script> <!-- load into javascript-->
+    <script> var user = JSON.parse('<%- JSON.stringify(user) %>'); var id =JSON.parse('<%- JSON.stringify(id) %>');  </script> <!-- load into javascript-->
 </head>
 <body>
      <div class="row" id="heading-row">
@@ -72,8 +72,8 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<button type="button" class="btn btn-danger btn-lg progress-row-btn delete-goal-btn display">Delete</button>
-							<button type="button" class="btn btn-default btn-lg progress-row-btn edit-goal-btn display">Edit</button>
+							<button type="button" class="btn btn-danger btn-lg progress-row-btn" id="delete-goal-btn">Delete</button>
+							<button type="button" class="btn btn-default btn-lg progress-row-btn" id="edit-goal-btn">Edit</button>
 						</div>
 					</div>
 					<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">

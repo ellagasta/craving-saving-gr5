@@ -9,6 +9,9 @@ $(document).ready(function () {
 	$('.hoverable-panel').hover(hoverFunc, unhoverFunc);
 
 	$('.new-goal').click(newGoalClick);
+	$('#open-savings-btn').click(function(){
+		window.location.href = "/savings";
+	});
 });
 
 var newGoalClick = function(){

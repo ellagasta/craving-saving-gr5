@@ -36,8 +36,14 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/savings', isLoggedIn, function(req,res){
+        res.render('savings.ejs',{
+            user: req.user
+        });
+    })
+
     // get a goal
-    app.get('/goals/:id',function(req,res){
+    app.get('/goals/:id', isLoggedIn, function(req,res){
         //TODO : if (id is valid id of goal)
         res.render('goalScreen.ejs',{
             id : req.params.id,
@@ -45,7 +51,23 @@ module.exports = function(app, passport) {
         });
     })
 
-    app.get('/goals/:id/edit',function(req,res){
+    app.delete('/goals/:id', isLoggedIn, function(req,res){
+        User.findOne({'username':req.user.username},function(err,user){
+            if (err){
+                throw err;
+            }
+            user.goals.pop(req.params.id);
+            user.save(function(err){
+                if (err){
+                    console.log("error in removing goal "+ id + " in user " + user.username);
+                }
+                res.send({});
+            })
+
+        })
+    })
+
+    app.get('/goals/:id/edit', isLoggedIn, function(req,res){
         //TODO : if (id is valid id of goal)
         res.render('goalEdit.ejs',{
             id : req.params.id,
@@ -53,8 +75,7 @@ module.exports = function(app, passport) {
         });
     })
 
-    app.post('/goals/:id/edit',function(req,res){
-        console.log(req);
+    app.post('/goals/:id/edit', isLoggedIn, function(req,res){
         User.findOne({'username':req.user.username},function(err,user){
             if (err){
                 throw err;
@@ -67,17 +88,17 @@ module.exports = function(app, passport) {
                 if (err){
                     console.log("save error in user:",user.username);
                 }
+                res.render('goalScreen.ejs',{
+                    id : req.params.id,
+                    user: req.user
+                });
             });
             
         })
-        res.render('goalScreen.ejs',{
-            id : req.params.id,
-            user: req.user
-        });
     })
 
 
-    app.post('/goals',function(req,res){
+    app.post('/goals', isLoggedIn, function(req,res){
         User.findOne({'username':req.body.username},function(err, user){
             if (err){
                 throw err;
@@ -94,8 +115,8 @@ module.exports = function(app, passport) {
                 if (err){
                     console.log("save error in user:",user.username);
                 }
+                res.json("/goals/" + (goals.length - 1)+"/edit");
             });
-            res.json("/goals/" + (goals.length - 1)+"/edit");
         });
     })
 

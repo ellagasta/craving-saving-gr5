@@ -6,6 +6,7 @@ Instructions:
 * Run with "node server.js"
 * If you want to have the server update the resources as you go,
 * "npm install -g nodemon" and then "nodemon server.js"
+* Ignore the warning about "cannot find module '../build/Release/bson'", it should be fine.
 
 * MongoDB: the database we're using. MongoDB uses "Scheme"s as displayed in app/models/user.js.
 

@@ -32,7 +32,7 @@ $(document).ready(function (){
 	})
 
 	$("#back").click(function(){
-		console.log("BACK");
+		window.location.href = "/profile";
 	});
 
 	$('#spend-now-btn').click(function(){
