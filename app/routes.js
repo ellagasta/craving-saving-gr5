@@ -42,12 +42,29 @@ module.exports = function(app, passport) {
         });
     })
 
+    // add to savings
     app.post('/savings',isLoggedIn,function(req,res){
         User.findOne({'username':req.user.username},function(err, user){
             if (err){
                 throw err;
             }
-            console.log(req)
+            user.balance -= Number(req.body.addedSavings)
+            user.savingsBalance += Number(req.body.addedSavings);
+            user.save(function(err){
+                if (err){
+                    console.log('error lowering balance in user ' + user.username);
+                }
+                res.json({ok:true});
+            })
+        })
+    })
+
+    // empty savings
+    app.delete('/savings',isLoggedIn,function(req,res){
+        User.findOne({'username':req.user.username},function(err, user){
+            if (err){
+                throw err;
+            }
             user.balance += user.savingsBalance;
             user.savingsBalance = 0;
             user.save(function(err){
@@ -58,6 +75,7 @@ module.exports = function(app, passport) {
             })
         })
     })
+
 
     // after spend-now
     app.post('/profile',isLoggedIn,function(req,res){
@@ -71,7 +89,7 @@ module.exports = function(app, passport) {
                 if (err){
                     console.log('error lowering balance in user ' + user.username);
                 }
-                res.json('/profile');
+                res.json({ok:true});
             })
         })
     })
@@ -90,7 +108,6 @@ module.exports = function(app, passport) {
             if (err){
                 throw err;
             }
-            console.log(req)
             user.balance= Number(req.body.balance);
             user.goals[req.params.id].saved+=Number(req.body.addedValue);
 
@@ -98,7 +115,7 @@ module.exports = function(app, passport) {
                 if (err){
                     console.log('error lowering balance in user ' + user.username);
                 }
-                res.json('/profile');
+                res.json({ok:true});
             })
         })
     })
@@ -108,10 +125,13 @@ module.exports = function(app, passport) {
             if (err){
                 throw err;
             }
+            user.balance += user.goals[req.params.id].saved;
             user.goals.pop(req.params.id);
             user.save(function(err){
                 if (err){
                     console.log("error in removing goal "+ id + " in user " + user.username);
+                }else{
+                    res.json({ok:true});
                 }
             })
 
@@ -148,7 +168,24 @@ module.exports = function(app, passport) {
         })
     })
 
+// purchase goal
+    app.post('/goals/:id/purchase', isLoggedIn, function(req,res){
+        User.findOne({'username':req.user.username},function(err,user){
+            if (err){
+                throw err;
+            }
+            user.goals.pop(req.params.id);
+            user.save(function(err){
+                if (err){
+                    console.log("error in purchasing goal "+ id + " in user " + user.username);
+                }else{
+                    res.json({ok:true});
+                }
+            })
+        })
+    })
 
+// add new goal
     app.post('/goals', isLoggedIn, function(req,res){
         User.findOne({'username':req.body.username},function(err, user){
             if (err){

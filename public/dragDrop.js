@@ -232,7 +232,11 @@ function refreshDisplay(){
 }
 
 // was createModalAddMoney();
-var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add money to savings, 2 is add money to goal 
+var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 1 is add money to savings, 2 is add money to goal 
+	if (typeCode == 2 && goalID == null){
+		goalID = id;
+	}
+
 	left_balance = balance;
 	right_balance = 0;
 	refreshDisplay();
@@ -242,6 +246,16 @@ var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add
 	$("#cancel-transaction-button").unbind();
 	$("#confirm-transaction-button").unbind();
 			
+	
+
+	$("#transfer").spinner({
+		min: 0,
+		max: balance,
+		step: .01,
+		culture:'en-US',
+		numberFormat: "n2"
+	});
+	
 	$("#left-window").droppable({
 		drop: function(event,ui){
 			if (item_locations[ui.draggable.attr('id')] === 'right' ){
@@ -265,6 +279,7 @@ var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add
 			if (item_locations[ui.draggable.attr('id')] === 'left'){
 				var source = ui.draggable.attr('src').split('/');
 				var value = monetaryValue(source[source.length - 1].split('.')[0]);
+
 				right_balance += value;
 				left_balance -= value;
 				$("#left-balance").text("$"+left_balance.toFixed(2));
@@ -276,16 +291,7 @@ var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add
 			}
 		},
 		tolerance: "intersect"
-	});
-
-	$("#transfer").spinner({
-		min: 0,
-		max: balance,
-		step: .01,
-		culture:'en-US',
-		numberFormat: "n2"
-	});
-	
+	});	
 
 	if (typeCode == 0){
 		$("#transfer").spinner({
@@ -306,7 +312,7 @@ var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add
 			balance = left_balance;
 			console.log('balance',balance);
 			$.post('/profile',{balance:balance, user:user},function(data){
-				window.location.href = data;
+				window.location.reload();
 			});
 		});
 
@@ -326,20 +332,21 @@ var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add
 			}
 		});
 		$("#confirm-transaction-button").click(function(){
-			balance = left_balance;
-			$.post('/savings',{balance:balance, addedSavings:right_balance, user:user},function(data){
-				window.location.href = data;
+			console.log("add to savings");
+			$.post('/savings',{addedSavings:right_balance},function(data){
+				window.location.reload();
 			});
 		});
 
 	}else if (typeCode == 2){
-	
+
 		$("#transfer").spinner({
 			change: function(event,ui){
+				console.log('change');	
 				var val;
-				var max_val = Number($("#max-val").text());
-				var cur_val = Number($("#cur-val").text());
-				console.log(Number($("#goal-menu").find("#max-val").text()));
+				var max_val = user.goals[goalID].price;
+				var cur_val = user.goals[goalID].saved;
+
 				if ($(this).val() < 0){
 					val = 0;
 				}else if ($(this).val() > max_val - cur_val){
@@ -359,13 +366,64 @@ var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add
 				$("#right-balance").text("$"+right_balance.toFixed(2));
 				refreshDisplay();
 			}
-
 		});
+		$("#left-window").droppable({
+			drop: function(event,ui){
+				if (item_locations[ui.draggable.attr('id')] === 'right' ){
+					var source = ui.draggable.attr('src').split('/');
+					var value = monetaryValue(source[source.length - 1].split('.')[0]);
+
+					var max_val = user.goals[goalID].price;
+					var cur_val = user.goals[goalID].saved;
+					if (value > max_val-cur_val){
+						$("#transfer").spinner('value',max_val.toFixed(2));
+					}else{
+						left_balance += value;
+						right_balance -= value;
+						$("#left-balance").text("$"+left_balance.toFixed(2));
+						$("#right-balance").text("$"+right_balance.toFixed(2));
+						item_locations[ui.draggable.attr('id')] = 'left';
+						var prevTransferValue = Number($("#transfer").val());
+						var newValue = prevTransferValue - value;
+						$("#transfer").val(newValue.toFixed(2));
+					}
+				}
+			}
+		});
+		
+		$("#right-window").droppable({		
+			drop: function(event,ui){
+				if (item_locations[ui.draggable.attr('id')] === 'left'){
+					var source = ui.draggable.attr('src').split('/');
+					var value = monetaryValue(source[source.length - 1].split('.')[0]);
+
+					var max_val = user.goals[goalID].price;
+					var cur_val = user.goals[goalID].saved;
+					if (value+right_balance > max_val-cur_val){
+						right_balance = max_val;
+						left_balance = balance - right_balance;
+						$("#transfer").val(max_val.toFixed(2));
+						refreshDisplay();
+					}else{
+						right_balance += value;
+						left_balance -= value;
+						$("#left-balance").text("$"+left_balance.toFixed(2));
+						$("#right-balance").text("$"+right_balance.toFixed(2));
+						item_locations[ui.draggable.attr('id')] = 'right';
+						var prevTransferValue = Number($("#transfer").val());
+						var newValue = prevTransferValue + value;
+						$("#transfer").val(newValue.toFixed(2)); //use val instead of .spinner('value') to not trigger 'change'
+					}
+				}
+			}
+		});
+
+
 		$("#confirm-transaction-button").click(function(){
 			balance = left_balance;
 			console.log('balance',balance);
-			$.post('/goals/'+id,{balance:balance, addedValue: right_balance, user:user},function(data){
-				window.location.href = data;
+			$.post('/goals/'+goalID,{balance:balance, addedValue: right_balance},function(data){
+				window.location.reload();
 			});
 		});
 	}

@@ -31,4 +31,14 @@ $(document).ready(function (){
 		setupModal(2);
 		$("#modal-add-money").modal({show:true});
 	})
+
+	$("#purchase-goal-btn").click(function(){
+		$("#purchaseModal").modal({show:true});
+	})
+
+	$("#purchase-btn").click(function(){
+		$.post('/goals/'+id+'/purchase',null,function(){
+			window.location.href = '/profile';
+		})
+	})
 });

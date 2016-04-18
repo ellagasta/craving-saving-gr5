@@ -16,8 +16,11 @@
 		</div>
 		<div class="hover-add hover-div">
 			<button class="btn btn-default hover-btn-top" type="button" onclick="window.location.href = '/goals/<%=goalID%>';">Open Goal</button>
-			<button class="btn btn-default hover-btn-bottom addmode" type="button">Add $ to Goal</button>
-			<button class="btn btn-default hover-btn-bottom purchasemode" style="display:none">Purchase</button>
+			<% if(goal.saved == goal.price){ %>
+				<button id="purchase-<%=goalID%>" class="btn btn-default hover-btn-bottom purchase-goal-main-menu-btn">Purchase</button>
+			<% } else{ %>
+				<button id = "add-money-<%=goalID%>" class="btn btn-default hover-btn-bottom add-money-main-menu-btn" type="button">Add $ to Goal</button>
+			<% } %>
 		</div>
 	</div>
 </div>

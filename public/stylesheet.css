@@ -336,12 +336,9 @@ body {
 	padding-top: 50px;
 }
 
-.add-togoal {
+#add-to-savings, #add-money-to-goal-btn, #purchase-goal-btn{
 	margin-top: 120px;
-}
-
-.purchase-goal {
-	margin-top: 120px;
+	background-color: #FFC64C !important;
 }
 
 #delete-goal {
@@ -428,6 +425,3 @@ body {
 	height: 40px;
 }
 
-.add-togoal {
-	background-color: #FFC64C !important;
-}

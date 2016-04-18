@@ -8,8 +8,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="/savings.js"></script>
-<!--   goalscreen <script type="text/javascript" src="dragDrop.js"></script>
--->
+<   <script type="text/javascript" src="dragDrop.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheet.css">
     <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Questrial'>
@@ -52,7 +52,7 @@
 						<div class="col-md-8 text-center goal-info">
 							<div class="row goal-amt display">$<span class="cur-val"><%=user.savingsBalance.toFixed(2)%></span> Saved!</div>
 							<div class="row goal-btns display">
-								<button type="button" class="btn btn-default btn-lg add-togoal addmode" style="background-color:#FFC64C">Add $ To Savings</button>
+								<button type="button" id = "add-to-savings" class="btn btn-default btn-lg" style="background-color:#FFC64C">Add $ To Savings</button>
 							</div>
 						</div>
 					</div>
@@ -79,28 +79,6 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Yes, empty my savings!</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="photoModal" class="modal fade" tabindex="-1" role="dialog">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">×</button>
-									<h3>Upload Photo</h3>
-								</div>
-								<div class="modal-body">
-									<div class="uploadPhotoBox">
-										<p>Click to upload photo</p>
-									</div>
-									<div class="lightsaber">
-										<img src="/images/lightsaber.png" style="height:100%;">
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-primary submitPhoto" data-dismiss="modal">Upload</button>
 								</div>
 							</div>
 						</div>

@@ -24,6 +24,23 @@ $(document).ready(function () {
 		setupModal(0);
 		$("#modal-add-money").modal({show:true});
 	});
+
+	$(".purchase-goal-main-menu-btn").click(function(){
+		var id = Number($(this).attr("id").split("purchase-")[1]);
+		console.log(id);
+		$("#purchaseModal").modal({show:true});
+		$("#purchase-modal-btn").click(function(){
+			$.post('/goals/'+id+"/purchase",null, function(){
+				window.location.reload();
+			})
+		});
+	});
+
+	$(".add-money-main-menu-btn").click(function(){
+		var id = Number($(this).attr("id").split("add-money-")[1]);
+		setupModal(2, id);
+		$("#modal-add-money").modal({show:true});
+	})
 });
 
 var newGoalClick = function(){
