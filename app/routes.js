@@ -42,6 +42,40 @@ module.exports = function(app, passport) {
         });
     })
 
+    app.post('/savings',isLoggedIn,function(req,res){
+        User.findOne({'username':req.user.username},function(err, user){
+            if (err){
+                throw err;
+            }
+            console.log(req)
+            user.balance += user.savingsBalance;
+            user.savingsBalance = 0;
+            user.save(function(err){
+                if (err){
+                    console.log('error lowering balance in user ' + user.username);
+                }
+                res.json('/profile');
+            })
+        })
+    })
+
+    // after spend-now
+    app.post('/profile',isLoggedIn,function(req,res){
+        User.findOne({'username':req.user.username},function(err, user){
+            if (err){
+                throw err;
+            }
+            console.log(req)
+            user.balance= req.body.balance;
+            user.save(function(err){
+                if (err){
+                    console.log('error lowering balance in user ' + user.username);
+                }
+                res.json('/profile');
+            })
+        })
+    })
+
     // get a goal
     app.get('/goals/:id', isLoggedIn, function(req,res){
         //TODO : if (id is valid id of goal)
@@ -49,6 +83,24 @@ module.exports = function(app, passport) {
             id : req.params.id,
             user: req.user
         });
+    })
+
+    app.post('/goals/:id',isLoggedIn,function(req,res){
+        User.findOne({'username':req.user.username},function(err, user){
+            if (err){
+                throw err;
+            }
+            console.log(req)
+            user.balance= Number(req.body.balance);
+            user.goals[req.params.id].saved+=Number(req.body.addedValue);
+
+            user.save(function(err){
+                if (err){
+                    console.log('error lowering balance in user ' + user.username);
+                }
+                res.json('/profile');
+            })
+        })
     })
 
     app.delete('/goals/:id', isLoggedIn, function(req,res){
@@ -61,7 +113,6 @@ module.exports = function(app, passport) {
                 if (err){
                     console.log("error in removing goal "+ id + " in user " + user.username);
                 }
-                res.send({});
             })
 
         })

@@ -1,28 +1,21 @@
-balance = 23.50;
-MARGIN_LEFT_LEFT = 20;
-MARGIN_TOP = 50;
-MARGIN_LEFT_RIGHT = 470;
-
 $(document).ready(function(){
-	modal = $('#modal-add-money').html();
-   	createModalAddMoney();
+	balance = user.balance;
+	MARGIN_LEFT_LEFT = 20;
+	MARGIN_TOP = 50;
+	MARGIN_LEFT_RIGHT = 470;
 
-	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
-	$(".btn.btn-default.hover-btn-bottom.addmode").click(function(){
-		var id = $(this).parent().parent().parent().parent().attr("id").split("goal")[1];
-		addMoneyClick(0);
+	$('#modal-add-money').on('hidden.bs.modal', function(){
+		left_balance = balance;
+		right_balance = 0;
+		$("#transfer").val("0.00");
+		refreshDisplay();
 	});
-	$('#spend-now-btn').click(function(){
-		$('#modal-add-money').modal({show:true});
-		$('#modal-add-money').val("-1");
-	});
-
 });
 
 function addMoney(denomination, num, side){
 	if (side =='left'){
 		for (var i = 0; i < num; i++){
-			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYLeft+"px");
 			$("#"+idNum).css("left",startXLeft+"px");
 			$("#"+idNum).draggable({
@@ -44,7 +37,7 @@ function addMoney(denomination, num, side){
 		startYLeft += 30;
 	}else if (side =='right'){
 		for (var i = 0; i < num; i++){
-			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYRight+"px");
 			$("#"+idNum).css("left",startXRight+"px");
 			$("#"+idNum).draggable({
@@ -238,11 +231,17 @@ function refreshDisplay(){
     $("#right-balance").text("$"+right_balance.toFixed(2));
 }
 
-var createModalAddMoney = function(){
+// was createModalAddMoney();
+var setupModal = function(typeCode){ // typeCode: 0 is spend money now, 1 is add money to savings, 2 is add money to goal 
 	left_balance = balance;
 	right_balance = 0;
 	refreshDisplay();
 
+	$("#transfer").unbind();
+	$("#organize-button").unbind();
+	$("#cancel-transaction-button").unbind();
+	$("#confirm-transaction-button").unbind();
+			
 	$("#left-window").droppable({
 		drop: function(event,ui){
 			if (item_locations[ui.draggable.attr('id')] === 'right' ){
@@ -280,37 +279,96 @@ var createModalAddMoney = function(){
 	});
 
 	$("#transfer").spinner({
-		min:0,
-		max:balance,
-		step:.01,
+		min: 0,
+		max: balance,
+		step: .01,
 		culture:'en-US',
-		numberFormat: "d",
-		change: function(event,ui){
-			var val;
-			var id =$("#modal-add-money").val();
-			var max_val = Number($("#goal-menu-"+id).find(".max-val").text());
-			var cur_val = Number($("#goal-menu-"+id).find(".display").find(".cur-val").text());
-			console.log(Number($("#goal-menu-"+id).find(".max-val").text()));
-			if ($(this).val() < 0){
-				val = 0;
-			}else if ($(this).val() > max_val - cur_val){
-				val = max_val-cur_val;
-			}else{
-				val = Number($(this).val());
-			}
-			val = Math.min(val,balance);
-			console.log(val);
-
-			$(this).val(val.toFixed(2));
-			var total = left_balance + right_balance; 
-			right_balance = val;
-			left_balance = total - right_balance;
-
-			$("#left-balance").text("$"+left_balance.toFixed(2));
-			$("#right-balance").text("$"+right_balance.toFixed(2));
-			refreshDisplay();
-		}
+		numberFormat: "n2"
 	});
+	
+
+	if (typeCode == 0){
+		$("#transfer").spinner({
+			change: function(event,ui){
+				var val = Number($(this).val());
+				val = Math.min(val,balance);
+				val = Math.max(val, 0);
+				var total = left_balance + right_balance;
+				right_balance = val;
+				left_balance = total - right_balance;
+				$(this).val(val.toFixed(2));
+				$("#left-balance").text("$"+left_balance.toFixed(2));
+				$("#right-balance").text("$"+right_balance.toFixed(2));
+				refreshDisplay();				
+			}
+		});
+		$("#confirm-transaction-button").click(function(){
+			balance = left_balance;
+			console.log('balance',balance);
+			$.post('/profile',{balance:balance, user:user},function(data){
+				window.location.href = data;
+			});
+		});
+
+	}else if (typeCode ==1){
+		$("#transfer").spinner({
+			change: function(event,ui){
+				var val = Number($(this).val());
+				val = Math.min(val,balance);
+				val = Math.max(val, 0);
+				var total = left_balance + right_balance;
+				right_balance = val;
+				left_balance = total - right_balance;
+				$(this).val(val.toFixed(2));
+				$("#left-balance").text("$"+left_balance.toFixed(2));
+				$("#right-balance").text("$"+right_balance.toFixed(2));
+				refreshDisplay();				
+			}
+		});
+		$("#confirm-transaction-button").click(function(){
+			balance = left_balance;
+			$.post('/savings',{balance:balance, addedSavings:right_balance, user:user},function(data){
+				window.location.href = data;
+			});
+		});
+
+	}else if (typeCode == 2){
+	
+		$("#transfer").spinner({
+			change: function(event,ui){
+				var val;
+				var max_val = Number($("#max-val").text());
+				var cur_val = Number($("#cur-val").text());
+				console.log(Number($("#goal-menu").find("#max-val").text()));
+				if ($(this).val() < 0){
+					val = 0;
+				}else if ($(this).val() > max_val - cur_val){
+					val = max_val-cur_val;
+				}else{
+					val = Number($(this).val());
+				}
+				val = Math.min(val,balance);
+				console.log(val);
+
+				$(this).val(val.toFixed(2));
+				var total = left_balance + right_balance; 
+				right_balance = val;
+				left_balance = total - right_balance;
+
+				$("#left-balance").text("$"+left_balance.toFixed(2));
+				$("#right-balance").text("$"+right_balance.toFixed(2));
+				refreshDisplay();
+			}
+
+		});
+		$("#confirm-transaction-button").click(function(){
+			balance = left_balance;
+			console.log('balance',balance);
+			$.post('/goals/'+id,{balance:balance, addedValue: right_balance, user:user},function(data){
+				window.location.href = data;
+			});
+		});
+	}
 	$("#transfer").keypress(function(e){
 		if (e.keyCode==13){
 			$("#transfer").spinner('option','change').call($("#transfer"));
@@ -321,59 +379,5 @@ var createModalAddMoney = function(){
 	$("#cancel-transaction-button").click(function(){
 		$('#modal-add-money').modal('toggle');
 	});
-	$("#confirm-transaction-button").unbind();
-	$("#confirm-transaction-button").click(function(){
-		var transfer_amount = Number($("#right-balance").text().split("$")[1]);
-		balance-=transfer_amount;
-		console.log("transfer "+transfer_amount+" to leave a balance of " + balance+".");
-	    $('#modal-add-money').modal('toggle');
-	    var id=$("#modal-add-money").val();
-	    console.log("id",id);
- 		var cur_value = $("#goal-menu-"+id).find('.row.goal-amt.display').find('.cur-val').text();
- 		var new_value = Number(cur_value)+Number(transfer_amount)
- 		$("#goal-menu-"+id).find('.row.goal-amt.display').find('.cur-val').text(new_value.toFixed(2));
- 		var max =  $("#goal-menu-"+id).find('.row.goal-amt.display').find('.max-val').text();
-
- 		if (id==0){
-
- 			var savedText = $("#goal"+id).find('.non-hover.non-hover-div').find('.text-center.savings-balance').text();
- 			var moneySaved = savedText.split(" ")[0].split("$")[1];
- 			var textSaved = savedText.split(" ")[1];
-			console.log(savedText,moneySaved,textSaved,new_value);
- 			$("#goal"+id).find('.non-hover.non-hover-div').find('.text-center.savings-balance').text("$"+new_value.toFixed(2)+" "+textSaved);
- 		}else{
-			$("#goal"+id).find(".progress-amount").text(new_value.toFixed(2)+'/'+Number(max).toFixed(2));
-			$('#goal'+id).find(".progress-bar").css("width",Number(new_value)/Number(max)*100+"%");			
-		}
-		$("#goal-menu-"+id).find(".maingoal-progress").css("width",Number(new_value)/Number(max)*100+"%");
-		$("#goal-menu-"+id).find(".progress-bar-text").text(Number(new_value)/Number(max)*100);
-
-
-		var titleText = $('.available-funds').text().split("$");
-		var nonbalanceText = titleText[titleText.length-2];
-		var balanceText = titleText[titleText.length-1];
-		$('.available-funds').text(nonbalanceText+"$"+balance.toFixed(2));
-
-		if (new_value >= max) {
-			$("#goal-menu-"+id).find('.purchasemode').show();
-			$("#goal"+id).find('.purchasemode').show();
-			$("#goal-menu-"+id).find('.addmode').hide();
-			$("#goal"+id).find('.addmode').hide();
-		} else {
-			$("#goal-menu-"+id).find('.addmode').show();
-			$("#goal"+id).find('.addmode').show();
-			$("#goal-menu-"+id).find('.purchasemode').hide();
-			$("#goal"+id).find('.purchasemode').hide();
-		}
-	});
-
-	$('#modal-add-money').on('hidden.bs.modal', function(){
-		var newModal = '<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">'+modal+'</div';
-    	$(this).replaceWith(newModal);
-    	createModalAddMoney();
-	});
-
-
-	$("#transfer").val("0.00");
 }
 

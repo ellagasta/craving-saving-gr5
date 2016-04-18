@@ -1,4 +1,7 @@
 $(document).ready(function () {
+	$("#logo").click(function(){
+		window.location.href='/profile';
+	})
 	$('#myTab a:first').tab('show');
 
 	$('#myTab a').click(function (e) {
@@ -11,6 +14,15 @@ $(document).ready(function () {
 	$('.new-goal').click(newGoalClick);
 	$('#open-savings-btn').click(function(){
 		window.location.href = "/savings";
+	});
+
+	$("#add-to-savings-btn").click(function(){
+		setupModal(1);
+		$("#modal-add-money").modal({show:true});	
+	})
+	$('#spend-now-btn').click(function(){
+		setupModal(0);
+		$("#modal-add-money").modal({show:true});
 	});
 });
 

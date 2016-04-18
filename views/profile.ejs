@@ -6,10 +6,10 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/globalize.min.js"></script>
 
+    <script type="text/javascript" src="/dragDrop.js"></script>
     <script type="text/javascript" src="/homeScreen.js"></script>
-<!-- profile   <script type="text/javascript" src="dragDrop.js"></script>
--->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheet.css">
     <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Questrial'>
@@ -51,11 +51,11 @@
                                 <div class="non-hover non-hover-div">
                                     <h4 class="text-center">Savings Account</h4>
                                     <img src="images/piggy.png" class="goal-icon center-block" style="padding:23px 0px;">
-                                    <h4 class="text-center savings-balance">$0.00 Saved!</h4>
+                                    <h4 class="text-center savings-balance">$<%=user.savingsBalance.toFixed(2)%> Saved!</h4>
                                 </div>
                                 <div class="hover-add hover-div">
                                     <button class="btn btn-default hover-btn-top" id = "open-savings-btn">Open Savings</button>
-                                    <button id = "add-money-button" class="btn btn-default hover-btn-bottom addmode">Add $ to Savings</button>
+                                    <button id = "add-to-savings-btn" class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                                     <span id="left-balance"></span>
                                 </div>
                                 <div id="arrow-block">
-                                    <img src='images/thin-arrow.png' id='transfer-arrow'>
+                                    <img src='/images/thin-arrow.png' id='transfer-arrow'>
                                     <span>$ <input id="transfer" value="0"></span>
                                 </div>
                                 <button id ="organize-button" class = "btn btn-default">Organize</button>
