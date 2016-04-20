@@ -46,7 +46,7 @@ $(document).ready(function (){
 	$("#edit-goal-name").focus();
 
 	$("#cancel-btn").click(function(){
-
+		window.location.href = '/goals/'+id;
 	});
 
 	$("#save-btn").click(function(){
@@ -58,4 +58,12 @@ $(document).ready(function (){
 		});
 	});
 
+	$("#goal-photobox").click(function(){
+		$("#photoModal").modal({show:true});
+	});
+
+	$("#uploadPhotoBox").click(function(){
+		$("#lightsaber").show();
+		$("#uploadPhotoBox").hide();
+	})
 });
