@@ -66,4 +66,6 @@ $(document).ready(function (){
 		$("#lightsaber").show();
 		$("#uploadPhotoBox").hide();
 	})
+
+	// $("#submit-photo-btn")
 });
