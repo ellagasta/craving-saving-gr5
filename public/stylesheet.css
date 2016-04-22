@@ -469,3 +469,10 @@ body {
 	height: 40px;
 }
 
+.progress-bar {
+	color: black;
+}
+
+.progress-bar-text {
+	padding-left: 10px;
+}
