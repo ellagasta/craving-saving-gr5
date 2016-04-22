@@ -440,7 +440,6 @@ body {
 .goal-img {
 	margin-bottom: 30px;
 	margin-right: 30px;
-	cursor:pointer;
 }
 
 #new-goal {
@@ -455,13 +454,13 @@ body {
 }
 
 .goalname-input {
-    text-align:center; 
+    text-align:center;
     left:44%;
     position: absolute;
 }
 
 .back-wrapper {
-	padding-bottom: 15px; 
+	padding-bottom: 15px;
 }
 
 .back-btn {

@@ -70,6 +70,16 @@ $(document).ready(function (){
 		});
 	});
 
+	$("#goal-photobox").mouseenter(function(){
+		$('html,body').css('cursor','pointer');
+		$("#goal-photobox .goal-img").css("opacity", .5);
+	})
+
+	$("#goal-photobox").mouseleave(function(){
+		$('html,body').css('cursor','default');
+		$("#goal-photobox .goal-img").css("opacity", 1);
+	})
+
 	$("#goal-photobox").click(function(){
 		$("#photoModal").modal({show:true});
 	});
