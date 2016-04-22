@@ -39,7 +39,7 @@ module.exports = function(passport) {
                     newUser.name="";
                     newUser.username = username;
                     newUser.password = newUser.generateHash(password);
-                    newUser.balance = 0;
+                    newUser.balance = 100;
                     newUser.savingsBalance = 0;
                     newUser.goals = [];
 
