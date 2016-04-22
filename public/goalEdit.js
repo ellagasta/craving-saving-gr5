@@ -24,7 +24,7 @@ $(document).ready(function (){
 		}else{
 			var inputPrice = Number($("#goal-price").val());
 			if (isNaN(inputPrice) || inputPrice <= 0){
-				$("#goal-price").val(original_price);	
+				$("#goal-price").val(original_price);
 			}else{
 				$("#goal-price").val(inputPrice.toFixed(2));
 			}
@@ -46,7 +46,19 @@ $(document).ready(function (){
 	$("#edit-goal-name").focus();
 
 	$("#cancel-btn").click(function(){
-		window.location.href = '/goals/'+id;
+		// quick fix. need to have a way to check if this is a newly created goal or not.
+		if(user.goals[id].goalName == ""){
+			$.ajax({
+			    url: '/goals/'+id,
+			    type: 'DELETE',
+			    success: function(result) {
+			    	window.location.href = '/profile';
+			    }
+			});
+			window.location.href = "/profile";
+		} else {
+			window.location.href = '/goals/'+id;
+		}
 	});
 
 	$("#save-btn").click(function(){
