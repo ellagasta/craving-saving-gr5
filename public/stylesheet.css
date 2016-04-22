@@ -16,36 +16,45 @@
 	font-size:20pt;
 }
 #window-wrapper{
-	width:800px;
+	width:1200px;
+	height:750px;
 	position:relative;
 	border:1px solid black;
 }
 #left-window{
-	height:90%;
-	width:40%;
-	position:absolute;
-    display: inline-block;
-	top:5%;
-	left:2%;
+	height:100%;
+	width:100%;
 	border:3px solid black;
 	border-radius:4px;
-	font-size: 30px;
 }
 #right-window{
+	height:100%;
+	width:100%;
+	border:3px solid black;
+	border-radius:4px;
+}
+#left-col{
 	height:90%;
 	width:40%;
 	position:absolute;
     display: inline-block;
-	top:5%;
+	top:0%;
+	left:2%;
+	font-size:30px;
+}
+#right-col{
+	height:90%;
+	width:40%;
+	position:absolute;
+    display: inline-block;
+	top:0%;
 	right:2%;
-	border:3px solid black;
-	border-radius:4px;
-	font-size: 30px;
+	font-size:30px;
 }
 #arrow-block{
 	display:inline-block;
 	position:absolute;
-	left:43.5%;
+	left:45.5%;
 	padding-left:1px;
 	top:40%;
 }
@@ -63,7 +72,7 @@
 	display:inline-block;
 	position:absolute;
 	top:74%;
-	left:43.4%;
+	left:45.5%;
 }
 .money{
 	position:absolute;
@@ -81,7 +90,7 @@
 }
 #drag-and-drop-wrapper{
 	position:relative;
-	height:450px;
+	height:550px;
 }
 .tab-pane {
 	border: 3px solid black;
