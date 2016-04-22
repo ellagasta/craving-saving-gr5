@@ -1,9 +1,12 @@
 #landing-logo{
 	width:60%;
+	position: absolute;
+	left: 20%;
+	top: 10%;
 }
 #landing-btn-row{
 	position:absolute;
-	top:80%;
+	top:70%;
 	width:50%;
 	height:20%;
 	left:50%;
@@ -12,8 +15,8 @@
 #login-btn, #signup-btn{
 	text-align:center;
 	width:300px;
-	height:50px;
-	font-size:20pt;
+	height:80px;
+	font-size:35pt;
 }
 #window-wrapper{
 	width:800px;
