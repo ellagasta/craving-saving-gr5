@@ -79,6 +79,10 @@ h1 {
 	padding-left:1px;
 	top:40%;
 }
+
+#dollar-sign {
+	font-size: 25px;
+}
 #transfer-arrow{
 	position:absolute;
 	margin-top:35px;
@@ -98,13 +102,14 @@ h1 {
 
 #confirm-transaction-button {
 	position: absolute;
-    bottom: 2%;
-    left: 88.4%;
+    bottom: 1.5%;
+    left: 90.4%;
 }
 
 #cancel-transaction-button {
 	position: absolute;
-    left: 80.5%;
+    left: 81.8%;
+    bottom: 1.5%;
 }
 
 .money{
