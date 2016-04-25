@@ -61,7 +61,7 @@ h1 {
     display: inline-block;
 	top:0%;
 	left:2%;
-	font-size:30px;
+	font-size:40px;
 }
 #right-col{
 	height:90%;
@@ -70,7 +70,7 @@ h1 {
     display: inline-block;
 	top:0%;
 	right:2%;
-	font-size:30px;
+	font-size:40px;
 }
 #arrow-block{
 	display:inline-block;
@@ -116,6 +116,7 @@ h1 {
 	position:absolute;
 	top:0px;
 	left:0px;
+	height: 80px;
 /*	z-index:200;
 */}
 .modal-dialog.add-money-dialog{
