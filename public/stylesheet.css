@@ -36,9 +36,10 @@ h1 {
 	font-size:35pt;
 }
 #window-wrapper{
-	width:1200px;
-	height:750px;
-	position:relative;
+	width: 1150px;
+    height: 700px;
+    position: absolute;
+    left: -18.4%;
 	border:1px solid black;
 }
 #left-window{
@@ -94,6 +95,18 @@ h1 {
 	top:74%;
 	left:45.5%;
 }
+
+#confirm-transaction-button {
+	position: absolute;
+    bottom: 2%;
+    left: 88.4%;
+}
+
+#cancel-transaction-button {
+	position: absolute;
+    left: 80.5%;
+}
+
 .money{
 	position:absolute;
 	top:0px;
@@ -103,6 +116,7 @@ h1 {
 .modal-dialog.add-money-dialog{
 	width: 900px;
 	margin: 10px 17%;
+	height: 680px;
 }
 .footer-button-wrapper{
 	float:right;
@@ -110,7 +124,7 @@ h1 {
 }
 #drag-and-drop-wrapper{
 	position:relative;
-	height:550px;
+	height:510px;
 }
 .tab-pane {
 	border: 3px solid black;
