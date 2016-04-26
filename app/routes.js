@@ -194,10 +194,10 @@ module.exports = function(app, passport) {
             }
             var goals = user.goals;
             goals[goals.length] = {
-                goalName : "",
+                goalName : "New Goal",
                 saved    : 0,
                 price    : 0,
-                imageURL : "",
+                imageURL : "/images/placeholder-square.jpg",
                 created  : false
             };
             user.goals = goals;
