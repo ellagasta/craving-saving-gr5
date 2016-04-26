@@ -1,34 +1,11 @@
 $(document).ready(function (){
-	var original_name;
-	var original_price;
 
 	$("#edit-goal-name").focus(function(){
-		original_name = $("#edit-goal-name").val();
-		$("#edit-goal-name").val("");
-	});
-
-	$("#edit-goal-name").focusout(function(){
-		if ($("#edit-goal-name").val() == ""){
-			$("#edit-goal-name").val(original_name);
-		}
+		$(this).select();
 	});
 
 	$("#goal-price").focus(function(){
-		original_price = $("#goal-price").val();
-		$("#goal-price").val("");
-	})
-
-	$("#goal-price").focusout(function(){
-		if ($("#goal-price").val() == ""){
-			$("#goal-price").val(original_price);
-		}else{
-			var inputPrice = Number($("#goal-price").val());
-			if (isNaN(inputPrice) || inputPrice <= 0){
-				$("#goal-price").val(original_price);
-			}else{
-				$("#goal-price").val(inputPrice.toFixed(2));
-			}
-		}
+		$(this).select();
 	})
 
 	$("#back").click(function(){
@@ -42,8 +19,6 @@ $(document).ready(function (){
 		console.log("spend-now");
 		$('#modal-add-money').modal({show:true});
 	});
-
-	$("#edit-goal-name").focus();
 
 	$("#cancel-btn").click(function(){
 		// quick fix. need to have a way to check if this is a newly created goal or not.
