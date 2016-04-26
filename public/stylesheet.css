@@ -350,8 +350,10 @@ body {
     text-align:center;
     width: 500px;
     height: 80px;
-   	background-color: #E6FFFF;
+}
 
+#goal-name {
+	background-color: #E6FFFF;
 }
 
 #saving-name {
@@ -441,8 +443,6 @@ body {
 #goal-price{
 	height:60px;
 	width: 100px;
-	background-color: #E6FFFF;
-
 }
 
 #save-btns{

@@ -155,6 +155,7 @@ module.exports = function(app, passport) {
             var goal = user.goals[req.params.id];
             goal.goalName = req.body.goalName;
             goal.price = req.body.price;
+            goal.created = req.body.created;
             user.save(function(err){
                 if (err){
                     console.log("save error in user:",user.username);
@@ -164,7 +165,7 @@ module.exports = function(app, passport) {
                     user: req.user
                 });
             });
-            
+
         })
     })
 
@@ -197,6 +198,7 @@ module.exports = function(app, passport) {
                 saved    : 0,
                 price    : 0,
                 imageURL : "",
+                created  : false
             };
             user.goals = goals;
             user.save(function(err){
@@ -216,7 +218,7 @@ module.exports = function(app, passport) {
 
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
