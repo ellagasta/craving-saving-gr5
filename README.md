@@ -1,5 +1,8 @@
 # craving-saving-gr5
 
+NOTE: We got permission from Elena Glassman to have server-side components, because we had mistakenly implemented all of it before realizing it was not allowed.
+
+
 Instructions:
 * Run "npm install".
 * Install mongodb, and have the database server running. (Refer to mongoDB manual)
