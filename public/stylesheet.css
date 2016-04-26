@@ -1,16 +1,22 @@
-#landing-logo{
-	width:60%;
-	position: absolute;
-	left: 20%;
-	top: 10%;
+.landing-content{
+	border:5px solid black;
+	background-color: white;
+	border-radius: 10px;
+	margin: 50px auto 20px auto;
+	padding:40px;
+	width:80%;
+	max-width:800px;
 }
-#landing-btn-row{
-	position:absolute;
-	top:70%;
-	width:50%;
-	height:20%;
-	left:50%;
-	margin-left: -25%;
+
+#landing-logo{
+	float:left;
+	width: 60%;
+}
+
+#landing-piggy{
+	width:40%;
+	padding:40px;
+	height:100%;
 }
 
 h1 {
@@ -31,10 +37,13 @@ h1 {
 
 #login-btn, #signup-btn{
 	text-align:center;
-	width:300px;
-	height:80px;
-	font-size:35pt;
+	width:200px;
+	height:60px;
+	font-size:23pt;
+	margin:3px;
+	/*background-color:#B2EBF1;*/
 }
+
 #window-wrapper{
 	width: 1150px;
     height: 700px;
