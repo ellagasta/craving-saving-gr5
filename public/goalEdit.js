@@ -1,5 +1,7 @@
 $(document).ready(function (){
 
+	var newPhoto = "";
+
 	$("#edit-goal-name").focus(function(){
 		$(this).select();
 	});
@@ -39,7 +41,8 @@ $(document).ready(function (){
 		$.post('/goals/'+id+'/edit',{
 			price : Number($("#goal-price").val()),
 			goalName : $("#edit-goal-name").val(),
-			created : true
+			created : true,
+			imageURL : $("#goal-photo")[0].src
 		},function(){
 			window.location.href = '/goals/'+id;
 		});
@@ -59,10 +62,21 @@ $(document).ready(function (){
 		$("#photoModal").modal({show:true});
 	});
 
-	$("#uploadPhotoBox").click(function(){
-		$("#lightsaber").show();
-		$("#uploadPhotoBox").hide();
-	})
-
-	// $("#submit-photo-btn")
+	$("#submit-photo-btn").click(function(){
+		newPhoto = $('#new-goal-photo')[0].src
+		$("#goal-photo")[0].src = newPhoto;
+	});
 });
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('#new-goal-photo')
+				.attr('src', e.target.result).height(300);
+		};
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}

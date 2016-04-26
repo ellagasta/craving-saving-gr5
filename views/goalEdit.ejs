@@ -38,7 +38,7 @@
             <div class="tab-pane active" id="goals">
 				<div id="goal-menu">
 					<div class="goalname-input">
-						<input id="edit-goal-name" value="Goal Name"></input>
+						<input id="edit-goal-name" value="New Goal"></input>
 					</div>
 					<div class="back-wrapper">
 						<button  type="button" class="btn btn-default back-btn" id="back">
@@ -47,8 +47,9 @@
 					</div>
 					<div class="row">
 						<div id = "goal-photobox" class="col-md-4">
-							<img src="http://placehold.it/400X400" class="goal-pic center-block goal-img">
+							<img id="goal-photo" src="<%= user.goals[id].imageURL %>" class="goal-pic center-block goal-img">
 						</div>
+
 						<div class="col-md-8 text-center goal-info">
 							<div class="row goal-amtedit">$<span id="cur-val">0.00</span> of $<input id="goal-price" value="10.00"></div>
 						</div>
@@ -74,13 +75,9 @@
 									<button type="button" class="close" data-dismiss="modal">×</button>
 									<h3>Upload Photo</h3>
 								</div>
-								<div class="modal-body">
-									<div id="uploadPhotoBox">
-										<p>Click to upload photo</p>
-									</div>
-									<div id="lightsaber">
-										<img src="/images/lightsaber.png" style="height:100%;">
-									</div>
+								<div class="modal-body" style="text-align:center;">
+                                    <input type='file' onchange="readURL(this);" style="margin: 0 auto;padding-top:15px;" />
+                                    <img id="new-goal-photo" src="<%= user.goals[id].imageURL %>" style="padding-top:15px;"/>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
