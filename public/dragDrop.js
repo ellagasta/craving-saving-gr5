@@ -326,7 +326,8 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	});	
 
 	if (typeCode == 0){
-		$("#transfer").spinner({
+		$(".modal-header").find("h2").text("Spend Money Now");
+        $("#transfer").spinner({
 			change: function(event,ui){
 				var val = Number($(this).val());
 				val = Math.min(val,balance);
@@ -348,7 +349,8 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			});
 		});
 
-	}else if (typeCode ==1){
+	}else if (typeCode ==1){ 
+		$(".modal-header").find("h2").text("Add Money to Savings");
 		$("#transfer").spinner({
 			change: function(event,ui){
 				var val = Number($(this).val());
@@ -371,7 +373,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		});
 
 	}else if (typeCode == 2){
-
+		$(".modal-header").find("h2").text("Transfer Money to "+user.goals[goalID].goalName);
 		$("#transfer").spinner({
 			change: function(event,ui){
 				console.log('change');	
