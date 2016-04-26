@@ -1,3 +1,27 @@
+#landing-logo{
+	float:left;
+	width: 60%;
+}
+
+#landing-piggy{
+	width:40%;
+	padding:40px;
+	height:100%;
+}
+
+#landing-wrapper{
+	position:relative;
+	min-height:100vh;
+	margin:0;
+	padding:0;
+	width:100%;
+}
+
+#landing-content{
+	margin:0 auto;
+	padding-bottom:150px
+}
+
 .landing-content{
 	border:5px solid black;
 	background-color: white;
@@ -8,15 +32,27 @@
 	max-width:800px;
 }
 
-#landing-logo{
-	float:left;
-	width: 60%;
+#landing-footer:before {
+    content: " ";
+    display:block;
+    position: relative;
+    bottom:0;
+    height:60px;
+    background: linear-gradient(-45deg, transparent 75%, #B2EBF1 75%) 0 50%,
+                linear-gradient( 45deg, transparent 75%, #B2EBF1 75%) 0 50%;
+    background-repeat: repeat-x;
+    background-size:60px 60px, 60px 60px;
 }
 
-#landing-piggy{
-	width:40%;
-	padding:40px;
-	height:100%;
+
+#landing-footer{
+	width:100vw;
+	height:150px;
+	position:absolute;
+	bottom: 0;
+	left: 0;
+	background-image: url("/images/dollar-background2.png");
+	background-repeat: repeat-x;
 }
 
 h1 {
@@ -223,10 +259,6 @@ h1 {
 	margin-top: 10px;
 }
 
-.container {
-	padding-left: 0px;
-}
-
 .goal {
 	padding: 10px;
 	height: 300px;
@@ -278,6 +310,9 @@ h1 {
 body {
 	font-family: 'Questrial', sans-serif;
 	background-color: #B2EBF1;
+	margin:0;
+	padding:0;
+	height:100%;
 }
 
 #heading-row {
