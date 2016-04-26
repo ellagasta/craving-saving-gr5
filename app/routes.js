@@ -156,6 +156,7 @@ module.exports = function(app, passport) {
             goal.goalName = req.body.goalName;
             goal.price = req.body.price;
             goal.created = req.body.created;
+            goal.imageURL = req.body.imageURL;
             user.save(function(err){
                 if (err){
                     console.log("save error in user:",user.username);
