@@ -1,5 +1,7 @@
 $(document).ready(function (){
 
+	$("#edit-goal-name").val(user.goals[id].goalName);
+
 	var newPhoto = "";
 
 	$("#edit-goal-name").focus(function(){
