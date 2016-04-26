@@ -381,10 +381,12 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				var max_val = user.goals[goalID].price;
 				var cur_val = user.goals[goalID].saved;
 
+                console.log( $(this).val(), max_val, cur_val);
 				if ($(this).val() < 0){
 					val = 0;
 				}else if ($(this).val() > max_val - cur_val){
 					val = max_val-cur_val;
+                    console.log("too much");
 				}else{
 					val = Number($(this).val());
 				}
@@ -407,20 +409,14 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 					var source = ui.draggable.attr('src').split('/');
 					var value = monetaryValue(source[source.length - 1].split('.')[0]);
 
-					var max_val = user.goals[goalID].price;
-					var cur_val = user.goals[goalID].saved;
-					if (value > max_val-cur_val){
-						$("#transfer").spinner('value',max_val.toFixed(2));
-					}else{
-						left_balance += value;
-						right_balance -= value;
-						$("#left-balance").text("$"+left_balance.toFixed(2));
-						$("#right-balance").text("$"+right_balance.toFixed(2));
-						item_locations[ui.draggable.attr('id')] = 'left';
-						var prevTransferValue = Number($("#transfer").val());
-						var newValue = prevTransferValue - value;
-						$("#transfer").val(newValue.toFixed(2));
-					}
+					left_balance += value;
+					right_balance -= value;
+					$("#left-balance").text("$"+left_balance.toFixed(2));
+					$("#right-balance").text("$"+right_balance.toFixed(2));
+					item_locations[ui.draggable.attr('id')] = 'left';
+					var prevTransferValue = Number($("#transfer").val());
+					var newValue = prevTransferValue - value;
+					$("#transfer").val(newValue.toFixed(2));
 				}
 			}
 		});
@@ -434,9 +430,10 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 					var max_val = user.goals[goalID].price;
 					var cur_val = user.goals[goalID].saved;
 					if (value+right_balance > max_val-cur_val){
-						right_balance = max_val;
+                        var new_val = max_val - cur_val;
+						right_balance = new_val;
 						left_balance = balance - right_balance;
-						$("#transfer").val(max_val.toFixed(2));
+						$("#transfer").val((new_val).toFixed(2));
 						refreshDisplay();
 					}else{
 						right_balance += value;
