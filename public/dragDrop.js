@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	balance = user.balance;
-	MARGIN_LEFT_LEFT = 30;
-	MARGIN_TOP = 50;
-	MARGIN_LEFT_RIGHT = 680;
+	MARGIN_LEFT_LEFT = 35;
+	MARGIN_TOP = 70;
+	MARGIN_LEFT_RIGHT = 660;
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
 		left_balance = balance;
