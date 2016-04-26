@@ -21,8 +21,9 @@ $(document).ready(function (){
 	});
 
 	$("#cancel-btn").click(function(){
-		// quick fix. need to have a way to check if this is a newly created goal or not.
-		if(user.goals[id].goalName == ""){
+		if(user.goals[id].created){
+			window.location.href = '/goals/'+id;
+		} else {
 			$.ajax({
 			    url: '/goals/'+id,
 			    type: 'DELETE',
@@ -31,15 +32,14 @@ $(document).ready(function (){
 			    }
 			});
 			window.location.href = "/profile";
-		} else {
-			window.location.href = '/goals/'+id;
 		}
 	});
 
 	$("#save-btn").click(function(){
 		$.post('/goals/'+id+'/edit',{
 			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val()
+			goalName : $("#edit-goal-name").val(),
+			created : true
 		},function(){
 			window.location.href = '/goals/'+id;
 		});
