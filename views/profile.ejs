@@ -12,7 +12,7 @@
     <script type="text/javascript" src="/homeScreen.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Questrial'>
+    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Questrial|Rokkitt|Luckiest+Guy|Chelsea+Market'>
     <script> var user = JSON.parse('<%- JSON.stringify(user) %>'); </script> <!-- load into javascript-->
 </head>
 <body>
@@ -89,7 +89,7 @@
                     <div class="modal-content add-money-content" id="window-wrapper">
                         <div class="modal-header add-money-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h3>Transfer Money</h3>
+                            <h2>Transfer Money</h2>
                         </div>
                         <div class="modal-body add-money-body">
                             <div id="drag-and-drop-wrapper">
@@ -101,7 +101,7 @@
 
                                 <div id="arrow-block">
                                     <img src='/images/thin-arrow.png' id='transfer-arrow'>
-                                    <span>$ <input id="transfer" value="0"></span>
+                                    <span id="dollar-sign">$ <input id="transfer" value="0"></span>
                                 </div>
                                 <button id ="organize-button" class = "btn btn-default">Organize</button>
                                 <div id="right-col">

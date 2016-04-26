@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
         saved      : Number,
         price      : Number,
         imageURL   : String,
+        created    : Boolean
     }]
 });
 

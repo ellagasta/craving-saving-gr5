@@ -1,34 +1,15 @@
 $(document).ready(function (){
-	var original_name;
-	var original_price;
+
+	$("#edit-goal-name").val(user.goals[id].goalName);
+
+	var newPhoto = "";
 
 	$("#edit-goal-name").focus(function(){
-		original_name = $("#edit-goal-name").val();
-		$("#edit-goal-name").val("");
-	});
-
-	$("#edit-goal-name").focusout(function(){
-		if ($("#edit-goal-name").val() == ""){
-			$("#edit-goal-name").val(original_name);
-		}
+		$(this).select();
 	});
 
 	$("#goal-price").focus(function(){
-		original_price = $("#goal-price").val();
-		$("#goal-price").val("");
-	})
-
-	$("#goal-price").focusout(function(){
-		if ($("#goal-price").val() == ""){
-			$("#goal-price").val(original_price);
-		}else{
-			var inputPrice = Number($("#goal-price").val());
-			if (isNaN(inputPrice) || inputPrice <= 0){
-				$("#goal-price").val(original_price);
-			}else{
-				$("#goal-price").val(inputPrice.toFixed(2));
-			}
-		}
+		$(this).select();
 	})
 
 	$("#back").click(function(){
@@ -43,11 +24,10 @@ $(document).ready(function (){
 		$('#modal-add-money').modal({show:true});
 	});
 
-	$("#edit-goal-name").focus();
-
 	$("#cancel-btn").click(function(){
-		// quick fix. need to have a way to check if this is a newly created goal or not.
-		if(user.goals[id].goalName == ""){
+		if(user.goals[id].created){
+			window.location.href = '/goals/'+id;
+		} else {
 			$.ajax({
 			    url: '/goals/'+id,
 			    type: 'DELETE',
@@ -56,15 +36,15 @@ $(document).ready(function (){
 			    }
 			});
 			window.location.href = "/profile";
-		} else {
-			window.location.href = '/goals/'+id;
 		}
 	});
 
 	$("#save-btn").click(function(){
 		$.post('/goals/'+id+'/edit',{
 			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val()
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
 		},function(){
 			window.location.href = '/goals/'+id;
 		});
@@ -84,10 +64,21 @@ $(document).ready(function (){
 		$("#photoModal").modal({show:true});
 	});
 
-	$("#uploadPhotoBox").click(function(){
-		$("#lightsaber").show();
-		$("#uploadPhotoBox").hide();
-	})
-
-	// $("#submit-photo-btn")
+	$("#submit-photo-btn").click(function(){
+		newPhoto = $('#new-goal-photo')[0].src
+		$("#goal-photo")[0].src = newPhoto;
+	});
 });
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('#new-goal-photo')
+				.attr('src', e.target.result).height(300);
+		};
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}
