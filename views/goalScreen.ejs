@@ -37,9 +37,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="goals">
 				<div id="goal-menu">
-					<div class="goalname-input">
-						<div id="goal-name"><%=user.goals[id].goalName%></div>
-					</div>
+
 					<div class="back-wrapper">
 						<button  type="button" class="btn btn-default back-btn" id="back">
 							<img src="/images/back-icon.png" width="100%" height="100%">
@@ -50,6 +48,7 @@
  							<img src="http://placehold.it/400X400" class="goal-pic center-block goal-img">
 						</div>
 						<div class="col-md-8 text-center goal-info">
+                            <div class="row goalname-input"><div id="goal-name"><%=user.goals[id].goalName%></div></div>
 							<div class="row goal-amt">$<span id="cur-val"><%=user.goals[id].saved.toFixed(2)%></span> <span class="of">of  $</span><span id="max-val"><%=user.goals[id].price.toFixed(2)%></span></div>
 							<div class="row goal-btns">
                                 <% if(user.goals[id].saved == user.goals[id].price){ %>

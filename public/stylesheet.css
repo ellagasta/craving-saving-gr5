@@ -323,13 +323,18 @@ body {
     padding-bottom: 30px;
 }
 */
-#edit-goal-name, #goal-name {
+/*#edit-goal-name, #goal-name {
     font-size: 50px;
     text-align:center;
     width: 500px;
     height: 80px;
    	background-color: #E6FFFF;
 
+}*/
+
+#goal-name, #edit-goal-name {
+	padding-top: 20px;
+	font-size: 50px;
 }
 
 .maingoal-bar {
@@ -354,7 +359,7 @@ body {
 	position: relative;
 }
 
-.goal-amtedit {
+/*.goal-amtedit {
 	position: absolute;
 	font-size: 40px;
 	text-align: center;
@@ -371,17 +376,22 @@ body {
     margin-top: 60px;
     word-spacing: 7px;
     left: 33%;
+}*/
+
+.goal-amt, .goal-amtedit {
+	padding-top: 40px;
+	font-size: 40px;
 }
+
 
 
 .goal-btns {
 	position: center;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 60px;
 }
 
 #add-to-savings, #add-money-to-goal-btn, #purchase-goal-btn{
-	margin-top: 120px;
 	background-color: #FFC64C !important;
 }
 
@@ -455,9 +465,9 @@ body {
 
 .goalname-input {
     text-align:center;
-    left:44%;
+/*     left:44%;
     position: absolute;
-}
+*/}
 
 .back-wrapper {
 	padding-bottom: 15px;

@@ -37,9 +37,6 @@
         <div class="tab-content">
             <div class="tab-pane active" id="goals">
 				<div id="goal-menu">
-					<div class="goalname-input">
-						<div id="goal-name">Savings</div>
-					</div>
 					<div class="back-wrapper">
 						<button  type="button" class="btn btn-default back-btn" id="back">
 							<img src="/images/back-icon.png" width="100%" height="100%">
@@ -50,6 +47,7 @@
 							<img src="/images/piggy.png" class="goal-pic center-block goal-img">
 						</div>
 						<div class="col-md-8 text-center goal-info">
+                            <div class="row goalname-input"><div id="goal-name">Savings</div></div>
 							<div class="row goal-amt display">$<span class="cur-val"><%=user.savingsBalance.toFixed(2)%></span> Saved!</div>
 							<div class="row goal-btns display">
 								<button type="button" id = "add-to-savings" class="btn btn-default btn-lg" style="background-color:#FFC64C">Add $ To Savings</button>
