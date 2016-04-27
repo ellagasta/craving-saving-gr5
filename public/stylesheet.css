@@ -49,7 +49,6 @@
     background-size:60px 60px, 60px 60px;
 }
 
-
 #landing-footer{
 	width:100vw;
 	height:150px;
@@ -58,6 +57,11 @@
 	left: 0;
 	background-image: url("/images/dollar-background1.jpg");
 	background-repeat: repeat-x;
+}
+
+#page-content{
+	margin-bottom: 40px;
+	/*border: 1px solid black;*/
 }
 
 h1 {
@@ -174,21 +178,22 @@ h1 {
 	margin: 10px 17%;
 	height: 680px;
 }
+
 .footer-button-wrapper{
 	float:right;
 	margin-right:5%;
 }
+
 #drag-and-drop-wrapper{
 	position:relative;
 	height:510px;
 }
+
 .tab-pane {
 	border: 3px solid black;
 	background-color: #E6FFFF;
 	padding: 20px;
-	position: absolute;
-	width: 1170px;
-	top: 167px;
+	margin-top: -3px;
 }
 
 .nav-tabs {
@@ -196,7 +201,6 @@ h1 {
 }
 
 #myTab {
-	position: absolute;
 	z-index: 10;
 }
 
