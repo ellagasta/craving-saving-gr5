@@ -16,142 +16,144 @@
     <script> var user = JSON.parse('<%- JSON.stringify(user) %>');  </script> <!-- load into javascript-->
 </head>
 <body>
-     <div class="row" id="heading-row">
-        <div class="col-md-3 text-left"> <img src="/images/logo.png" alt="Logo" id="logo" onclick="window.location.href='/profile'"> </div>
-        <div class="col-md-6 text-center available-funds">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
-    </div>
 
-    <div class="container">
-        <ul class="nav nav-tabs" id="myTab">
-            <li class="active">
-                <a href="#goals"><h4>Goals</h4></a>
-            </li>
-            <li>
-                <a href="#earn"><h4>Earn</h4></a>
-            </li>
-            <li>
-                <a href="#history"><h4>History</h4></a>
-            </li>
-        </ul>
-
-        <div class="tab-content">
-            <div class="tab-pane active" id="goals">
-				<div id="goal-menu">
-					<!-- <div class="goalname-input">
-						<div id="saving-name">Savings</div>
-					</div> -->
-					<div class="back-wrapper">
-						<button  type="button" class="btn btn-default back-btn" id="back">
-							<img src="/images/back-icon.png" width="100%" height="100%">
-						</button>
-					</div>
-					<div class="row">
-						<div class="col-md-4 goal-photobox">
-							<img src="/images/piggy.png" class="goal-pic center-block goal-img">
-						</div>
-						<div class="col-md-8 text-center goal-info">
-                            <div class="goalname-input">
-                                <div id="saving-name">Savings</div>
-                            </div>
-							<div class="row goal-amt display">$<span class="cur-val"><%=user.savingsBalance.toFixed(2)%></span> Saved!</div>
-							<div class="row goal-btns display">
-								<button type="button" id = "add-to-savings" class="btn btn-default btn-lg" style="background-color:#FFC64C">Add $ To Savings</button>
-							</div>
-						</div>
-					</div>
-					<div class="row" style="padding-right:0px;padding-left:0px;">
-						<div class="col-md-3">
-							<button type="button" class="btn btn-danger btn-lg progress-row-btn" id="empty-savings-btn">Empty</button>
-						</div>
-					</div>
-					<div id="emptyModal" class="modal fade" tabindex="-1" role="dialog">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">×</button>
-									<h3>Empty Savings</h3>
-								</div>
-                                <div class="modal-body" style = "height:250px">
-                                    <div style="float:left; width:40%">
-                                        <img src="images/piggy-broken.png" style="width:100%"/>
-                                    </div>
-                                    <div style="float:right; width:50%">
-                                        <h4>Are you sure you want to empty the savings account?</h4>
-                                    </div>
-                                </div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-danger" data-dismiss="modal">Yes, empty my savings!</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-
-
+    <div id="landing-wrapper">
+        <div id="landing-content">
+            <div class="row" id="heading-row">
+                <div class="col-md-3 text-left"> <img src="/images/logo.png" alt="Logo" id="logo" onclick="window.location.href='/profile'"> </div>
+                <div class="col-md-6 text-center available-funds">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
             </div>
-            <div class="tab-pane" id="earn">Earn is not yet implemented.</div>
-            <div class="tab-pane" id="history">History is not yet implemented.</div>
 
-            <div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">
-                <div class="modal-dialog add-money-dialog">
-                    <div class="modal-content add-money-content" id="window-wrapper">
-                        <div class="modal-header add-money-header">
-                            <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h4>Add Money to Savings</h4>
-                        </div>
-                        <div class="modal-body add-money-body">
-                            <div id="drag-and-drop-wrapper">
-                                <div id="left-col">
-                                    <span id="left-balance"></span>
-                                    <div id="left-window">
+            <div class="container" id="page-content">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active">
+                        <a href="#goals"><h4>Goals</h4></a>
+                    </li>
+                    <li>
+                        <a href="#earn"><h4>Earn</h4></a>
+                    </li>
+                    <li>
+                        <a href="#history"><h4>History</h4></a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="goals">
+        				<div id="goal-menu">
+        					<!-- <div class="goalname-input">
+        						<div id="saving-name">Savings</div>
+        					</div> -->
+        					<div class="back-wrapper">
+        						<button  type="button" class="btn btn-default back-btn" id="back">
+        							<img src="/images/back-icon.png" width="100%" height="100%">
+        						</button>
+        					</div>
+        					<div class="row">
+        						<div class="col-md-4 goal-photobox">
+        							<img src="/images/piggy.png" class="goal-pic center-block goal-img">
+        						</div>
+        						<div class="col-md-8 text-center goal-info">
+                                    <div class="goalname-input">
+                                        <div id="saving-name">Savings</div>
+                                    </div>
+        							<div class="row goal-amt display">$<span class="cur-val"><%=user.savingsBalance.toFixed(2)%></span> Saved!</div>
+        							<div class="row goal-btns display">
+        								<button type="button" id = "add-to-savings" class="btn btn-default btn-lg" style="background-color:#FFC64C">Add $ To Savings</button>
+        							</div>
+        						</div>
+        					</div>
+        					<div class="row" style="padding-right:0px;padding-left:0px;">
+        						<div class="col-md-3">
+        							<button type="button" class="btn btn-danger btn-lg progress-row-btn" id="empty-savings-btn">Empty</button>
+        						</div>
+        					</div>
+        					<div id="emptyModal" class="modal fade" tabindex="-1" role="dialog">
+        						<div class="modal-dialog">
+        							<div class="modal-content">
+        								<div class="modal-header">
+        								<button type="button" class="close" data-dismiss="modal">×</button>
+        									<h3>Empty Savings</h3>
+        								</div>
+                                        <div class="modal-body" style = "height:250px">
+                                            <div style="float:left; width:40%">
+                                                <img src="images/piggy-broken.png" style="width:100%"/>
+                                            </div>
+                                            <div style="float:right; width:50%">
+                                                <h4>Are you sure you want to empty the savings account?</h4>
+                                            </div>
+                                        </div>
+        								<div class="modal-footer">
+        									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        									<button type="button" class="btn btn-danger" data-dismiss="modal">Yes, empty my savings!</button>
+        								</div>
+        							</div>
+        						</div>
+        					</div>
+        				</div>
+                    </div>
+                    <div class="tab-pane" id="earn">Earn is not yet implemented.</div>
+                    <div class="tab-pane" id="history">History is not yet implemented.</div>
+
+                    <div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">
+                        <div class="modal-dialog add-money-dialog">
+                            <div class="modal-content add-money-content" id="window-wrapper">
+                                <div class="modal-header add-money-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <h4>Add Money to Savings</h4>
+                                </div>
+                                <div class="modal-body add-money-body">
+                                    <div id="drag-and-drop-wrapper">
+                                        <div id="left-col">
+                                            <span id="left-balance"></span>
+                                            <div id="left-window">
+                                            </div>
+                                        </div>
+
+                                        <div id="arrow-block">
+                                            <img src='/images/thin-arrow.png' id='transfer-arrow'>
+                                            <span id="dollar-sign">$ <input id="transfer" value="0"></span>
+                                        </div>
+                                        <button id ="organize-button" class = "btn btn-default">Organize</button>
+                                        <div id="right-col">
+                                            <span id="right-balance"></span>
+                                            <div id="right-window">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div id="arrow-block">
-                                    <img src='/images/thin-arrow.png' id='transfer-arrow'>
-                                    <span id="dollar-sign">$ <input id="transfer" value="0"></span>
-                                </div>
-                                <button id ="organize-button" class = "btn btn-default">Organize</button>
-                                <div id="right-col">
-                                    <span id="right-balance"></span>
-                                    <div id="right-window">
+                                <div class="modal-footer">
+                                    <div class="footer-button-wrapper">
+                                        <button id="cancel-transaction-button" class="btn btn-danger">Cancel</button>
+                                        <button id="confirm-transaction-button" class="btn btn-success">Save</button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="footer-button-wrapper">
-                                <button id="cancel-transaction-button" class="btn btn-danger">Cancel</button>
-                                <button id="confirm-transaction-button" class="btn btn-success">Save</button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div id="purchaseModal" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h3>Confirm Purchase</h3>
-                        </div>
-                        <div class="modal-body">
-                            <h4>Congratulations! You've reached this goal. Press "Complete" to make the purchase.</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger cancel-btn" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-success purchase-btn" data-dismiss="modal">Complete</button>
+                    <div id="purchaseModal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <h3>Confirm Purchase</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <h4>Congratulations! You've reached this goal. Press "Complete" to make the purchase.</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger cancel-btn" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-success purchase-btn" data-dismiss="modal">Complete</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane" id="earn">Earn $$$</div>
+                    <div class="tab-pane" id="history">History...</div>
                 </div>
             </div>
-
-            <div class="tab-pane" id="earn">Earn $$$</div>
-            <div class="tab-pane" id="history">History...</div>
         </div>
+        <div id="landing-footer"></div>
     </div>
 </body>
 </html>
