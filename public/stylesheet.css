@@ -405,16 +405,16 @@ body {
 }*/
 
 #goal-name, #edit-goal-name {
-	padding-top: 20px;
 	font-size: 50px;
+	text-align: center;
 }
 
 #saving-name {
 	font-size: 50px;
 	font-family: 'Chelsea Market', cursive;
-    text-align:center;
-    width: 500px;
-    height: 80px;
+    text-align: center;
+/*    width: 500px;
+    height: 80px;*/
    	background-color: #E6FFFF;
 }
 

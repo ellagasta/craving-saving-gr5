@@ -51,7 +51,11 @@
 						</div>
 
 						<div class="col-md-8 text-center goal-info">
-							<div class="row goalname-input"><div id="goal-name"><%=user.goals[id].goalName%></div></div>
+							<!-- <div class="row goalname-input"><div id="goal-name"><%=user.goals[id].goalName%></div></div> -->
+							<div class="goalname-input">
+								<input id="edit-goal-name" value="Goal Name"></input>
+							</div>
+
 							<div class="row goal-amtedit">$<span id="cur-val">0.00</span> of $<input id="goal-price" value="10.00"></div>
 						</div>
 					</div>
