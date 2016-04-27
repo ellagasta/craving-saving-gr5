@@ -2,18 +2,21 @@
 <div class="col-md-3">
 	<div class="panel panel-default goal hoverable-panel">
 		<div class="non-hover non-hover-div">
-			<h4 class="text-center goal-square-name">
+			<h4 class="text-center goal-square-name square-text">
 				<%= goal.goalName %>
 			</h4>
-			<img src='<%= goal.imageURL %>' class="goal-icon center-block">
+			<div class="goal-icon center-block">
+				<img src='<%= goal.imageURL %>'>
+			</div>
 			<div class="progress">
 				<div class="progress-bar" style="width: 0%;">
 				</div>
 			</div>
-			<h4 class="text-center progress-amount">
+			<h4 class="text-center progress-amount square-text">
 				$<%= goal.saved %>/$<%= goal.price %>
 			</h4>
 		</div>
+
 		<div class="hover-add hover-div">
 			<button class="btn btn-default hover-btn-top" type="button" onclick="window.location.href = '/goals/<%=goalID%>';">Open Goal</button>
 			<% if(goal.saved == goal.price){ %>

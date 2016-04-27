@@ -32,6 +32,11 @@
 	max-width:800px;
 }
 
+#landing-login{
+	width:80%;
+	max-width:450px;
+}
+
 #landing-footer:before {
     content: " ";
     display:block;
@@ -44,15 +49,19 @@
     background-size:60px 60px, 60px 60px;
 }
 
-
 #landing-footer{
 	width:100vw;
 	height:150px;
 	position:absolute;
 	bottom: 0;
 	left: 0;
-	background-image: url("/images/dollar-background2.png");
+	background-image: url("/images/dollar-background1.jpg");
 	background-repeat: repeat-x;
+}
+
+#page-content{
+	margin-bottom: 40px;
+	/*border: 1px solid black;*/
 }
 
 h1 {
@@ -169,21 +178,22 @@ h1 {
 	margin: 10px 17%;
 	height: 680px;
 }
+
 .footer-button-wrapper{
 	float:right;
 	margin-right:5%;
 }
+
 #drag-and-drop-wrapper{
 	position:relative;
 	height:510px;
 }
+
 .tab-pane {
 	border: 3px solid black;
 	background-color: #E6FFFF;
 	padding: 20px;
-	position: absolute;
-	width: 1170px;
-	top: 167px;
+	margin-top: -2px;
 }
 
 .nav-tabs {
@@ -191,7 +201,6 @@ h1 {
 }
 
 #myTab {
-	position: absolute;
 	z-index: 10;
 }
 
@@ -264,14 +273,15 @@ h1 {
 	height: 300px;
 }
 
-.new-goal {
-	padding: 10px;
-	height: 300px;
-	width: 256px;
+.goal-icon {
+	text-align: center;
+	max-width:200px;
+	max-height:200px;
 }
 
-.goal-icon {
-	width: 200px;
+.goal-icon > img {
+	max-width:100%;
+	max-height:100%;
 }
 
 .goal-pic {
@@ -301,6 +311,11 @@ h1 {
 	border: 3px solid black;
 }
 
+#savings-account .goal {
+	box-shadow: 0px 0px 5px 5px #B2EBF1;
+	font-family: 'Chelsea Market', cursive;
+}
+
 .progress {
 	height: 11px;
 	position: relative;
@@ -325,35 +340,28 @@ body {
 
 .hover-add {
 	position: absolute;
-	left: 35px;
-	top: 13px;
+	top:0;
+	left:0;
+	width:100%;
 	opacity: 0;
+	height:100%;
 }
 
 .btn {
 	border: 2px solid black;
-	font-size: 18px;
+	font-size: 20px;
 }
 
 .btn:hover {
 	border: 2px solid black;
 }
 
-.hover-btn-top {
-	position: absolute;
-	left: 8px;
-	top: 32px;
-	height: 100px;
-	width: 200px;
-	background-color: #E6FFFF;
-}
-
-.hover-btn-bottom {
-	position: absolute;
-	left: 8px;
-	top: 137px;
-	height: 100px;
-	width: 200px;
+.hover-btn-top, .hover-btn-bottom {
+	display:block;
+	margin: 43px auto;
+	height: 80px;
+	width: 190px;
+	text-align:center;
 	background-color: #E6FFFF;
 }
 
@@ -390,7 +398,7 @@ body {
     padding-bottom: 30px;
 }
 */
-#edit-goal-name, #goal-name {
+/*#edit-goal-name, #goal-name {
     font-size: 50px;
     text-align:center;
     width: 500px;
@@ -401,12 +409,20 @@ body {
 	background-color: #E6FFFF;
 }
 
+<<<<<<< HEAD
+}*/
+
+#goal-name, #edit-goal-name {
+	font-size: 50px;
+	text-align: center;
+}
+
 #saving-name {
 	font-size: 50px;
 	font-family: 'Chelsea Market', cursive;
-    text-align:center;
-    width: 500px;
-    height: 80px;
+    text-align: center;
+/*    width: 500px;
+    height: 80px;*/
    	background-color: #E6FFFF;
 }
 
@@ -432,7 +448,7 @@ body {
 	position: relative;
 }
 
-.goal-amtedit {
+/*.goal-amtedit {
 	position: absolute;
 	font-size: 40px;
 	text-align: center;
@@ -449,18 +465,24 @@ body {
     margin-top: 60px;
     word-spacing: 7px;
     left: 33%;
+}*/
+
+.goal-amt, .goal-amtedit {
+	padding-top: 40px;
+	font-size: 40px;
 }
+
 
 
 .goal-btns {
 	position: center;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 60px;
 }
 
 #add-to-savings, #add-money-to-goal-btn, #purchase-goal-btn{
-	margin-top: 120px;
 	background-color: #FFC64C !important;
+	font-size: 26px;
 }
 
 #delete-goal {
@@ -520,6 +542,9 @@ body {
 
 #new-goal {
 	border: 3px solid black;
+	padding: 10px;
+	height: 300px;
+	width: 100%;
 }
 
 .non-hover-div .bottom {
@@ -531,9 +556,9 @@ body {
 
 .goalname-input {
     text-align:center;
-    left:44%;
+/*     left:44%;
     position: absolute;
-}
+*/}
 
 .back-wrapper {
 	padding-bottom: 15px;
@@ -551,3 +576,17 @@ body {
 .progress-bar-text {
 	padding-left: 10px;
 }
+
+.square-text {
+	font-size: 20px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/*.goal-square-name {
+	margin-top: 0px;
+}
+
+.progress-amount {
+	margin-top: 10px;
+}*/
