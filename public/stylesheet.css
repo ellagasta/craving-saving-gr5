@@ -274,7 +274,14 @@ h1 {
 }
 
 .goal-icon {
-	width: 200px;
+	text-align: center;
+	max-width:200px;
+	max-height:200px;
+}
+
+.goal-icon > img {
+	max-width:100%;
+	max-height:100%;
 }
 
 .goal-pic {
@@ -333,9 +340,11 @@ body {
 
 .hover-add {
 	position: absolute;
-	left: 35px;
-	top: 13px;
+	top:0;
+	left:0;
+	width:100%;
 	opacity: 0;
+	height:100%;
 }
 
 .btn {
@@ -347,21 +356,12 @@ body {
 	border: 2px solid black;
 }
 
-.hover-btn-top {
-	position: absolute;
-	left: 8px;
-	top: 32px;
-	height: 100px;
-	width: 200px;
-	background-color: #E6FFFF;
-}
-
-.hover-btn-bottom {
-	position: absolute;
-	left: 8px;
-	top: 137px;
-	height: 100px;
-	width: 200px;
+.hover-btn-top, .hover-btn-bottom {
+	display:block;
+	margin: 43px auto;
+	height: 80px;
+	width: 190px;
+	text-align:center;
 	background-color: #E6FFFF;
 }
 
