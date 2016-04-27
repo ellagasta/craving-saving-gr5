@@ -553,10 +553,10 @@ body {
 	padding-bottom: 15px;
 }
 
-.back-btn {
+/*.back-btn {
 	width: 70px;
 	height: 40px;
-}
+}*/
 
 .progress-bar {
 	color: black;
@@ -572,6 +572,11 @@ body {
 	margin-bottom: 5px;
 }
 
+.square-title {
+	font-weight: bold;
+	letter-spacing: -.5px;
+}
+
 /*.goal-square-name {
 	margin-top: 0px;
 }
@@ -579,3 +584,18 @@ body {
 .progress-amount {
 	margin-top: 10px;
 }*/
+
+#edit-goal-btn {
+	float: right;
+	margin-right: 15px;
+}
+
+#back {
+	float: left;
+	margin-left: 15px;
+}
+
+.add-new-goal-text {
+	font-size: 20px;
+}
+

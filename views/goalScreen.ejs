@@ -37,12 +37,17 @@
         <div class="tab-content">
             <div class="tab-pane active" id="goals">
 				<div id="goal-menu">
-
-					<div class="back-wrapper">
-						<button  type="button" class="btn btn-default back-btn" id="back">
-							<img src="/images/back-icon.png" width="100%" height="100%">
+                    <div class="row">
+<!-- 					<div class="back-wrapper">
+ -->						<button  type="button" class="btn btn-default back-btn btn-lg" id="back">
+ <i class="glyphicon glyphicon-arrow-left"></i>
 						</button>
-					</div>
+<!-- 					</div>
+ -->                    <!-- <div class="edit-wrapper"> -->
+                                                <button type="button" class="btn btn-default btn-lg" id="edit-goal-btn"><i class="glyphicon glyphicon-edit"></i> Edit Goal</button>
+                                            </div>
+<!--                                         </div>
+ -->
 					<div class="row">
 						<div class="col-md-4 goal-photobox">
  							<img src="<%= user.goals[id].imageURL %>" class="goal-pic center-block goal-img">
@@ -69,8 +74,8 @@
 						</div>
 						<div class="col-md-3">
 							<button type="button" class="btn btn-danger btn-lg progress-row-btn" id="delete-goal-btn">Delete</button>
-							<button type="button" class="btn btn-default btn-lg progress-row-btn" id="edit-goal-btn">Edit</button>
-						</div>
+<!-- 							<button type="button" class="btn btn-default btn-lg progress-row-btn" id="edit-goal-btn">Edit</button>
+ -->						</div>
 					</div>
 					<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
 						<div class="modal-dialog">
