@@ -332,7 +332,7 @@ body {
 
 .btn {
 	border: 2px solid black;
-	font-size: 18px;
+	font-size: 20px;
 }
 
 .btn:hover {
@@ -474,6 +474,7 @@ body {
 
 #add-to-savings, #add-money-to-goal-btn, #purchase-goal-btn{
 	background-color: #FFC64C !important;
+	font-size: 26px;
 }
 
 #delete-goal {
@@ -564,3 +565,17 @@ body {
 .progress-bar-text {
 	padding-left: 10px;
 }
+
+.square-text {
+	font-size: 20px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/*.goal-square-name {
+	margin-top: 0px;
+}
+
+.progress-amount {
+	margin-top: 10px;
+}*/
