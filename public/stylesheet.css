@@ -273,12 +273,6 @@ h1 {
 	height: 300px;
 }
 
-.new-goal {
-	padding: 10px;
-	height: 300px;
-	width: 256px;
-}
-
 .goal-icon {
 	width: 200px;
 }
@@ -548,6 +542,9 @@ body {
 
 #new-goal {
 	border: 3px solid black;
+	padding: 10px;
+	height: 300px;
+	width: 100%;
 }
 
 .non-hover-div .bottom {
