@@ -416,7 +416,10 @@ body {
 #goal-name, #edit-goal-name {
 	font-size: 50px;
 	text-align: center;
+	margin-top: 30px;
 }
+
+
 
 #saving-name {
 	font-size: 50px;
@@ -430,6 +433,7 @@ body {
 .maingoal-bar {
 	height: 50px;
 	font-size: 20px;
+	margin-right: 15px;
 }
 
 .maingoal-progress{
@@ -482,12 +486,14 @@ body {
 }
 
 #add-to-savings, #add-money-to-goal-btn, #purchase-goal-btn{
-	background-color: #FFC64C !important;
-	font-size: 26px;
-}
+/*	background-color: #FFC64C !important;
+*/	font-size: 26px;
+/*	color: black;
+*/}
 
-#delete-goal {
-	/**position: relative;**/
+#delete-goal-btn {
+	float: right;
+	margin-right: 15px;
 }
 
 #editgoal-progress {
@@ -527,7 +533,12 @@ body {
 
 .progress-row-btn {
 	margin-top: 3px;
-	width: 120px;
+	margin-left: 7px;
+	margin-right: 7px;
+}
+
+#return-to-goals-btn {
+	float: right;
 }
 
 .edit-goal-btn {
@@ -619,4 +630,8 @@ body {
 #back-edit-row {
 	margin-bottom: 10px;
 	margin-top: -5px;
+}
+
+.glyphicon-remove, .glyphicon-edit {
+	top: .15em;
 }
