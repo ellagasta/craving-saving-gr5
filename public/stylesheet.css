@@ -360,10 +360,18 @@ body {
 .hover-btn-top, .hover-btn-bottom {
 	display:block;
 	margin: 43px auto;
-	height: 80px;
-	width: 190px;
+	height: 100px;
+	width: 200px;
 	text-align:center;
 	background-color: #E6FFFF;
+}
+
+.hover-btn-top {
+	margin-bottom: 12px;
+}
+
+.hover-btn-bottom {
+	margin-top: 0px;
 }
 
 .hover-btn-bottom:hover {
@@ -428,6 +436,7 @@ body {
 /*    width: 500px;
     height: 80px;*/
    	background-color: #E6FFFF;
+   	margin-top: 0px;
 }
 
 .maingoal-bar {
@@ -490,6 +499,8 @@ body {
 */	font-size: 26px;
 /*	color: black;
 */}
+
+
 
 #delete-goal-btn {
 	float: right;
@@ -634,4 +645,17 @@ body {
 
 .glyphicon-remove, .glyphicon-edit {
 	top: .15em;
+}
+
+#empty-savings-btn {
+	float: right;
+	margin-right: 15px;
+}
+
+#saving-name {
+	margin-top: 30px;
+}
+
+#add-to-savings-row {
+	padding-top: 40px;
 }
