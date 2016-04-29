@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 	$("#add-to-savings-btn").click(function(){
 		setupModal(1);
-		$("#modal-add-money").modal({show:true});	
+		$("#modal-add-money").modal({show:true});
 	})
 	$('#spend-now-btn').click(function(){
 		setupModal(0);
@@ -40,6 +40,10 @@ $(document).ready(function () {
 		var id = Number($(this).attr("id").split("add-money-")[1]);
 		setupModal(2, id);
 		$("#modal-add-money").modal({show:true});
+	})
+
+	$('#logout-btn').click(function(){
+		window.location.href = "/";
 	})
 });
 

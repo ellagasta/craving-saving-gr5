@@ -19,28 +19,43 @@
     <div id="landing-wrapper">
         <div id="landing-content">
             <div class="row" id="heading-row">
-                <div class="col-md-3 text-left"> <img src="images/logo.png" alt="Logo" id="logo"> </div>
-                <div class="col-md-6 text-center available-funds">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
+                <div style="float:left;"> <img src="images/logo.png" alt="Logo" id="logo"> </div>
+                <button id="logout-btn" type="button" class="btn btn-default" style="float:right;">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    Logout
+                </button>
+                <!-- <div class="col-md-6 text-center available-funds">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
                 <div class="col-md-1"></div>
                 <div class="col-md-2 text-right">
                     <button class="btn btn-default" id="spend-now-btn">
                         <img src="images/spendnow-btn-copy.png" width="100%" height="100%">
                     </button>
-                </div>
+                </div> -->
             </div>
 
+
             <div class="container" id="page-content">
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active">
-                        <a href="#goals"><h4>Goals</h4></a>
-                    </li>
-                    <li>
-                        <a href="#earn"><h4>Earn</h4></a>
-                    </li>
-                    <li>
-                        <a href="#history"><h4>History</h4></a>
-                    </li>
-                </ul>
+                <div class="row" style="padding:15px;border:3px solid black;background-color:#E6FFFF;margin:15px 0 30px 0;">
+                    <div class="available-funds" style="float:left;">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
+
+                    <button class="btn btn-default" id="spend-now-btn" style="float:right;margin:0;">
+                        <img src="images/spendnow-btn-copy.png" width="100%" height="100%">
+                    </button>
+                </div>
+
+                <div>
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active">
+                            <a href="#goals"><h4>Goals</h4></a>
+                        </li>
+                        <li>
+                            <a href="#earn"><h4>Earn</h4></a>
+                        </li>
+                        <li>
+                            <a href="#history"><h4>History</h4></a>
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="goals">

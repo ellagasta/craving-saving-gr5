@@ -90,10 +90,7 @@ h1 {
 }
 
 #window-wrapper{
-	width: 1150px;
-    height: 700px;
-    position: absolute;
-    left: -18.4%;
+	min-height:700px;
 	border:1px solid black;
 }
 #left-window{
@@ -173,10 +170,12 @@ h1 {
 	height: 80px;
 /*	z-index:200;
 */}
+
 .modal-dialog.add-money-dialog{
-	width: 900px;
-	margin: 10px 17%;
-	height: 680px;
+	margin: 15px auto;
+	width:80%;
+	min-width: 1150px;
+	max-width: 1600px;
 }
 
 .footer-button-wrapper{
