@@ -51,10 +51,10 @@
 
         						<div class="col-md-8 text-center goal-info">
         							<div class="goalname-input">
-        								<input id="edit-goal-name" value="Goal Name" type="text" class="form-control"></input>
+        								<input id="edit-goal-name" value="<%= user.goals[id].goalName %>" type="text" class="form-control"></input>
         							</div>
 
-        							<div class="row goal-amtedit">$<span id="cur-val">0.00</span> of $<input id="goal-price" value="10.00" type="text" class="form-control"></div>
+        							<div class="row goal-amtedit">$<span id="cur-val"><%= user.goals[id].saved %></span> of $<input id="goal-price" value="<%= user.goals[id].price.toFixed(2) %>" type="text" class="form-control"></div>
         						</div>
         					</div>
         					<div class="row" style="padding-right:0px;padding-left:0px;">

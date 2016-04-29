@@ -68,6 +68,10 @@ $(document).ready(function (){
 		newPhoto = $('#new-goal-photo')[0].src
 		$("#goal-photo")[0].src = newPhoto;
 	});
+    
+    $("#goal-price").change(function(){
+        $("#goal-price").val(Number($("#goal-price").val()).toFixed(2));
+    });
 });
 
 function readURL(input) {
