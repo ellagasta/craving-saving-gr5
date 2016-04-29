@@ -4,13 +4,13 @@ $(document).ready(function (){
 
 	var newPhoto = "";
 
-	$("#edit-goal-name").focus(function(){
+	$("#edit-goal-name").click(function(){
 		$(this).select();
 	});
 
-	$("#goal-price").focus(function(){
+	$("#goal-price").click(function(){
 		$(this).select();
-	})
+	});
 
 	$("#back").click(function(){
 		window.location.href = "/profile";

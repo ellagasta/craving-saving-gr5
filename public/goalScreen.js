@@ -10,6 +10,11 @@ $(document).ready(function (){
 	$("#delete-goal-btn").click(function(){
 		$("#deleteModal").modal({show:true});
 	})
+
+	$("#return-to-goals-btn").click(function(){
+		window.location.href = "/profile";
+	});
+
 	$("#deleteModal").find(".btn-danger").click(function(){
 		$.ajax({
 		    url: '/goals/'+id,

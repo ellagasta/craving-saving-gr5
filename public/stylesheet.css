@@ -76,6 +76,17 @@ h1 {
     font-size: 20px;
 }
 
+#edit-goal-name {
+	height: auto;
+	margin-left: 0px;
+}
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .form-group {
 	font-size: 20px;
 }
@@ -319,7 +330,7 @@ h1 {
 	height: 11px;
 	position: relative;
 	top: 4px;
-	margin-left: 5px;
+	margin-left: 9px;
 }
 
 body {
@@ -503,7 +514,7 @@ body {
 
 #delete-goal-btn {
 	float: right;
-	margin-right: 15px;
+	margin-right: 25px;
 }
 
 #editgoal-progress {
@@ -522,11 +533,6 @@ body {
 	display: block;
     width: 100%;
     color: gray;
-}
-
-#goal-price{
-	height:60px;
-	width: 100px;
 }
 
 #save-btns{
@@ -549,6 +555,7 @@ body {
 
 #return-to-goals-btn {
 	float: right;
+	margin-right: 10px;
 }
 
 .edit-goal-btn {
@@ -626,7 +633,7 @@ body {
 }
 
 #back {
-	margin-left: 15px;
+	margin-left: 25px;
 }
 
 #back-img {
@@ -666,4 +673,15 @@ body {
 
 .edit-progress {
 	width: 103%;
+}
+
+#goal-price {
+	display: inline-block;
+	height: auto;
+	font-size: 40px;
+	width: 130px;
+}
+
+#save-btn {
+	margin-right: 10px;
 }
