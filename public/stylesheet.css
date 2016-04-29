@@ -24,7 +24,7 @@
 
 .landing-content{
 	border:5px solid black;
-	background-color: white;
+	background-color: #E6FFFF;
 	border-radius: 10px;
 	margin: 50px auto 20px auto;
 	padding:40px;
@@ -541,10 +541,13 @@ body {
 }
 
 #spend-now-btn {
-	width: 150px;
+	width: 180px;
 	margin-right: 20px;
-	margin-top: 3px;
-	background-color: #E6FFFF;
+}
+
+#logout-btn {
+	font-size:27px;
+	height:54px;
 }
 
 .progress-row-btn {
@@ -649,7 +652,7 @@ body {
 	margin-top: -5px;
 }
 
-.glyphicon-remove, .glyphicon-edit {
+.glyphicon-remove, .glyphicon-edit, .glyphicon-cog {
 	top: .15em;
 }
 
