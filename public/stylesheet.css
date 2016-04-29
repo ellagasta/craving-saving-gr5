@@ -285,7 +285,7 @@ h1 {
 }
 
 .goal-pic {
-	width: 400px;
+	width: 390px;
 }
 
 #uploadPhotobox{
@@ -658,4 +658,13 @@ body {
 
 #add-to-savings-row {
 	padding-top: 40px;
+}
+
+.edit-progress-row-btn {
+	float: right;
+	width: 100px;
+}
+
+.edit-progress {
+	width: 103%;
 }

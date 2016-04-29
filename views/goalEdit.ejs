@@ -45,7 +45,7 @@
                                 </button>
                             </div>
         					<div class="row">
-        						<div id = "goal-photobox" class="col-md-4">
+        						<div id = "goal-photobox" class="col-md-4 goal-photobox">
         							<img id="goal-photo" src="<%= user.goals[id].imageURL %>" class="goal-pic center-block goal-img">
         						</div>
 
@@ -59,15 +59,15 @@
         					</div>
         					<div class="row" style="padding-right:0px;padding-left:0px;">
         						<div class="col-md-9">
-        							<div class="progress maingoal-bar">
+        							<div class="progress maingoal-bar edit-progress">
         							    <div class="progress-bar progress-bar-success progress-bar-striped maingoal-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
         							    <span class="progress-bar-text">0</span>%
         							  	</div>
         							</div>
         						</div>
         						<div class="col-md-3">
-        							<button type="button" class="btn btn-danger btn-lg progress-row-btn" id = "cancel-btn">Cancel</button>
-        							<button type="button" class="btn btn-default btn-lg progress-row-btn" id = "save-btn">Save</button>
+        							<button type="button" class="btn btn-primary btn-lg progress-row-btn edit-progress-row-btn" id = "save-btn">Save</button>
+                                    <button type="button" class="btn btn-default btn-lg progress-row-btn edit-progress-row-btn" id = "cancel-btn">Cancel</button>
         						</div>
         					</div>
 
