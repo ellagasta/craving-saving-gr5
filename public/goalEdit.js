@@ -13,18 +13,20 @@ $(document).ready(function (){
 	});
 
 	$("#back").click(function(){
-		window.location.href = "/profile";
+		$('#backFromEditModal').modal({show:true});
 	});
 
 	$("#logo").click(function(){
 		window.location.href='/profile';
 	})
+
 	$('#spend-now-btn').click(function(){
 		console.log("spend-now");
 		$('#modal-add-money').modal({show:true});
 	});
 
-	$("#cancel-btn").click(function(){
+	$("#cancel-btn, #modal-cancel-btn").click(function(){
+		console.log("cancel");
 		if(user.goals[id].created){
 			window.location.href = '/goals/'+id;
 		} else {
@@ -39,7 +41,7 @@ $(document).ready(function (){
 		}
 	});
 
-	$("#save-btn").click(function(){
+	$("#save-btn, #modal-save-btn").click(function(){
 		$.post('/goals/'+id+'/edit',{
 			price : Number($("#goal-price").val()),
 			goalName : $("#edit-goal-name").val(),
@@ -49,18 +51,6 @@ $(document).ready(function (){
 			window.location.href = '/goals/'+id;
 		});
 	});
-
-	// $("#save-btn").click(function(){
-	// 	console.log("posting");
-	// 	$.post('/history/'+id,{
- // 			date : "050432",
- //     		imageURL : "testing",
- //     		eventDescription : "testing",
- //     		availableFundsBalance : 500
- // 		},function(){
- // 			window.location.href = '/history/'+id;
- // 		});
-	// });
 
 	$("#goal-photobox").mouseenter(function(){
 		$('html,body').css('cursor','pointer');
