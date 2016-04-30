@@ -546,7 +546,7 @@ body {
 }
 
 #logout-btn {
-	font-size:27px;
+	font-size:20px;
 	height:54px;
 }
 
@@ -687,4 +687,8 @@ body {
 
 #save-btn {
 	margin-right: 10px;
+}
+
+#page-content {
+	margin-top: 15px;
 }

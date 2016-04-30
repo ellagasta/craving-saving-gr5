@@ -18,17 +18,9 @@
 <body>
     <div id="landing-wrapper">
         <div id="landing-content">
-            <div class="row" id="heading-row">
-                <div style="float:left;"> <img src="images/logo.png" alt="Logo" id="logo"> </div>
-                <!-- <button id="logout-btn" type="button" class="btn btn-default" style="float:right;">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    Logout
-                </button> -->
-            </div>
-
-
             <div class="container" id="page-content">
                 <div class="row" style="padding:15px;border:3px solid black;background-color:#E6FFFF;margin:15px 0 30px 0;">
+
                     <div class="available-funds" style="float:left;">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
 
                     <div style="text-align:right;">
@@ -153,7 +145,6 @@
                 </div>
             </div> <!-- end of container -->
         </div> <!-- end of landing-content -->
-        <div id="landing-footer"></div>
     </div> <!-- end of landing-wrapper -->
 </body>
 </html>
