@@ -692,3 +692,25 @@ body {
 #page-content {
 	margin-top: 15px;
 }
+
+.history-table {
+	font-size: 20px;
+}
+
+tr {
+   height: 80px;
+   vertical-align: middle;
+}
+
+.history-img {
+	padding-left: 20px;
+	height: 70px;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+th.history-table-icon {
+	width: 50px;
+}

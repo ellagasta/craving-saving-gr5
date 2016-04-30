@@ -50,6 +50,18 @@ $(document).ready(function (){
 		});
 	});
 
+	// $("#save-btn").click(function(){
+	// 	console.log("posting");
+	// 	$.post('/history/'+id,{
+ // 			date : "050432",
+ //     		imageURL : "testing",
+ //     		eventDescription : "testing",
+ //     		availableFundsBalance : 500
+ // 		},function(){
+ // 			window.location.href = '/history/'+id;
+ // 		});
+	// });
+
 	$("#goal-photobox").mouseenter(function(){
 		$('html,body').css('cursor','pointer');
 		$("#goal-photobox .goal-img").css("opacity", .5);

@@ -84,7 +84,72 @@
                     </div>
 
                     <div class="tab-pane" id="earn">Earn is not yet implemented.</div>
-                    <div class="tab-pane" id="history">History is not yet implemented.</div>
+                    <div class="tab-pane" id="history">
+                        <table class="table table-hover history-table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="history-table-date">Date</th>
+                                    <th class="history-table-icon"></th>
+                                    <th class="history-table-event">Event</th>
+                                    <th class="history-table-balance">Available Funds</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (var i=0; i<user.history.length; i++){ %>
+                                    <tr>
+                                        <td><% user.history[i].date %></td>
+                                        <td><img src='/<%= user.history[i].imageURL %>' class="history-img"></td>
+                                        <td><% user.history[i].eventDescription %></td>
+                                        <td><% user.history[i].availableFundsBalance %></td>
+                                    </tr>
+                                <%} %>
+
+
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/piggy-broken-transparent.png' class="history-img"></td>
+                                    <td>Empty $5 in Savings Account</td>                                    
+                                    <td>$70</td>
+                                </tr>                                
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/piggy-transparent.png' class="history-img"></td>
+                                    <td>Add $5 to Savings Account</td>
+                                    <td>$65</td>
+                                </tr>
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/favicon.ico' class="history-img"></td>
+                                    <td>Spend $10 from Available Funds</td>
+                                    <td>$70</td>
+                                </tr>
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Purchase Red Lightsaber Goal</td>
+                                    <td>$80</td>
+                                </tr>
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Add $20 to Red Lightsaber Goal</td>
+                                    <td>$80</td>
+                                </tr>
+                                <tr>
+                                    <td>4/22/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Change Goal Name from Lightsaber to Red Lightsaber</td>
+                                    <td>$100</td>
+                                </tr>
+                                <tr>
+                                    <td>4/22/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Create Lightsaber Goal of $20</td>
+                                    <td>$100</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">
                         <div class="modal-dialog add-money-dialog">
@@ -139,9 +204,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab-pane" id="earn">Earn $$$</div>
-                    <div class="tab-pane" id="history">History...</div>
                 </div>
             </div> <!-- end of container -->
         </div> <!-- end of landing-content -->
