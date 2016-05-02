@@ -4,7 +4,6 @@ $(document).ready(function (){
 	    placement : 'bottom'
 	});
 
-	$("#edit-goal-name").val(user.goals[id].goalName);
 
 	$("#modal-add-money").on("shown.bs.modal",function(){
 		refreshDisplay();
@@ -29,11 +28,6 @@ $(document).ready(function (){
 		window.location.href = "/profile";
 	});
 
-	$('#spend-now-btn').click(function(){
-		console.log("spend-now");
-		$('#modal-add-money').modal({show:true});
-	});
-
 	$("#cancel-btn").click(function(){
 		if(user.goals[id].created){
 			window.location.href = '/goals/'+id;
@@ -50,7 +44,7 @@ $(document).ready(function (){
 	});
 
 	$("#save-btn").click(function(){
-		$.post('/goals/'+id+'/edit',{
+		$.post('/goals',{
 			price : Number($("#goal-price").val()),
 			goalName : $("#edit-goal-name").val(),
 			created : true,

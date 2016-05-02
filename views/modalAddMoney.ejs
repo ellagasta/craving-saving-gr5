@@ -1,0 +1,36 @@
+<!doctype html>
+<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog add-money-dialog">
+        <div class="modal-content add-money-content" id="window-wrapper">
+            <div class="modal-header add-money-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>BEFORE FILLING</h3> 
+                <img id="tooltip-add-money" src="/images/question-mark.png" height="40px" data-toggle="tooltip" title="Drag the money to the right to spend it. Double-click the money to split it into smaller change.">
+            </div>
+            <div class="modal-body add-money-body">
+                <div id="drag-and-drop-wrapper">
+                    <div id="left-col">
+                        <span id="left-balance"></span>
+                        <div id="left-window"></div>
+                    </div>
+                    <div id="warning-transfer-money"></div>
+                    <div id="arrow-block">
+                        <img src='/images/thin-arrow.png' id='transfer-arrow'>
+                            <span>$ <input id="transfer" value="0"></span>
+                    </div>
+                    <button id ="organize-button" class = "btn btn-default">Organize</button>
+                    <div id="right-col">
+                        <span id="right-balance"></span>
+                        <div id="right-window"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="footer-button-wrapper">
+                    <button id="cancel-transaction-button" class="btn btn-danger">Cancel</button>
+                    <button id="confirm-transaction-button" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

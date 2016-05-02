@@ -1,4 +1,13 @@
 $(document).ready(function () {
+    $('[data-toggle="popover"]').popover(); 
+    $('[data-toggle="tooltip"]').tooltip({ 
+	    placement : 'bottom'
+	});
+
+	$("#modal-add-money").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
 	$("#logo").click(function(){
 		window.location.href='/profile';
 	})
@@ -20,6 +29,7 @@ $(document).ready(function () {
 		setupModal(1);
 		$("#modal-add-money").modal({show:true});
 	})
+
 	$('#spend-now-btn').click(function(){
 		setupModal(0);
 		$("#modal-add-money").modal({show:true});
@@ -48,9 +58,8 @@ $(document).ready(function () {
 });
 
 var newGoalClick = function(){
-	$.post('/goals',user,function(data){
-		window.location.href = data; //open that new goal's page
-	});
+	window.location.href = "/newGoal"; 
+
 }
 
 

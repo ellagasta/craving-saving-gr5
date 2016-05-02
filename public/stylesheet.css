@@ -24,7 +24,7 @@
 
 .landing-content{
 	border:5px solid black;
-	background-color: white;
+	background-color: #E6FFFF;
 	border-radius: 10px;
 	margin: 50px auto 20px auto;
 	padding:40px;
@@ -68,12 +68,38 @@ h1 {
 	font-size: 50px;
 }
 
+.add-money-header h3{
+	display:inline-block;
+}
+#tooltip-add-money{	
+	display:inline-block;
+	margin-bottom: 13px;
+	margin-left: 10px;
+}
+
+.tooltip-inner{
+	font-size:18px;
+	max-width:250px;
+	padding-bottom:3px;
+}
+
 .form-control{
 	display: block;
     width: 100%;
     height: 40px;
     padding: 6px 12px;
     font-size: 20px;
+}
+
+#edit-goal-name {
+	height: auto;
+	margin-left: 0px;
+}
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .form-group {
@@ -149,6 +175,17 @@ h1 {
 	position:absolute;
 	top:74%;
 	left:45.5%;
+}
+
+#warning-transfer-money{
+	display:inline-block;
+	color:red;
+	font-size:20px;
+	position:absolute;
+	left:43.5%;
+	top:15%;
+	width:12.5%;
+	text-align:center;
 }
 
 #confirm-transaction-button {
@@ -284,7 +321,7 @@ h1 {
 }
 
 .goal-pic {
-	width: 400px;
+	width: 390px;
 }
 
 #uploadPhotobox{
@@ -319,7 +356,7 @@ h1 {
 	height: 11px;
 	position: relative;
 	top: 4px;
-	margin-left: 5px;
+	margin-left: 9px;
 }
 
 body {
@@ -503,7 +540,7 @@ body {
 
 #delete-goal-btn {
 	float: right;
-	margin-right: 15px;
+	margin-right: 25px;
 }
 
 #editgoal-progress {
@@ -524,21 +561,19 @@ body {
     color: gray;
 }
 
-#goal-price{
-	height:60px;
-	width: 100px;
-}
-
 #save-btns{
 	position: relative;
 	left: 100%;
 }
 
 #spend-now-btn {
-	width: 150px;
+	width: 180px;
 	margin-right: 20px;
-	margin-top: 3px;
-	background-color: #E6FFFF;
+}
+
+#logout-btn {
+	font-size:20px;
+	height:54px;
 }
 
 .progress-row-btn {
@@ -549,6 +584,7 @@ body {
 
 #return-to-goals-btn {
 	float: right;
+	margin-right: 10px;
 }
 
 .edit-goal-btn {
@@ -626,7 +662,7 @@ body {
 }
 
 #back {
-	margin-left: 15px;
+	margin-left: 25px;
 }
 
 #back-img {
@@ -642,7 +678,7 @@ body {
 	margin-top: -5px;
 }
 
-.glyphicon-remove, .glyphicon-edit {
+.glyphicon-remove, .glyphicon-edit, .glyphicon-cog {
 	top: .15em;
 }
 
@@ -657,4 +693,50 @@ body {
 
 #add-to-savings-row {
 	padding-top: 40px;
+}
+
+.edit-progress-row-btn {
+	float: right;
+	width: 100px;
+}
+
+.edit-progress {
+	width: 103%;
+}
+
+#goal-price {
+	display: inline-block;
+	height: auto;
+	font-size: 40px;
+	width: 130px;
+}
+
+#save-btn {
+	margin-right: 10px;
+}
+
+#page-content {
+	margin-top: 15px;
+}
+
+.history-table {
+	font-size: 20px;
+}
+
+tr {
+   height: 80px;
+   vertical-align: middle;
+}
+
+.history-img {
+	padding-left: 20px;
+	height: 70px;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+th.history-table-icon {
+	width: 50px;
 }

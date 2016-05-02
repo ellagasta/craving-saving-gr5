@@ -13,6 +13,12 @@ var userSchema = mongoose.Schema({
         price      : Number,
         imageURL   : String,
         created    : Boolean
+    }],
+    history : [{
+        date                : String,
+        imageURL            : Number,
+        eventDescription    : String,
+        availableFundsBalance   : Number
     }]
 });
 
