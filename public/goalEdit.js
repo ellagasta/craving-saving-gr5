@@ -6,6 +6,15 @@ $(document).ready(function (){
 
 	$("#edit-goal-name").val(user.goals[id].goalName);
 
+	$("#modal-add-money").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
+	$('#spend-now-btn').click(function(){
+		setupModal(0);
+		$("#modal-add-money").modal({show:true});
+	});
+
 	var newPhoto = "";
 
 	$("#edit-goal-name").click(function(){

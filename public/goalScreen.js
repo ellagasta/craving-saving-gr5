@@ -8,10 +8,6 @@ $(document).ready(function (){
 		refreshDisplay();
 	});
 
-	$("#spend-now-btn").on("shown.bs.modal",function(){
-		refreshDisplay();
-	});
-
 	$("#back").click(function(){
 		window.location.href = "/profile";
 	});

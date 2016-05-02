@@ -4,6 +4,10 @@ $(document).ready(function (){
 	    placement : 'bottom'
 	});
 
+	$("#modal-add-money").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
 	$("#back").click(function(){
 		window.location.href = "/profile";
 	});

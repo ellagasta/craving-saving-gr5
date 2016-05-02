@@ -4,15 +4,7 @@ $(document).ready(function () {
 	    placement : 'bottom'
 	});
 
-	$("#add-to-savings-btn").on("shown.bs.modal",function(){
-		refreshDisplay();
-	});
-
 	$("#modal-add-money").on("shown.bs.modal",function(){
-		refreshDisplay();
-	});
-
-	$("#spend-now-btn").on("shown.bs.modal",function(){
 		refreshDisplay();
 	});
 
