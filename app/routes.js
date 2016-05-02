@@ -216,15 +216,26 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
+// add new event to history
     app.post('/history', isLoggedIn, function(req,res){
-        User.findOne({'username':req.body.username},function(err, user){
+        console.log("history from routes");
+        User.findOne({'username':req.user.username},function(err, user){
             if (err) {
                 throw err;
             }
             var history = user.history;
             history[history.length] = {
-                
-            }
+                date                : req.body.date,
+                imageURL            : req.body.imageURL,
+                eventDescription    : req.body.eventDescription,
+                availableFundsBalance   : req.body.availableFundsBalance
+            };
+            user.history = history;
+            user.save(function(err) {
+                if (err) {
+                    console.log("save error in user:",user.username);
+                }
+            });
         });
     });
 };
@@ -238,3 +249,4 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
+

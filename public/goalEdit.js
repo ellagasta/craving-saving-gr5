@@ -42,6 +42,15 @@ $(document).ready(function (){
 	});
 
 	$("#save-btn, #modal-save-btn").click(function(){
+		//if(goalEditGetsHistoryEvent) {
+			$.post('/history',{
+				date : getDate(),
+	            imageURL : $("#goal-photo")[0].src,
+//	            eventDescription : getEditGoalDescription(user.goal[id].imageURL, $("#goal-photo")[0].src, user.goal[id].goalName, $("#edit-goal-name").val(), user.goal[id].price, $("#goal-price").val()),
+				eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
+	            availableFundsBalance : user.balance
+			});
+		//}
 		$.post('/goals/'+id+'/edit',{
 			price : Number($("#goal-price").val()),
 			goalName : $("#edit-goal-name").val(),
@@ -50,6 +59,10 @@ $(document).ready(function (){
 		},function(){
 			window.location.href = '/goals/'+id;
 		});
+	});
+
+	$("#save-btn, #modal-save-btn").click(function(){
+
 	});
 
 	$("#goal-photobox").mouseenter(function(){
@@ -88,3 +101,43 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+
+
+function goalEditGetsHistoryEvent(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
+	return oldImageURL != newImageURL || oldGoalName != newGoalName || oldGoalPrice != newGoalPrice;
+}
+
+function getEditGoalDescription(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
+	var eventDescription = "";
+	if (newGoalName != oldGoalName) {
+		eventDescription += "Change Goal Name from " + oldGoalName + " to " + newGoalName;
+		if (oldGoalPrice != newGoalPrice) {
+			eventDescription += " and ";
+		}
+	}
+	if (oldGoalPrice != newGoalPrice) {
+		eventDescription += "Change Goal Amount from " + oldGoalPrice + " to " + newGoalPrice;
+	}
+	if (eventDescription == "") {
+		eventDescription += "Update " + newGoalName + " Goal photo";
+	}
+	return eventDescription;
+}
+
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yy = today.getFullYear() % 100;
+    if(dd<10) {
+        dd='0'+dd
+    } 
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    today = mm+'/'+dd+'/'+yy;
+    console.log(today);
+    return today;
+}
+

@@ -24,6 +24,7 @@ $(document).ready(function () {
 	$('.hoverable-panel').hover(hoverFunc, unhoverFunc);
 
 	$('.new-goal').click(newGoalClick);
+
 	$('#open-savings-btn').click(function(){
 		window.location.href = "/savings";
 	});
@@ -58,6 +59,19 @@ $(document).ready(function () {
 	$('#logout-btn').click(function(){
 		window.location.href = "/";
 	})
+
+	$('#history-tab').click(function(){
+		var currHistoryRows = $('#history-table tr').length;
+		console.log(currHistoryRows);
+		console.log(user.history.length);
+		for (var i = 0; i < user.history.length; i++) {
+			var newRow = "<tr><td>" + user.history[i].date + "</td>";
+			newRow += "<td><img src='" + user.history[i].imageURL + "' class='history-img'></td>";
+			newRow += "<td>" + user.history[i].eventDescription + "</td>";
+			newRow += "<td>" + user.history[i].availableFundsBalance + "</td>";
+			$("#history-table-body").append(newRow);
+		}
+	});
 });
 
 var newGoalClick = function(){
@@ -65,7 +79,6 @@ var newGoalClick = function(){
 		window.location.href = data; //open that new goal's page
 	});
 }
-
 
 var hoverFunc = function() {
 	$(this).find('.hover-div').stop(true, false).fadeTo("fast", 1);

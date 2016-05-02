@@ -20,6 +20,7 @@ $(document).ready(function (){
 		    }
 		});
 	});
+	
 	$("#emptyModal").find(".btn-default").click(function(){
 		$("#emptyModal").modal({show:false});
 	});

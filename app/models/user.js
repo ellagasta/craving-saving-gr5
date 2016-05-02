@@ -16,7 +16,7 @@ var userSchema = mongoose.Schema({
     }],
     history : [{
         date                : String,
-        imageURL            : Number,
+        imageURL            : String,
         eventDescription    : String,
         availableFundsBalance   : Number
     }]

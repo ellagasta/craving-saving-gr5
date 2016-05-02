@@ -44,7 +44,7 @@
                             <a href="#earn"><h4>Earn</h4></a>
                         </li>
                         <li>
-                            <a href="#history"><h4>History</h4></a>
+                            <a id="history-tab" href="#history"><h4>History</h4></a>
                         </li>
                     </ul>
                 </div>
@@ -85,7 +85,7 @@
 
                     <div class="tab-pane" id="earn">Earn is not yet implemented.</div>
                     <div class="tab-pane" id="history">
-                        <table class="table table-hover history-table table-responsive">
+                        <table id="history-table" class="table table-hover history-table table-responsive">
                             <thead>
                                 <tr>
                                     <th class="history-table-date">Date</th>
@@ -94,15 +94,15 @@
                                     <th class="history-table-balance">Available Funds</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <% for (var i=0; i<user.history.length; i++){ %>
+                            <tbody id="history-table-body">
+<!--                                 <% for (var i=0; i<user.history.length; i++){ %>
                                     <tr>
                                         <td><% user.history[i].date %></td>
                                         <td><img src='/<%= user.history[i].imageURL %>' class="history-img"></td>
                                         <td><% user.history[i].eventDescription %></td>
                                         <td><% user.history[i].availableFundsBalance %></td>
                                     </tr>
-                                <%} %>
+                                <%} %> -->
 
 
                                 <tr>
