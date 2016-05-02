@@ -59,6 +59,13 @@ $(document).ready(function (){
 	})
 
 	$('#history-tab').click(function(){
-		window.location.href = "/history";
+		console.log("history clicked");
+		window.location.href = "/history"; // TODO this doesn't work
 	});
+
+	$('#earn-tab').click(function(){
+		console.log("earn clicked");
+		window.location.href = "/earn"; // TODO this doesn't work
+	});
+
 });

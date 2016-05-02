@@ -68,6 +68,10 @@ $(document).ready(function () {
 	$('#history-tab').click(function(){
 		window.location.href = "/history";
 	});
+
+	$('#earn-tab').click(function(){
+		window.location.href = "/earn";
+	});
 });
 
 var newGoalClick = function(){

@@ -4,6 +4,10 @@ $(document).ready(function (){
 		window.location.href = "/profile";
 	});
 
+	$('#earn-tab').click(function(){
+		window.location.href = "/earn";
+	});
+
 	var currHistoryRows = $('#history-table tr').length;
 		console.log(currHistoryRows);
 		console.log(user.history.length);

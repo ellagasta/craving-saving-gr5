@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <title>Craving Saving</title>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/globalize.min.js"></script>
+
+    <script type="text/javascript" src="/earn.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Questrial|Rokkitt|Luckiest+Guy|Chelsea+Market'>
+    <script> var user = JSON.parse('<%- JSON.stringify(user) %>'); </script> <!-- load into javascript-->
+</head>
+<body>
+    <div id="landing-wrapper">
+        <div id="landing-content">
+            <div class="container" id="page-content">
+                <div class="row" style="padding:15px;border:3px solid black;background-color:#E6FFFF;margin:15px 0 30px 0;">
+
+                    <div class="available-funds" style="float:left;">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
+
+                    <div style="text-align:right;">
+                        <button class="btn btn-default" id="spend-now-btn" data-toggle="tooltip" title="Spend money directly, without adding a new goal">
+                            <img src="images/spendnow-btn-copy.png" width="100%" height="100%">
+                        </button>
+
+                        <button id="logout-btn" type="button" class="btn btn-default" style="vertical-align:middle;">
+                            <span class="glyphicon glyphicon-cog" id="logout-btn-cog" aria-hidden="true"></span>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li>
+                            <a id="goals-tab" href="#goals"><h4>Goals</h4></a>
+                        </li>
+                        <li class="active">
+                            <a id="earn-tab" href="#earn"><h4>Earn</h4></a>
+                        </li>
+                        <li>
+                            <a id="history-tab" href="#history"><h4>History</h4></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane" id="goals"></div>
+                    <div class="tab-pane active" id="earn">Earn is not yet implemented.</div>
+                    <div class="tab-pane" id="history"></div>
+                </div>
+            </div> <!-- end of container -->
+        </div> <!-- end of landing-content -->
+    </div> <!-- end of landing-wrapper -->
+</body>
+</html>

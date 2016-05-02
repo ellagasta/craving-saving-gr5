@@ -48,6 +48,12 @@ module.exports = function(app, passport) {
         });
     })
 
+    app.get('/earn', isLoggedIn, function(req,res){
+        res.render('earn.ejs',{
+            user: req.user
+        });
+    })
+
     // add to savings
     app.post('/savings',isLoggedIn,function(req,res){
         User.findOne({'username':req.user.username},function(err, user){
