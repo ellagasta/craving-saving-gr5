@@ -1,20 +1,17 @@
 $(document).ready(function (){
-	$("#modal-add-money").on("shown.bs.modal",function(){
-		refreshDisplay();
+    $('[data-toggle="popover"]').popover(); 
+    $('[data-toggle="tooltip"]').tooltip({ 
+	    placement : 'bottom'
 	});
 
-	$("#spend-now-btn").on("shown.bs.modal",function(){
+	$("#modal-add-money").on("shown.bs.modal",function(){
 		refreshDisplay();
 	});
 
 	$("#back").click(function(){
 		window.location.href = "/profile";
 	});
-	
-	$("#logo").click(function(){
-		window.location.href='/profile';
-	})
-	
+		
 	$("#delete-goal-btn").click(function(){
 		$("#deleteModal").modal({show:true});
 	})

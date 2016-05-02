@@ -4,7 +4,6 @@ $(document).ready(function (){
 	    placement : 'bottom'
 	});
 
-	$("#edit-goal-name").val(user.goals[id].goalName);
 
 	$("#modal-add-money").on("shown.bs.modal",function(){
 		refreshDisplay();
@@ -26,16 +25,10 @@ $(document).ready(function (){
 	});
 
 	$("#back").click(function(){
-		$('#backFromEditModal').modal({show:true});
+		window.location.href = "/profile";
 	});
 
-	$('#spend-now-btn').click(function(){
-		console.log("spend-now");
-		$('#modal-add-money').modal({show:true});
-	});
-
-	$("#cancel-btn, #modal-cancel-btn").click(function(){
-		console.log("cancel");
+	$("#cancel-btn").click(function(){
 		if(user.goals[id].created){
 			window.location.href = '/goals/'+id;
 		} else {
@@ -50,15 +43,8 @@ $(document).ready(function (){
 		}
 	});
 
-	$("#save-btn, #modal-save-btn").click(function(){
-		console.log("post to history");
-		$.post('/history',{
-			date : getDate(),
-            imageURL : $("#goal-photo")[0].src,
-			eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
-            availableFundsBalance : "$" + user.balance.toFixed(2)
-		});		
-		$.post('/goals/'+id+'/edit',{
+	$("#save-btn").click(function(){
+		$.post('/goals',{
 			price : Number($("#goal-price").val()),
 			goalName : $("#edit-goal-name").val(),
 			created : true,
@@ -67,6 +53,18 @@ $(document).ready(function (){
 			window.location.href = '/goals/'+id;
 		});
 	});
+
+	// $("#save-btn").click(function(){
+	// 	console.log("posting");
+	// 	$.post('/history/'+id,{
+ // 			date : "050432",
+ //     		imageURL : "testing",
+ //     		eventDescription : "testing",
+ //     		availableFundsBalance : 500
+ // 		},function(){
+ // 			window.location.href = '/history/'+id;
+ // 		});
+	// });
 
 	$("#goal-photobox").mouseenter(function(){
 		$('html,body').css('cursor','pointer');
@@ -104,43 +102,3 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
-
-
-
-// function goalEditGetsHistoryEvent(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
-// 	return oldImageURL != newImageURL || oldGoalName != newGoalName || oldGoalPrice != newGoalPrice;
-// }
-
-// function getEditGoalDescription(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
-// 	var eventDescription = "";
-// 	if (newGoalName != oldGoalName) {
-// 		eventDescription += "Change Goal Name from " + oldGoalName + " to " + newGoalName;
-// 		if (oldGoalPrice != newGoalPrice) {
-// 			eventDescription += " and ";
-// 		}
-// 	}
-// 	if (oldGoalPrice != newGoalPrice) {
-// 		eventDescription += "Change Goal Amount from " + oldGoalPrice + " to " + newGoalPrice;
-// 	}
-// 	if (eventDescription == "") {
-// 		eventDescription += "Update " + newGoalName + " Goal photo";
-// 	}
-// 	return eventDescription;
-// }
-
-function getDate() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yy = today.getFullYear() % 100;
-    if(dd<10) {
-        dd='0'+dd
-    } 
-    if(mm<10) {
-        mm='0'+mm
-    } 
-    today = mm+'/'+dd+'/'+yy;
-    console.log(today);
-    return today;
-}
-

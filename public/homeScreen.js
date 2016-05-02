@@ -1,14 +1,11 @@
 $(document).ready(function () {
 
-	$("#add-to-savings-btn").on("shown.bs.modal",function(){
-		refreshDisplay();
+    $('[data-toggle="popover"]').popover(); 
+    $('[data-toggle="tooltip"]').tooltip({ 
+	    placement : 'bottom'
 	});
 
 	$("#modal-add-money").on("shown.bs.modal",function(){
-		refreshDisplay();
-	});
-
-	$("#spend-now-btn").on("shown.bs.modal",function(){
 		refreshDisplay();
 	});
 
@@ -83,9 +80,8 @@ $(document).ready(function () {
 });
 
 var newGoalClick = function(){
-	$.post('/goals',user,function(data){
-		window.location.href = data; //open that new goal's page
-	});
+	window.location.href = "/newGoal"; 
+
 }
 
 var hoverFunc = function() {
