@@ -1,4 +1,16 @@
 $(document).ready(function () {
+	$("#add-to-savings-btn").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
+	$("#modal-add-money").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
+	$("#spend-now-btn").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
 	$("#logo").click(function(){
 		window.location.href='/profile';
 	})
@@ -20,6 +32,7 @@ $(document).ready(function () {
 		setupModal(1);
 		$("#modal-add-money").modal({show:true});
 	})
+
 	$('#spend-now-btn').click(function(){
 		setupModal(0);
 		$("#modal-add-money").modal({show:true});

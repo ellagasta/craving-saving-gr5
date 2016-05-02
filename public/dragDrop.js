@@ -1,13 +1,14 @@
 $(document).ready(function(){
 	balance = user.balance;
-	MARGIN_LEFT_LEFT = 35;
-	MARGIN_TOP = 70;
-	MARGIN_LEFT_RIGHT = 660;
+	MARGIN_LEFT_LEFT = 32;
+	MARGIN_TOP = 62;
+	MARGIN_LEFT_RIGHT = 720;
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
 		left_balance = balance;
 		right_balance = 0;
 		$("#transfer").val("0.00");
+		$("#warning-transfer-money").hide();
 		refreshDisplay();
 	});
 });
@@ -27,6 +28,9 @@ function addMoney(denomination, num, side){
 			$("#"+idNum).dblclick(function(){
 				splitDenomination(denomination,$(this).attr("id"));
 			});
+			$("#"+idNum).click(function(){
+				$("#warning-transfer-money").hide();
+			})
 
 			item_locations[idNum] = 'left';
 			idNum += 1;
@@ -229,6 +233,7 @@ function refreshDisplay(){
     }
     $("#left-balance").text("$"+left_balance.toFixed(2));
     $("#right-balance").text("$"+right_balance.toFixed(2));
+    $(".money").effect("shake",{direction:"up", distance:10,times:3});
 }
 
 // was createModalAddMoney();
@@ -259,7 +264,6 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	$("#left-window").droppable({
 		drop: function(event,ui){
 			if (item_locations[ui.draggable.attr('id')] === 'right' ){
-
 				var source = ui.draggable.attr('src').split('/');
 				var value = monetaryValue(source[source.length - 1].split('.')[0]);
 				left_balance += value;
@@ -326,10 +330,18 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	});	
 
 	if (typeCode == 0){
-		$(".modal-header").find("h2").text("Spend Money Now");
+		$(".modal-header").find("h3").text("Spend Money Now");
         $("#transfer").spinner({
 			change: function(event,ui){
 				var val = Number($(this).val());
+				if (val > balance){
+					$("#warning-transfer-money").text("You don't have enough money!");
+					$("#warning-transfer-money").show();
+				}
+				if (val < 0 ){
+					$("#warning-transfer-money").text("You can't add negative money!")
+					$("#warning-transfer-money").show();
+				}
 				val = Math.min(val,balance);
 				val = Math.max(val, 0);
 				var total = left_balance + right_balance;
@@ -350,10 +362,19 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		});
 
 	}else if (typeCode ==1){ 
-		$(".modal-header").find("h2").text("Add Money to Savings");
+		$(".modal-header").find("h3").text("Add Money to Savings");
 		$("#transfer").spinner({
 			change: function(event,ui){
 				var val = Number($(this).val());
+				if (val > balance){
+					$("#warning-transfer-money").text("You don't have enough money!");
+					$("#warning-transfer-money").show();
+				}
+				if (val < 0 ){
+					$("#warning-transfer-money").text("You can't add negative money!")
+					$("#warning-transfer-money").show();
+				}
+
 				val = Math.min(val,balance);
 				val = Math.max(val, 0);
 				var total = left_balance + right_balance;
@@ -373,7 +394,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		});
 
 	}else if (typeCode == 2){
-		$(".modal-header").find("h2").text("Transfer Money to "+user.goals[goalID].goalName);
+		$(".modal-header").find("h3").text("Transfer Money to "+user.goals[goalID].goalName);
 		$("#transfer").spinner({
 			change: function(event,ui){
 				console.log('change');	
@@ -384,13 +405,21 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
                 console.log( $(this).val(), max_val, cur_val);
 				if ($(this).val() < 0){
 					val = 0;
+					$("#warning-transfer-money").text("You can't add negative money!");
+					$("#warning-transfer-money").show();
 				}else if ($(this).val() > max_val - cur_val){
 					val = max_val-cur_val;
-                    console.log("too much");
+
+					$("#warning-transfer-money").text("You added more money than you need!");
+					$("#warning-transfer-money").show();
 				}else{
 					val = Number($(this).val());
 				}
-				val = Math.min(val,balance);
+				if (val > balance){
+					$("#warning-transfer-money").text("You don't have enough money!");
+					$("#warning-transfer-money").show();
+					val = balance;
+				}
 				console.log(val);
 
 				$(this).val(val.toFixed(2));
@@ -429,7 +458,10 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 
 					var max_val = user.goals[goalID].price;
 					var cur_val = user.goals[goalID].saved;
-					if (value+right_balance > max_val-cur_val){
+					if (value+right_balance > max_val-cur_val){					
+						$("#warning-transfer-money").text("You added more money than you need!");
+						$("#warning-transfer-money").show();
+
                         var new_val = max_val - cur_val;
 						right_balance = new_val;
 						left_balance = balance - right_balance;
@@ -464,7 +496,10 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			$("#transfer").blur();
 		}
 	});
-	$("#organize-button").click(refreshDisplay);
+	$("#organize-button").click(function(){
+		refreshDisplay;
+		$("#warning-transfer-money").hide();
+	});
 	$("#cancel-transaction-button").click(function(){
 		$('#modal-add-money').modal('toggle');
 	});
