@@ -218,6 +218,7 @@ module.exports = function(app, passport) {
 
 // add new event to history
     app.post('/history', isLoggedIn, function(req,res){
+        console.log("receive history");
         User.findOne({'username':req.user.username},function(err, user){
             if (err) {
                 throw err;
@@ -230,6 +231,7 @@ module.exports = function(app, passport) {
                 availableFundsBalance   : req.body.availableFundsBalance
             };
             user.history = history;
+            console.log(user.history);
             user.save(function(err) {
                 if (err) {
                     console.log("save error in user:",user.username);

@@ -45,6 +45,13 @@ $(document).ready(function () {
 		console.log(id);
 		$("#purchaseModal").modal({show:true});
 		$("#purchase-modal-btn").click(function(){
+			// console.log("purchase");
+			// $.post('/history',{
+			// 	date : getDate(),
+	  //           imageURL : user.goals[id].imageURL,
+			// 	eventDescription : "Purchase " + user.goals[id].goalName,
+	  //           availableFundsBalance : "$" + user.balance
+			// });		
 			$.post('/goals/'+id+"/purchase",null, function(){
 				window.location.reload();
 			})
@@ -102,3 +109,20 @@ var openGoalClick = function(){
 	});
 	console.log("open goal "+id);
 }
+
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yy = today.getFullYear() % 100;
+    if(dd<10) {
+        dd='0'+dd
+    } 
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    today = mm+'/'+dd+'/'+yy;
+    console.log(today);
+    return today;
+}
+

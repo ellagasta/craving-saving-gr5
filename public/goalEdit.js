@@ -42,16 +42,13 @@ $(document).ready(function (){
 	});
 
 	$("#save-btn, #modal-save-btn").click(function(){
-		//if(goalEditGetsHistoryEvent) {
-			console.log("post to history");
-			$.post('/history',{
-				date : '00/00/00',
-	            imageURL : $("#goal-photo")[0].src,
-//	            eventDescription : getEditGoalDescription(user.goal[id].imageURL, $("#goal-photo")[0].src, user.goal[id].goalName, $("#edit-goal-name").val(), user.goal[id].price, $("#goal-price").val()),
-				eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
-	            availableFundsBalance : "$" + user.balance
-			});
-		//}
+		console.log("post to history");
+		$.post('/history',{
+			date : getDate(),
+            imageURL : $("#goal-photo")[0].src,
+			eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
+            availableFundsBalance : "$" + user.balance.toFixed(2)
+		});		
 		$.post('/goals/'+id+'/edit',{
 			price : Number($("#goal-price").val()),
 			goalName : $("#edit-goal-name").val(),
@@ -60,10 +57,6 @@ $(document).ready(function (){
 		},function(){
 			window.location.href = '/goals/'+id;
 		});
-	});
-
-	$("#save-btn, #modal-save-btn").click(function(){
-
 	});
 
 	$("#goal-photobox").mouseenter(function(){

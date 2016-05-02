@@ -356,6 +356,12 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		$("#confirm-transaction-button").click(function(){
 			balance = left_balance;
 			console.log('balance',balance);
+			$.post('/history',{
+				date : getDate(),
+	            imageURL : 'images/logo-letter-s.png',
+				eventDescription : "Spend $" + right_balance.toFixed(2) + " directly from Available Funds", // TODO fix this
+	            availableFundsBalance : "$" + left_balance.toFixed(2)
+			});
 			$.post('/profile',{balance:balance, user:user},function(data){
 				window.location.reload();
 			});
@@ -388,6 +394,12 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		});
 		$("#confirm-transaction-button").click(function(){
 			console.log("add to savings");
+			$.post('/history',{
+				date : getDate(),
+	            imageURL : 'images/piggy-transparent.png',
+				eventDescription : "Add $" + right_balance.toFixed(2) + " to Savings Account", // TODO fix this
+	            availableFundsBalance : "$" + left_balance.toFixed(2)
+			});
 			$.post('/savings',{addedSavings:right_balance},function(data){
 				window.location.reload();
 			});
@@ -481,10 +493,15 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			}
 		});
 
-
 		$("#confirm-transaction-button").click(function(){
 			balance = left_balance;
 			console.log('balance',balance);
+			// $.post('/history',{ // TODO this breaks the post below
+			// 	date : getDate(),
+	  //           imageURL : user.goals[goalID].imageURL,
+			// 	eventDescription : "Add $" + right_balance.toFixed(2) + " to " + user.goals[goalID].goalName + " Goal",
+	  //           availableFundsBalance : "$" + left_balance.toFixed(2)
+			// });
 			$.post('/goals/'+goalID,{balance:balance, addedValue: right_balance},function(data){
 				window.location.reload();
 			});
@@ -503,5 +520,21 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	$("#cancel-transaction-button").click(function(){
 		$('#modal-add-money').modal('toggle');
 	});
+}
+
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yy = today.getFullYear() % 100;
+    if(dd<10) {
+        dd='0'+dd
+    } 
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    today = mm+'/'+dd+'/'+yy;
+    console.log(today);
+    return today;
 }
 

@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
         date                : String,
         imageURL            : String,
         eventDescription    : String,
-        availableFundsBalance   : Number
+        availableFundsBalance   : String
     }]
 });
 
