@@ -44,6 +44,7 @@ $(document).ready(function (){
 		setupModal(1);
 		$("#modal-add-money").modal({show:true});
 	});
+
 });
 
 function getDate() {
