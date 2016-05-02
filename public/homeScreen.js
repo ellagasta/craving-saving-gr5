@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
 	$("#add-to-savings-btn").on("shown.bs.modal",function(){
 		refreshDisplay();
 	});

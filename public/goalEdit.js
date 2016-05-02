@@ -43,12 +43,13 @@ $(document).ready(function (){
 
 	$("#save-btn, #modal-save-btn").click(function(){
 		//if(goalEditGetsHistoryEvent) {
+			console.log("post to history");
 			$.post('/history',{
-				date : getDate(),
+				date : '00/00/00',
 	            imageURL : $("#goal-photo")[0].src,
 //	            eventDescription : getEditGoalDescription(user.goal[id].imageURL, $("#goal-photo")[0].src, user.goal[id].goalName, $("#edit-goal-name").val(), user.goal[id].price, $("#goal-price").val()),
 				eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
-	            availableFundsBalance : user.balance
+	            availableFundsBalance : "$" + user.balance
 			});
 		//}
 		$.post('/goals/'+id+'/edit',{
@@ -104,26 +105,26 @@ function readURL(input) {
 
 
 
-function goalEditGetsHistoryEvent(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
-	return oldImageURL != newImageURL || oldGoalName != newGoalName || oldGoalPrice != newGoalPrice;
-}
+// function goalEditGetsHistoryEvent(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
+// 	return oldImageURL != newImageURL || oldGoalName != newGoalName || oldGoalPrice != newGoalPrice;
+// }
 
-function getEditGoalDescription(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
-	var eventDescription = "";
-	if (newGoalName != oldGoalName) {
-		eventDescription += "Change Goal Name from " + oldGoalName + " to " + newGoalName;
-		if (oldGoalPrice != newGoalPrice) {
-			eventDescription += " and ";
-		}
-	}
-	if (oldGoalPrice != newGoalPrice) {
-		eventDescription += "Change Goal Amount from " + oldGoalPrice + " to " + newGoalPrice;
-	}
-	if (eventDescription == "") {
-		eventDescription += "Update " + newGoalName + " Goal photo";
-	}
-	return eventDescription;
-}
+// function getEditGoalDescription(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
+// 	var eventDescription = "";
+// 	if (newGoalName != oldGoalName) {
+// 		eventDescription += "Change Goal Name from " + oldGoalName + " to " + newGoalName;
+// 		if (oldGoalPrice != newGoalPrice) {
+// 			eventDescription += " and ";
+// 		}
+// 	}
+// 	if (oldGoalPrice != newGoalPrice) {
+// 		eventDescription += "Change Goal Amount from " + oldGoalPrice + " to " + newGoalPrice;
+// 	}
+// 	if (eventDescription == "") {
+// 		eventDescription += "Update " + newGoalName + " Goal photo";
+// 	}
+// 	return eventDescription;
+// }
 
 function getDate() {
     var today = new Date();

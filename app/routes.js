@@ -218,7 +218,6 @@ module.exports = function(app, passport) {
 
 // add new event to history
     app.post('/history', isLoggedIn, function(req,res){
-        console.log("history from routes");
         User.findOne({'username':req.user.username},function(err, user){
             if (err) {
                 throw err;
