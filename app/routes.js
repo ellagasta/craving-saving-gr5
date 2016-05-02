@@ -3,7 +3,7 @@ var User = require('./models/user');
 module.exports = function(app, passport) {
 
 
-    app.get('/', function(req, res) {
+    app.get('/',function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
@@ -92,6 +92,29 @@ module.exports = function(app, passport) {
                 res.json({ok:true});
             })
         })
+    })
+
+    app.post('/goals', isLoggedIn, function(req,res){
+        User.findOne({'username':req.user.username},function(err, user){
+            if (err){
+                throw err;
+            }
+            var goals = user.goals;
+            goals[goals.length] = {
+                goalName : req.body.goalName,
+                saved    : 0,
+                price    : req.body.price,
+                imageURL : req.body.imageURL,
+                created  : req.body.created
+            };
+            user.goals = goals;
+            user.save(function(err){
+                if (err){
+                    console.log("save error in user:",user.username);
+                }
+                res.json("/profile");
+            });
+        });
     })
 
     // get a goal
@@ -187,8 +210,16 @@ module.exports = function(app, passport) {
         })
     })
 
+    app.get('/newGoal',isLoggedIn,function(req,res){
+        res.render('newGoalEdit.ejs',{
+            user: req.user,
+            id: req.user.goals.length
+        });
+    });
+
+
 // add new goal
-    app.post('/goals', isLoggedIn, function(req,res){
+    app.post('/newGoal',isLoggedIn,function(req,res){
         User.findOne({'username':req.body.username},function(err, user){
             if (err){
                 throw err;
@@ -206,7 +237,7 @@ module.exports = function(app, passport) {
                 if (err){
                     console.log("save error in user:",user.username);
                 }
-                res.json("/goals/" + (goals.length - 1)+"/edit");
+                res.json("/profile");
             });
         });
     })

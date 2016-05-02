@@ -58,9 +58,8 @@ $(document).ready(function () {
 });
 
 var newGoalClick = function(){
-	$.post('/goals',user,function(data){
-		window.location.href = data; //open that new goal's page
-	});
+	window.location.href = "/newGoal"; 
+
 }
 
 
