@@ -215,6 +215,18 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+
+    app.post('/history', isLoggedIn, function(req,res){
+        User.findOne({'username':req.body.username},function(err, user){
+            if (err) {
+                throw err;
+            }
+            var history = user.history;
+            history[history.length] = {
+                
+            }
+        });
+    });
 };
 
 function isLoggedIn(req, res, next) {
