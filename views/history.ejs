@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+    <title>Craving Saving</title>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/globalize.min.js"></script>
+
+    <script type="text/javascript" src="/history.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Questrial|Rokkitt|Luckiest+Guy|Chelsea+Market'>
+    <script> var user = JSON.parse('<%- JSON.stringify(user) %>'); </script> <!-- load into javascript-->
+</head>
+<body>
+    <div id="landing-wrapper">
+        <div id="landing-content">
+            <div class="container" id="page-content">
+                <div class="row" style="padding:15px;border:3px solid black;background-color:#E6FFFF;margin:15px 0 30px 0;">
+
+                    <div class="available-funds" style="float:left;">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
+
+                    <div style="text-align:right;">
+                        <button class="btn btn-default" id="spend-now-btn" data-toggle="tooltip" title="Spend money directly, without adding a new goal">
+                            <img src="images/spendnow-btn-copy.png" width="100%" height="100%">
+                        </button>
+
+                        <button id="logout-btn" type="button" class="btn btn-default" style="vertical-align:middle;">
+                            <span class="glyphicon glyphicon-cog" id="logout-btn-cog" aria-hidden="true"></span>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li>
+                            <a id="goals-tab" href="#goals"><h4>Goals</h4></a>
+                        </li>
+                        <li>
+                            <a id="earn-tab" href="#earn"><h4>Earn</h4></a>
+                        </li>
+                        <li class="active">
+                            <a id="history-tab" href="#history"><h4>History</h4></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="goals">
+                        <div id="home-screen">
+                            <div class="row goals-row" id="goals-row">
+                                <div class="col-md-3" id="savings-account">
+                                    <div id="savings-account" class="panel panel-default goal hoverable-panel">
+                                        <div class="non-hover non-hover-div">
+                                            <h4 class="text-center square-text">Savings Account</h4>
+                                            <img src="images/piggy.png" class="goal-icon center-block" style="padding:23px 0px;">
+                                            <h4 class="text-center savings-balance square-text">$<%=user.savingsBalance.toFixed(2)%> Saved!</h4>
+                                        </div>
+                                        <div class="hover-add hover-div">
+                                            <button class="btn btn-default hover-btn-top" id = "open-savings-btn">Open Savings</button>
+                                            <button id = "add-to-savings-btn" class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% for (var i=0; i<user.goals.length; i++){ %>
+                                    <% var goal = user.goals[i]; %>
+                                    <% var goalID = i; %>
+                                    <% include goalSquare.ejs %>
+                                <%} %>
+                                 <div class="col-md-3 add-new-goal-col">
+                                    <div id="new-goal" class="panel panel-default btn btn-default new-goal">
+                                        <div class="text-center add-new-goal">
+                                            <i class="glyphicon glyphicon-plus-sign"></i>
+                                            <h4 class="text-center">Add new goal</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="earn">Earn is not yet implemented.</div>
+                    <div class="tab-pane" id="history">
+                        <table id="history-table" class="table table-hover history-table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="history-table-date">Date</th>
+                                    <th class="history-table-icon"></th>
+                                    <th class="history-table-event">Event</th>
+                                    <th class="history-table-balance">Available Funds</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body">
+<!--                                 <% for (var i=0; i<user.history.length; i++){ %>
+                                    <tr>
+                                        <td><% user.history[i].date %></td>
+                                        <td><img src='/<%= user.history[i].imageURL %>' class="history-img"></td>
+                                        <td><% user.history[i].eventDescription %></td>
+                                        <td><% user.history[i].availableFundsBalance %></td>
+                                    </tr>
+                                <%} %> -->
+
+
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/piggy-broken-transparent.png' class="history-img"></td>
+                                    <td>Empty $5 in Savings Account</td>                                    
+                                    <td>$70</td>
+                                </tr>                                
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/piggy-transparent.png' class="history-img"></td>
+                                    <td>Add $5 to Savings Account</td>
+                                    <td>$65</td>
+                                </tr>
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/favicon.ico' class="history-img"></td>
+                                    <td>Spend $10 from Available Funds</td>
+                                    <td>$70</td>
+                                </tr>
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Purchase Red Lightsaber Goal</td>
+                                    <td>$80</td>
+                                </tr>
+                                <tr>
+                                    <td>4/29/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Add $20 to Red Lightsaber Goal</td>
+                                    <td>$80</td>
+                                </tr>
+                                <tr>
+                                    <td>4/22/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Change Goal Name from Lightsaber to Red Lightsaber</td>
+                                    <td>$100</td>
+                                </tr>
+                                <tr>
+                                    <td>4/22/16</td>
+                                    <td><img src='/images/lightsaber.png' class="history-img"></td>
+                                    <td>Create Lightsaber Goal of $20</td>
+                                    <td>$100</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div> <!-- end of container -->
+        </div> <!-- end of landing-content -->
+    </div> <!-- end of landing-wrapper -->
+</body>
+</html>
