@@ -45,6 +45,14 @@ $(document).ready(function (){
 		$("#modal-add-money").modal({show:true});
 	});
 
+	$('#history-tab').click(function(){
+		window.location.href = "/history";
+	});
+
+	$('#earn-tab').click(function(){
+		window.location.href = "/earn";
+	});
+
 });
 
 function getDate() {
