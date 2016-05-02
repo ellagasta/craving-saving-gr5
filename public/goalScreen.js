@@ -11,11 +11,7 @@ $(document).ready(function (){
 	$("#back").click(function(){
 		window.location.href = "/profile";
 	});
-	
-	$("#logo").click(function(){
-		window.location.href='/profile';
-	})
-	
+		
 	$("#delete-goal-btn").click(function(){
 		$("#deleteModal").modal({show:true});
 	})

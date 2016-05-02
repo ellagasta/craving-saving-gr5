@@ -28,10 +28,6 @@ $(document).ready(function (){
 		window.location.href = "/profile";
 	});
 
-	$("#logo").click(function(){
-		window.location.href='/profile';
-	})
-
 	$("#cancel-btn").click(function(){
 		if(user.goals[id].created){
 			window.location.href = '/goals/'+id;

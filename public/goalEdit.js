@@ -29,9 +29,6 @@ $(document).ready(function (){
 		window.location.href = "/profile";
 	});
 
-	$("#logo").click(function(){
-		window.location.href='/profile';
-	})
 	$('#spend-now-btn').click(function(){
 		console.log("spend-now");
 		$('#modal-add-money').modal({show:true});
