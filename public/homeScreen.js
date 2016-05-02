@@ -66,6 +66,8 @@ $(document).ready(function () {
 	})
 
 	$('#history-tab').click(function(){
+		window.location.href = "/history";
+
 		var currHistoryRows = $('#history-table tr').length;
 		console.log(currHistoryRows);
 		console.log(user.history.length);

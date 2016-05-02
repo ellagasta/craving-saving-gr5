@@ -49,41 +49,9 @@
                 </div>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="goals">
-                        <div id="home-screen">
-                            <div class="row goals-row" id="goals-row">
-                                <div class="col-md-3" id="savings-account">
-                                    <div id="savings-account" class="panel panel-default goal hoverable-panel">
-                                        <div class="non-hover non-hover-div">
-                                            <h4 class="text-center square-text">Savings Account</h4>
-                                            <img src="images/piggy.png" class="goal-icon center-block" style="padding:23px 0px;">
-                                            <h4 class="text-center savings-balance square-text">$<%=user.savingsBalance.toFixed(2)%> Saved!</h4>
-                                        </div>
-                                        <div class="hover-add hover-div">
-                                            <button class="btn btn-default hover-btn-top" id = "open-savings-btn">Open Savings</button>
-                                            <button id = "add-to-savings-btn" class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <% for (var i=0; i<user.goals.length; i++){ %>
-                                    <% var goal = user.goals[i]; %>
-                                    <% var goalID = i; %>
-                                    <% include goalSquare.ejs %>
-                                <%} %>
-                                 <div class="col-md-3 add-new-goal-col">
-                                    <div id="new-goal" class="panel panel-default btn btn-default new-goal">
-                                        <div class="text-center add-new-goal">
-                                            <i class="glyphicon glyphicon-plus-sign"></i>
-                                            <h4 class="text-center">Add new goal</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <div class="tab-pane" id="goals"></div>
                     <div class="tab-pane" id="earn">Earn is not yet implemented.</div>
-                    <div class="tab-pane" id="history">
+                    <div class="tab-pane active" id="history">
                         <table id="history-table" class="table table-hover history-table table-responsive">
                             <thead>
                                 <tr>
