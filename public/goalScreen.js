@@ -1,4 +1,12 @@
 $(document).ready(function (){
+	$("#modal-add-money").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
+	$("#spend-now-btn").on("shown.bs.modal",function(){
+		refreshDisplay();
+	});
+
 	$("#back").click(function(){
 		window.location.href = "/profile";
 	});
@@ -35,11 +43,17 @@ $(document).ready(function (){
 	$("#add-money-to-goal-btn").click(function(){
 		setupModal(2);
 		$("#modal-add-money").modal({show:true});
+
 	})
 
 	$("#purchase-goal-btn").click(function(){
 		$("#purchaseModal").modal({show:true});
 	})
+
+	$('#spend-now-btn').click(function(){
+		setupModal(0);
+		$("#modal-add-money").modal({show:true});
+	});
 
 	$("#purchase-btn").click(function(){
 		$.post('/goals/'+id+'/purchase',null,function(){
