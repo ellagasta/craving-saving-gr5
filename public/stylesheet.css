@@ -81,6 +81,7 @@ h1 {
 
 .add-money-header h3{
 	display:inline-block;
+	font-size: 35px;
 }
 #tooltip-add-money{	
 	display:inline-block;
