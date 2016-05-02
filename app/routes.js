@@ -176,7 +176,7 @@ module.exports = function(app, passport) {
             if (err){
                 throw err;
             }
-            user.goals.pop(req.params.id);
+            user.goals.splice(req.params.id,1);
             user.save(function(err){
                 if (err){
                     console.log("error in purchasing goal "+ id + " in user " + user.username);

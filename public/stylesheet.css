@@ -68,6 +68,21 @@ h1 {
 	font-size: 50px;
 }
 
+.add-money-header h3{
+	display:inline-block;
+}
+#tooltip-add-money{	
+	display:inline-block;
+	margin-bottom: 13px;
+	margin-left: 10px;
+}
+
+.tooltip-inner{
+	font-size:18px;
+	max-width:250px;
+	padding-bottom:3px;
+}
+
 .form-control{
 	display: block;
     width: 100%;

@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $('[data-toggle="popover"]').popover(); 
+    $('[data-toggle="tooltip"]').tooltip({ 
+	    placement : 'bottom'
+	});
+
 	$("#add-to-savings-btn").on("shown.bs.modal",function(){
 		refreshDisplay();
 	});

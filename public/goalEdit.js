@@ -1,4 +1,8 @@
 $(document).ready(function (){
+    $('[data-toggle="popover"]').popover(); 
+    $('[data-toggle="tooltip"]').tooltip({ 
+	    placement : 'bottom'
+	});
 
 	$("#edit-goal-name").val(user.goals[id].goalName);
 

@@ -1,4 +1,9 @@
 $(document).ready(function (){
+    $('[data-toggle="popover"]').popover(); 
+    $('[data-toggle="tooltip"]').tooltip({ 
+	    placement : 'bottom'
+	});
+
 	$("#modal-add-money").on("shown.bs.modal",function(){
 		refreshDisplay();
 	});
