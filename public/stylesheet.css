@@ -17,6 +17,17 @@
 	width:100%;
 }
 
+#landing-wrapper1{
+	position:relative;
+	min-height:100vh;
+	margin:0;
+	padding:0;
+	width:100%;
+	background-image: url("/images/dollar-background1.png");
+	background-size: 300px 300px;
+	background-repeat: repeat;
+}
+
 #landing-content{
 	margin:0 auto;
 	padding-bottom:150px
