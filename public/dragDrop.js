@@ -2,7 +2,7 @@ $(document).ready(function(){
 	balance = user.balance;
 	MARGIN_LEFT_LEFT = 32;
 	MARGIN_TOP = 62;
-	MARGIN_LEFT_RIGHT = 655;
+	MARGIN_LEFT_RIGHT = 720;
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
 		left_balance = balance;
@@ -278,7 +278,6 @@ function refreshDisplay(){
 
 // was createModalAddMoney();
 var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 1 is add money to savings, 2 is add money to goal 
-	console.log("setupModal",typeCode,goalID)
 	if (typeCode == 2 && goalID == null){
 		goalID = id;
 	}
