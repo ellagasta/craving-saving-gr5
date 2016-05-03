@@ -315,7 +315,6 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				var newValue = prevTransferValue - value;
 				$("#transfer").val(newValue.toFixed(2));
 			}
-			console.log(ui.position.top)
 			if (ui.position.top < $(this).position().top + 3){
 				console.log('right top small');
 				ui.draggable.css("top", $(this).position().top + 3);
@@ -503,6 +502,22 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 					var prevTransferValue = Number($("#transfer").val());
 					var newValue = prevTransferValue - value;
 					$("#transfer").val(newValue.toFixed(2));
+
+				if (ui.position.top < $(this).position().top + 3){
+					console.log('right top small');
+					ui.draggable.css("top", $(this).position().top + 3);
+				}else if (ui.position.top + $(ui.draggable).height() > $(this).position().top + $(this).height() - 3){
+					console.log('right top big');
+					ui.draggable.css("top", $(this).position().top +$(this).height() - $(ui.draggable).height()- 3);
+				}
+				if (ui.position.left < $(this).parent().position().left + 3){
+					console.log('right left small');
+					ui.draggable.css("left", $(this).parent().position().left + 3);
+				}else if (ui.position.left + $(ui.draggable).width() > $(this).parent().position().left + $(this).width() - 3){
+					console.log('right left big');
+					ui.draggable.css("left", $(this).parent().position().left + $(this).width() - $(ui.draggable).width() - 3 );
+				}
+
 				}
 			}
 		});
@@ -534,6 +549,23 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 						var newValue = prevTransferValue + value;
 						$("#transfer").val(newValue.toFixed(2)); //use val instead of .spinner('value') to not trigger 'change'
 					}
+
+
+					if (ui.position.top < $(this).position().top + 3){
+						console.log('right top small');
+						ui.draggable.css("top", $(this).position().top + 3);
+					}else if (ui.position.top + $(ui.draggable).height() > $(this).position().top + $(this).height() - 3){
+						console.log('right top big');
+						ui.draggable.css("top", $(this).position().top +$(this).height() - $(ui.draggable).height()- 3);
+					}
+					if (ui.position.left < $(this).parent().position().left + 3){
+						console.log('right left small');
+						ui.draggable.css("left", $(this).parent().position().left + 3);
+					}else if (ui.position.left + $(ui.draggable).width() > $(this).parent().position().left + $(this).width() - 3){
+						console.log('right left big');
+						ui.draggable.css("left", $(this).parent().position().left + $(this).width() - $(ui.draggable).width() - 3 );
+					}
+
 				}
 			}
 		});
