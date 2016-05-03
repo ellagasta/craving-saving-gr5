@@ -9,7 +9,7 @@
 				<img src='<%= goal.imageURL %>'>
 			</div>
 			<div class="progress">
-				<div class="progress-bar" style="width: 0%;">
+				<div class="progress-bar" id="progress-<%=goalID%>" aria-valuenow="<%= goal.saved %>" aria-valuemin="0" aria-valuemax="<%= goal.price %>" style="width: %;" >
 				</div>
 			</div>
 			<h4 class="text-center progress-amount square-text">
