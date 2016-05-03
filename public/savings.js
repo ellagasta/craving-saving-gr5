@@ -26,14 +26,15 @@ $(document).ready(function (){
             imageURL : 'images/piggy-broken-transparent.png',
 			eventDescription : "Empty $" + user.savingsBalance.toFixed(2) + " from Savings Account",
             availableFundsBalance : "$" + (user.balance + user.savingsBalance).toFixed(2)
+		}, function() {
+			$.ajax({
+			    url: '/savings',
+			    type: 'DELETE',
+			    success: function(result) {
+			    	window.location.href = '/profile';
+			    }
+			});
 		});		
-		$.ajax({
-		    url: '/savings',
-		    type: 'DELETE',
-		    success: function(result) {
-		    	window.location.href = '/profile';
-		    }
-		});
 	});
 
 	$("#emptyModal").find(".btn-default").click(function(){

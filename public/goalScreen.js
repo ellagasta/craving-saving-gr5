@@ -21,13 +21,20 @@ $(document).ready(function (){
 	});
 
 	$("#deleteModal").find(".btn-danger").click(function(){
-		$.ajax({
-		    url: '/goals/'+id,
-		    type: 'DELETE',
-		    success: function(result) {
-		    	window.location.href = '/profile';
-		    }
-		});
+		$.post('/history',{
+			date : getDate(),
+            imageURL : user.goals[id].imageURL,
+			eventDescription : "Delete " + user.goals[id].goalName + " Goal",
+            availableFundsBalance : "$" + (user.balance + user.goals[id].saved).toFixed(2)
+		},function() {
+			$.ajax({
+			    url: '/goals/'+id,
+			    type: 'DELETE',
+			    success: function(result) {
+			    	window.location.href = '/profile';
+			    }
+			});
+		});		
 	});
 	$("#deleteModal").find(".btn-default").click(function(){
 		$("#deleteModal").modal({show:false});
@@ -53,9 +60,17 @@ $(document).ready(function (){
 	});
 
 	$("#purchase-btn").click(function(){
-		$.post('/goals/'+id+'/purchase',null,function(){
-			window.location.href = '/profile';
-		})
+		// $.post('/history',{
+		// 	date : getDate(),
+  //           imageURL : 'images/piggy-broken-transparent.png',
+		// 	eventDescription : "Purchase " + user.goals[id].goalName + " Goal",
+  //           availableFundsBalance : "$" + user.balance.toFixed(2)
+		// },function() {
+			$.post('/goals/'+id+'/purchase',null,function(){
+				window.location.href = '/profile';
+			});
+		// });		
+
 	})
 
 	$('#history-tab').click(function(){
@@ -69,3 +84,18 @@ $(document).ready(function (){
 	});
 
 });
+
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yy = today.getFullYear() % 100;
+    if(dd<10) {
+        dd='0'+dd
+    } 
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    today = mm+'/'+dd+'/'+yy;
+    return today;
+}
