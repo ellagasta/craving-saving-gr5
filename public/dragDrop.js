@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(".modal-body").ready(function(){
 	balance = user.balance;
-	MARGIN_LEFT_LEFT = 32;
-	MARGIN_TOP = 62;
-	MARGIN_LEFT_RIGHT = 720;
+	MARGIN_LEFT_LEFT = 32/1224*$(".modal-body").width();
+	MARGIN_TOP = 62/510*$(".modal-body").height();
+	MARGIN_LEFT_RIGHT = 720/1224*$(".modal-body").width();
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
 		left_balance = balance;
@@ -36,25 +36,25 @@ function addMoney(denomination, num, side){
 
 			item_locations[idNum] = 'left';
 			if (startXLeft > $("#left-window").width() - imgWidth(denomination)){
-				startXLeft = 20 +$("#left-window").width() - imgWidth(denomination);
+				startXLeft = 20/1224*$(".modal-body").width() +$("#left-window").width() - imgWidth(denomination);
 				overflowX=true;
 			}else{
-				startXLeft += 20;
+				startXLeft += 20/1224*$(".modal-body").width();
 			}
-			if (startYLeft + 20 > $("#left-window").position().top+$("#left-window").height() - 80){
+			if (startYLeft + 20/510*$(".modal-body").height() > $("#left-window").position().top+$("#left-window").height() - 80){
 				startYLeft =  $("#left-window").position().top+$("#left-window").height() - 80;
 				overflowY=true;
 			}else{
-				startYLeft+=20;
+				startYLeft+=20/510*$(".modal-body").height();
 			}
 
 			idNum += 1;
 		}
 		if (!overflowX){
-			startXLeft -= 20*num;
+			startXLeft -= 20*num/1224*$(".modal-body").width();
 		}
 		if (!overflowY){
-			startYLeft += 30;
+			startYLeft += 30/510*$(".modal-body").height();
 		}
 	}else if (side =='right'){
 		for (var i = 0; i < num; i++){
@@ -77,25 +77,25 @@ function addMoney(denomination, num, side){
 			item_locations[idNum] = 'right';
 			idNum += 1;
 
-			if (startXRight > 630+$("#right-window").width() - imgWidth(denomination)){
-				startXRight = 20 +630+$("#right-window").width() - imgWidth(denomination);
+			if (startXRight > 630/1224*$(".modal-body").width()+$("#right-window").width() - imgWidth(denomination)){
+				startXRight = (20 +630)/1224*$(".modal-body").width()+$("#right-window").width() - imgWidth(denomination);
 				overflowX=true;
 			}else{
-				startXRight += 20;
+				startXRight += 20/1224*$(".modal-body").width();
 			}
-			if (startYRight+ 20 > $("#right-window").height() - 80){
-				startYRight =  430;
+			if (startYRight > $("#right-window").height() - 100/510*$(".modal-body").height()){
+				startYRight =  430/510*$(".modal-body").height();
 				overflowY=true;
 			}else{
-				startYRight+=20;
+				startYRight+=20/510*$(".modal-body").height();
 			}
 
 		}
 		if (!overflowX){
-			startXRight-= 20*num;
+			startXRight-= 20*num/1224*$(".modal-body").width();
 		}
 		if (!overflowY){
-			startYRight += 30;
+			startYRight += 30/510*$(".modal-body").height();
 		}
 	}else{
 		alert('add money side error')
@@ -206,19 +206,19 @@ function divideDenomination(balance){
 function imgWidth(denomination){
 	switch(denomination){
 		case "hundred":
-			return 185;
+			return 185/1224*$(".modal-body").width();
 		case "fifty":
-			return 180;
+			return 180/1224*$(".modal-body").width();
 		case "twenty":
-			return 187;
+			return 187/1224*$(".modal-body").width();
 		case "ten":
-			return 189;
+			return 189/1224*$(".modal-body").width();
 		case "five":
-			return 176;
+			return 176/1224*$(".modal-body").width();
 		case "one":
-			return 189;
+			return 189/1224*$(".modal-body").width();
 		default:
-			return 80;
+			return 80/1224*$(".modal-body").width();
 	}
 }
 
@@ -252,6 +252,11 @@ function monetaryValue(denomination){
 
 function refreshDisplay(){
 	item_locations={};
+	console.log(MARGIN_LEFT_LEFT,MARGIN_TOP,MARGIN_LEFT_RIGHT)
+	MARGIN_LEFT_LEFT = 32/1224*$(".modal-body").width();
+	MARGIN_TOP = 62/510*$(".modal-body").height();
+	MARGIN_LEFT_RIGHT = 720/1224*$(".modal-body").width();
+	console.log(MARGIN_LEFT_LEFT,MARGIN_TOP,MARGIN_LEFT_RIGHT)
 	startXLeft = MARGIN_LEFT_LEFT;
 	startYLeft = MARGIN_TOP;
 	startXRight = MARGIN_LEFT_RIGHT;
