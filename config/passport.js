@@ -35,8 +35,7 @@ module.exports = function(passport) {
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
                     var newUser = new User();
-
-                    newUser.name="";
+                    newUser.name=req.body.name;
                     newUser.username = username;
                     newUser.password = newUser.generateHash(password);
                     newUser.balance = 100;

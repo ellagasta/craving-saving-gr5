@@ -44,27 +44,22 @@ $(document).ready(function (){
 	});
 
 	$("#save-btn").click(function(){
-		$.post('/goals',{
-			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val(),
-			created : true,
-			imageURL : $("#goal-photo")[0].src
-		},function(){
-			window.location.href = '/goals/'+id;
-		});
+		// $.post('/history',{
+		// 	date : getDate(),
+  //           imageURL : $("#goal-photo")[0].src,
+		// 	eventDescription : "Create " + $("#edit-goal-name").val() + " Goal of Amount " + $("#goal-price").val(),
+  //           availableFundsBalance : "$" + user.balance.toFixed(2)
+		// },function(){
+			$.post('/goals',{
+				price : Number($("#goal-price").val()),
+				goalName : $("#edit-goal-name").val(),
+				created : true,
+				imageURL : $("#goal-photo")[0].src
+			},function(){
+				window.location.href = '/goals/'+id;
+			});	
+		// });		
 	});
-
-	// $("#save-btn").click(function(){
-	// 	console.log("posting");
-	// 	$.post('/history/'+id,{
- // 			date : "050432",
- //     		imageURL : "testing",
- //     		eventDescription : "testing",
- //     		availableFundsBalance : 500
- // 		},function(){
- // 			window.location.href = '/history/'+id;
- // 		});
-	// });
 
 	$("#goal-photobox").mouseenter(function(){
 		$('html,body').css('cursor','pointer');
@@ -101,4 +96,19 @@ function readURL(input) {
 
 		reader.readAsDataURL(input.files[0]);
 	}
+}
+
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yy = today.getFullYear() % 100;
+    if(dd<10) {
+        dd='0'+dd
+    } 
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    today = mm+'/'+dd+'/'+yy;
+    return today;
 }

@@ -271,6 +271,7 @@ module.exports = function(app, passport) {
                 date                : req.body.date,
                 imageURL            : req.body.imageURL,
                 eventDescription    : req.body.eventDescription,
+                changeToBalance     : req.body.changeToBalance,
                 availableFundsBalance   : req.body.availableFundsBalance
             };
             user.history = history;
@@ -278,6 +279,8 @@ module.exports = function(app, passport) {
             user.save(function(err) {
                 if (err) {
                     console.log("save error in user:",user.username);
+                }else{
+                    res.json({ok:true});
                 }
             });
         });

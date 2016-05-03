@@ -51,21 +51,21 @@ $(document).ready(function (){
 	});
 
 	$("#save-btn, #modal-save-btn").click(function(){
-		console.log("post to history");
-		$.post('/history',{
-			date : getDate(),
-            imageURL : $("#goal-photo")[0].src,
-			eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
-            availableFundsBalance : "$" + user.balance.toFixed(2)
-		});		
-		$.post('/goals/'+id+'/edit',{
-			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val(),
-			created : true,
-			imageURL : $("#goal-photo")[0].src
-		},function(){
-			window.location.href = '/goals/'+id;
-		});
+		// $.post('/history',{
+		// 	date : getDate(),
+  //           imageURL : $("#goal-photo")[0].src,
+		// 	eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
+  //           availableFundsBalance : "$" + user.balance.toFixed(2)
+		// },function() {
+			$.post('/goals/'+id+'/edit',{
+				price : Number($("#goal-price").val()),
+				goalName : $("#edit-goal-name").val(),
+				created : true,
+				imageURL : $("#goal-photo")[0].src
+			},function(){
+				window.location.href = '/goals/'+id;
+			});
+		// });
 	});
 
 	$("#goal-photobox").mouseenter(function(){

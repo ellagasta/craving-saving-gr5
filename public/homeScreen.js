@@ -41,7 +41,7 @@ $(document).ready(function () {
 		var id = Number($(this).attr("id").split("purchase-")[1]);
 		console.log(id);
 		$("#purchaseModal").modal({show:true});
-		$("#purchase-modal-btn").click(function(){
+		$("#purchase-btn").click(function(){
 			// console.log("purchase");
 			// $.post('/history',{
 			// 	date : getDate(),

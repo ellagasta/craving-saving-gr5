@@ -22,7 +22,7 @@
             <div class="container" id="page-content">
 
                 <div class="row" style="padding:15px;border:3px solid black;background-color:#E6FFFF;margin:15px 0 30px 0;">
-                    <div class="available-funds" style="float:left;">John's Available Funds: $<%= user.balance.toFixed(2) %></div>
+                    <div class="available-funds" style="float:left;"><%=user.name%>'s Available Funds: $<%= user.balance.toFixed(2) %></div>
 
                     <div style="text-align:right;">
                         <button class="btn btn-default" id="spend-now-btn" data-toggle="tooltip" title="Spend money directly, without adding a new goal">

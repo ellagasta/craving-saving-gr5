@@ -2,7 +2,7 @@ $(document).ready(function(){
 	balance = user.balance;
 	MARGIN_LEFT_LEFT = 32;
 	MARGIN_TOP = 62;
-	MARGIN_LEFT_RIGHT = 720;
+	MARGIN_LEFT_RIGHT = 655;
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
 		left_balance = balance;
@@ -14,9 +14,11 @@ $(document).ready(function(){
 });
 
 function addMoney(denomination, num, side){
+	var overflowX = false;
+	var overflowY = false;
 	if (side =='left'){
 		for (var i = 0; i < num; i++){
-			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" />');
 			$("#"+idNum).css("top",startYLeft+"px");
 			$("#"+idNum).css("left",startXLeft+"px");
 			$("#"+idNum).draggable({
@@ -33,15 +35,30 @@ function addMoney(denomination, num, side){
 			})
 
 			item_locations[idNum] = 'left';
+			if (startXLeft > $("#left-window").width() - imgWidth(denomination)){
+				startXLeft = 20 +$("#left-window").width() - imgWidth(denomination);
+				overflowX=true;
+			}else{
+				startXLeft += 20;
+			}
+			if (startYLeft + 20 > $("#left-window").position().top+$("#left-window").height() - 80){
+				startYLeft =  $("#left-window").position().top+$("#left-window").height() - 80;
+				overflowY=true;
+			}else{
+				startYLeft+=20;
+			}
+
 			idNum += 1;
-			startYLeft += 20;
-	    	startXLeft += 20;
 		}
-		startXLeft -= 20*num;
-		startYLeft += 30;
+		if (!overflowX){
+			startXLeft -= 20*num;
+		}
+		if (!overflowY){
+			startYLeft += 30;
+		}
 	}else if (side =='right'){
 		for (var i = 0; i < num; i++){
-			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" />');
 			$("#"+idNum).css("top",startYRight+"px");
 			$("#"+idNum).css("left",startXRight+"px");
 			$("#"+idNum).draggable({
@@ -53,14 +70,33 @@ function addMoney(denomination, num, side){
 			$("#"+idNum).dblclick(function(){
 				splitDenomination(denomination,$(this).attr("id"));
 			});
+			$("#"+idNum).click(function(){
+				$("#warning-transfer-money").hide();
+			})
+
 			item_locations[idNum] = 'right';
 			idNum += 1;
 
-			startYRight += 20;
-	    	startXRight += 20;
+			if (startXRight > 630+$("#right-window").width() - imgWidth(denomination)){
+				startXRight = 20 +630+$("#right-window").width() - imgWidth(denomination);
+				overflowX=true;
+			}else{
+				startXRight += 20;
+			}
+			if (startYRight+ 20 > $("#right-window").height() - 80){
+				startYRight =  430;
+				overflowY=true;
+			}else{
+				startYRight+=20;
+			}
+
 		}
-		startXRight -= 20*num;
-		startYRight += 30;		
+		if (!overflowX){
+			startXRight-= 20*num;
+		}
+		if (!overflowY){
+			startYRight += 30;
+		}
 	}else{
 		alert('add money side error')
 	}
@@ -167,18 +203,22 @@ function divideDenomination(balance){
 	}
 }
 
-function imgHeight(denomination){
+function imgWidth(denomination){
 	switch(denomination){
-		case "quarter":
-			return "50px";
-		case "dime": 
-			return "30px";
-		case "nickel":
-			return "40px";
-		case "penny":
-			return "30x";
+		case "hundred":
+			return 185;
+		case "fifty":
+			return 180;
+		case "twenty":
+			return 187;
+		case "ten":
+			return 189;
+		case "five":
+			return 176;
+		case "one":
+			return 189;
 		default:
-			return "50px";
+			return 80;
 	}
 }
 
@@ -238,6 +278,7 @@ function refreshDisplay(){
 
 // was createModalAddMoney();
 var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 1 is add money to savings, 2 is add money to goal 
+	console.log("setupModal",typeCode,goalID)
 	if (typeCode == 2 && goalID == null){
 		goalID = id;
 	}
@@ -246,7 +287,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	right_balance = 0;
 	refreshDisplay();
 
-	$("#transfer").unbind();
+	// $("#transfer").unbind();
 	$("#organize-button").unbind();
 	$("#cancel-transaction-button").unbind();
 	$("#confirm-transaction-button").unbind();
@@ -275,6 +316,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				var newValue = prevTransferValue - value;
 				$("#transfer").val(newValue.toFixed(2));
 			}
+			console.log(ui.position.top)
 			if (ui.position.top < $(this).position().top + 3){
 				console.log('right top small');
 				ui.draggable.css("top", $(this).position().top + 3);
@@ -309,7 +351,6 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				var newValue = prevTransferValue + value;
 				$("#transfer").val(newValue.toFixed(2)); //use val instead of .spinner('value') to not trigger 'change'
 			}
-			console.log(ui.position.top, $(ui.draggable).height(), $(this).parent().position().top, $(this).height());
 			if (ui.position.top < $(this).position().top + 3){
 				console.log('right top small');
 				ui.draggable.css("top", $(this).position().top + 3);
@@ -333,6 +374,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		$(".modal-header").find("h3").text("Spend Money Now");
         $("#transfer").spinner({
 			change: function(event,ui){
+				console.log("change");
 				var val = Number($(this).val());
 				if (val > balance){
 					$("#warning-transfer-money").text("You don't have enough money!");
@@ -359,11 +401,13 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			$.post('/history',{
 				date : getDate(),
 	            imageURL : 'images/logo-letter-s.png',
-				eventDescription : "Spend $" + right_balance.toFixed(2) + " directly from Available Funds", // TODO fix this
+				eventDescription : "Spend directly from Available Funds",
+	            changeToBalance : "-$" + right_balance.toFixed(2),
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
-			});
-			$.post('/profile',{balance:balance, user:user},function(data){
-				window.location.reload();
+			},function() {
+				$.post('/profile',{balance:balance, user:user},function(data){
+					window.location.reload();
+				});
 			});
 		});
 
@@ -397,11 +441,13 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			$.post('/history',{
 				date : getDate(),
 	            imageURL : 'images/piggy-transparent.png',
-				eventDescription : "Add $" + right_balance.toFixed(2) + " to Savings Account", // TODO fix this
+				eventDescription : "Add $ to Savings Account",
+				changeToBalance : "-$" + right_balance.toFixed(2),
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
-			});
-			$.post('/savings',{addedSavings:right_balance},function(data){
-				window.location.reload();
+			},function() {
+				$.post('/savings',{addedSavings:right_balance},function(data){
+					window.location.reload();
+				});
 			});
 		});
 
@@ -409,12 +455,11 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		$(".modal-header").find("h3").text("Transfer Money to "+user.goals[goalID].goalName);
 		$("#transfer").spinner({
 			change: function(event,ui){
-				console.log('change');	
+				console.log('change',user.goals[goalID]);	
 				var val;
 				var max_val = user.goals[goalID].price;
 				var cur_val = user.goals[goalID].saved;
 
-                console.log( $(this).val(), max_val, cur_val);
 				if ($(this).val() < 0){
 					val = 0;
 					$("#warning-transfer-money").text("You can't add negative money!");
@@ -427,6 +472,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				}else{
 					val = Number($(this).val());
 				}
+				console.log("val:",val);
 				if (val > balance){
 					$("#warning-transfer-money").text("You don't have enough money!");
 					$("#warning-transfer-money").show();
@@ -496,14 +542,16 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		$("#confirm-transaction-button").click(function(){
 			balance = left_balance;
 			console.log('balance',balance);
-			// $.post('/history',{ // TODO this breaks the post below
-			// 	date : getDate(),
-	  //           imageURL : user.goals[goalID].imageURL,
-			// 	eventDescription : "Add $" + right_balance.toFixed(2) + " to " + user.goals[goalID].goalName + " Goal",
-	  //           availableFundsBalance : "$" + left_balance.toFixed(2)
-			// });
-			$.post('/goals/'+goalID,{balance:balance, addedValue: right_balance},function(data){
-				window.location.reload();
+			$.post('/history',{
+				date : getDate(),
+	            imageURL : user.goals[goalID].imageURL,
+				eventDescription : "Add $ to " + user.goals[goalID].goalName,
+	            changeToBalance : "-$" + right_balance.toFixed(2),
+	            availableFundsBalance : "$" + left_balance.toFixed(2)
+			},function(){
+				$.post('/goals/'+goalID,{balance:balance, addedValue: right_balance},function(data){
+					window.location.reload();
+				});				
 			});
 		});
 	}
@@ -514,7 +562,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		}
 	});
 	$("#organize-button").click(function(){
-		refreshDisplay;
+		refreshDisplay();
 		$("#warning-transfer-money").hide();
 	});
 	$("#cancel-transaction-button").click(function(){
