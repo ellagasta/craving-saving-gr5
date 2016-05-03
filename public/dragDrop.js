@@ -77,7 +77,6 @@ function addMoney(denomination, num, side){
 			item_locations[idNum] = 'right';
 			idNum += 1;
 
-			console.log(startYRight,$("#right-window").position().top,$("#right-window").height())
 			if (startXRight > 630+$("#right-window").width() - imgWidth(denomination)){
 				startXRight = 20 +630+$("#right-window").width() - imgWidth(denomination);
 				overflowX=true;
@@ -279,6 +278,7 @@ function refreshDisplay(){
 
 // was createModalAddMoney();
 var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 1 is add money to savings, 2 is add money to goal 
+	console.log("setupModal",typeCode,goalID)
 	if (typeCode == 2 && goalID == null){
 		goalID = id;
 	}
@@ -287,7 +287,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	right_balance = 0;
 	refreshDisplay();
 
-	$("#transfer").unbind();
+	// $("#transfer").unbind();
 	$("#organize-button").unbind();
 	$("#cancel-transaction-button").unbind();
 	$("#confirm-transaction-button").unbind();
@@ -351,7 +351,6 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				var newValue = prevTransferValue + value;
 				$("#transfer").val(newValue.toFixed(2)); //use val instead of .spinner('value') to not trigger 'change'
 			}
-			console.log(ui.position.top, $(ui.draggable).height(), $(this).parent().position().top, $(this).height());
 			if (ui.position.top < $(this).position().top + 3){
 				console.log('right top small');
 				ui.draggable.css("top", $(this).position().top + 3);
@@ -375,6 +374,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		$(".modal-header").find("h3").text("Spend Money Now");
         $("#transfer").spinner({
 			change: function(event,ui){
+				console.log("change");
 				var val = Number($(this).val());
 				if (val > balance){
 					$("#warning-transfer-money").text("You don't have enough money!");
@@ -455,12 +455,11 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		$(".modal-header").find("h3").text("Transfer Money to "+user.goals[goalID].goalName);
 		$("#transfer").spinner({
 			change: function(event,ui){
-				console.log('change');	
+				console.log('change',user.goals[goalID]);	
 				var val;
 				var max_val = user.goals[goalID].price;
 				var cur_val = user.goals[goalID].saved;
 
-                console.log( $(this).val(), max_val, cur_val);
 				if ($(this).val() < 0){
 					val = 0;
 					$("#warning-transfer-money").text("You can't add negative money!");
@@ -473,6 +472,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				}else{
 					val = Number($(this).val());
 				}
+				console.log("val:",val);
 				if (val > balance){
 					$("#warning-transfer-money").text("You don't have enough money!");
 					$("#warning-transfer-money").show();
