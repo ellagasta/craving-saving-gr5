@@ -24,7 +24,8 @@ $(document).ready(function (){
 		$.post('/history',{
 			date : getDate(),
             imageURL : 'images/piggy-broken-transparent.png',
-			eventDescription : "Empty $" + user.savingsBalance.toFixed(2) + " from Savings Account",
+			eventDescription : "Empty Savings Account",
+			changeToBalance : "$user.savingsBalance",
             availableFundsBalance : "$" + (user.balance + user.savingsBalance).toFixed(2)
 		}, function() {
 			$.ajax({

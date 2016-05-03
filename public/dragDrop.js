@@ -359,7 +359,8 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			$.post('/history',{
 				date : getDate(),
 	            imageURL : 'images/logo-letter-s.png',
-				eventDescription : "Spend $" + right_balance.toFixed(2) + " directly from Available Funds", // TODO fix this
+				eventDescription : "Spend directly from Available Funds",
+	            changeToBalance : "-$" + right_balance.toFixed(2),
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
 			},function() {
 				$.post('/profile',{balance:balance, user:user},function(data){
@@ -398,7 +399,8 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			$.post('/history',{
 				date : getDate(),
 	            imageURL : 'images/piggy-transparent.png',
-				eventDescription : "Add $" + right_balance.toFixed(2) + " to Savings Account",
+				eventDescription : "Add $ to Savings Account",
+				changeToBalance : "-$" + right_balance.toFixed(2),
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
 			},function() {
 				$.post('/savings',{addedSavings:right_balance},function(data){
@@ -501,7 +503,8 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 			$.post('/history',{
 				date : getDate(),
 	            imageURL : user.goals[goalID].imageURL,
-				eventDescription : "Add $" + right_balance.toFixed(2) + " to " + user.goals[goalID].goalName + " Goal",
+				eventDescription : "Add $ to " + user.goals[goalID].goalName,
+	            changeToBalance : "-$" + right_balance.toFixed(2),
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
 			},function(){
 				$.post('/goals/'+goalID,{balance:balance, addedValue: right_balance},function(data){

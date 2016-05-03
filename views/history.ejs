@@ -52,11 +52,16 @@
                     <div class="tab-pane active" id="history">
                         <table id="history-table" class="table table-hover history-table table-responsive">
                             <thead>
-                                <tr style="height: 50px;">
+                                <tr id="header-row-1">
+                                    <th colspan="3"></th>
+                                    <th colspan="2" id="available-funds-th">Available Funds</th>
+                                </tr>
+                                <tr id="header-row-2" style="height: 50px;">
                                     <th class="history-table-date">Date</th>
                                     <th class="history-table-icon"></th>
                                     <th class="history-table-event">Event</th>
-                                    <th class="history-table-balance">Available Funds</th>
+                                    <th class="history-table-change" style="text-align: center;">Amount</th>
+                                    <th class="history-table-balance" style="text-align: center;">Balance</th>
                                 </tr>
                             </thead>
 <!--                             <tbody id="history-table-body">

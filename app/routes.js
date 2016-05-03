@@ -271,7 +271,7 @@ module.exports = function(app, passport) {
                 date                : req.body.date,
                 imageURL            : req.body.imageURL,
                 eventDescription    : req.body.eventDescription,
-                
+                changeToBalance     : req.body.changeToBalance,
                 availableFundsBalance   : req.body.availableFundsBalance
             };
             user.history = history;

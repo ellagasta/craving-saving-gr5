@@ -24,7 +24,8 @@ $(document).ready(function (){
 		$.post('/history',{
 			date : getDate(),
             imageURL : user.goals[id].imageURL,
-			eventDescription : "Delete " + user.goals[id].goalName + " Goal",
+			eventDescription : "Delete " + user.goals[id].goalName,
+			changeToBalance : "$" + user.goals[id].saved.toFixed(2),
             availableFundsBalance : "$" + (user.balance + user.goals[id].saved).toFixed(2)
 		},function() {
 			$.ajax({
