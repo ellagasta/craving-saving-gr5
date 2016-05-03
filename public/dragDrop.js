@@ -2,7 +2,7 @@ $(document).ready(function(){
 	balance = user.balance;
 	MARGIN_LEFT_LEFT = 32;
 	MARGIN_TOP = 62;
-	MARGIN_LEFT_RIGHT = 720;
+	MARGIN_LEFT_RIGHT = 655;
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
 		left_balance = balance;
@@ -562,7 +562,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 		}
 	});
 	$("#organize-button").click(function(){
-		refreshDisplay;
+		refreshDisplay();
 		$("#warning-transfer-money").hide();
 	});
 	$("#cancel-transaction-button").click(function(){
