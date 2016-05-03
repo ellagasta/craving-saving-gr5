@@ -42,16 +42,17 @@ $(document).ready(function () {
 		console.log(id);
 		$("#purchaseModal").modal({show:true});
 		$("#purchase-btn").click(function(){
-			// console.log("purchase");
-			// $.post('/history',{
-			// 	date : getDate(),
-	  //           imageURL : user.goals[id].imageURL,
-			// 	eventDescription : "Purchase " + user.goals[id].goalName,
-	  //           availableFundsBalance : "$" + user.balance
-			// });		
-			$.post('/goals/'+id+"/purchase",null, function(){
-				window.location.reload();
-			})
+			$.post('/history',{
+				date : getDate(),
+	            imageURL : user.goals[id].imageURL,
+				eventDescription : "Purchase " + user.goals[id].goalName,
+				changeToBalance : "$0.00",
+	            availableFundsBalance : "$" + user.balance.toFixed(2)
+	        },function() {
+				$.post('/goals/'+id+"/purchase",null, function(){
+					window.location.reload();
+				});
+			});
 		});
 	});
 
