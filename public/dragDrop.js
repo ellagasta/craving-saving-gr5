@@ -14,9 +14,11 @@ $(document).ready(function(){
 });
 
 function addMoney(denomination, num, side){
+	var overflowX = false;
+	var overflowY = false;
 	if (side =='left'){
 		for (var i = 0; i < num; i++){
-			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" />');
 			$("#"+idNum).css("top",startYLeft+"px");
 			$("#"+idNum).css("left",startXLeft+"px");
 			$("#"+idNum).draggable({
@@ -33,15 +35,30 @@ function addMoney(denomination, num, side){
 			})
 
 			item_locations[idNum] = 'left';
+			if (startXLeft > $("#left-window").width() - imgWidth(denomination)){
+				startXLeft = 20 +$("#left-window").width() - imgWidth(denomination);
+				overflowX=true;
+			}else{
+				startXLeft += 20;
+			}
+			if (startYLeft + 20 > $("#left-window").position().top+$("#left-window").height() - 80){
+				startYLeft =  $("#left-window").position().top+$("#left-window").height() - 80;
+				overflowY=true;
+			}else{
+				startYLeft+=20;
+			}
+
 			idNum += 1;
-			startYLeft += 20;
-	    	startXLeft += 20;
 		}
-		startXLeft -= 20*num;
-		startYLeft += 30;
+		if (!overflowX){
+			startXLeft -= 20*num;
+		}
+		if (!overflowY){
+			startYLeft += 30;
+		}
 	}else if (side =='right'){
 		for (var i = 0; i < num; i++){
-			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="/images/'+denomination+'.png" />');
 			$("#"+idNum).css("top",startYRight+"px");
 			$("#"+idNum).css("left",startXRight+"px");
 			$("#"+idNum).draggable({
@@ -53,14 +70,34 @@ function addMoney(denomination, num, side){
 			$("#"+idNum).dblclick(function(){
 				splitDenomination(denomination,$(this).attr("id"));
 			});
+			$("#"+idNum).click(function(){
+				$("#warning-transfer-money").hide();
+			})
+
 			item_locations[idNum] = 'right';
 			idNum += 1;
 
-			startYRight += 20;
-	    	startXRight += 20;
+			console.log(startYRight,$("#right-window").position().top,$("#right-window").height())
+			if (startXRight > 630+$("#right-window").width() - imgWidth(denomination)){
+				startXRight = 20 +630+$("#right-window").width() - imgWidth(denomination);
+				overflowX=true;
+			}else{
+				startXRight += 20;
+			}
+			if (startYRight+ 20 > $("#right-window").height() - 80){
+				startYRight =  430;
+				overflowY=true;
+			}else{
+				startYRight+=20;
+			}
+
 		}
-		startXRight -= 20*num;
-		startYRight += 30;		
+		if (!overflowX){
+			startXRight-= 20*num;
+		}
+		if (!overflowY){
+			startYRight += 30;
+		}
 	}else{
 		alert('add money side error')
 	}
@@ -167,18 +204,22 @@ function divideDenomination(balance){
 	}
 }
 
-function imgHeight(denomination){
+function imgWidth(denomination){
 	switch(denomination){
-		case "quarter":
-			return "50px";
-		case "dime": 
-			return "30px";
-		case "nickel":
-			return "40px";
-		case "penny":
-			return "30x";
+		case "hundred":
+			return 185;
+		case "fifty":
+			return 180;
+		case "twenty":
+			return 187;
+		case "ten":
+			return 189;
+		case "five":
+			return 176;
+		case "one":
+			return 189;
 		default:
-			return "50px";
+			return 80;
 	}
 }
 
@@ -275,6 +316,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 				var newValue = prevTransferValue - value;
 				$("#transfer").val(newValue.toFixed(2));
 			}
+			console.log(ui.position.top)
 			if (ui.position.top < $(this).position().top + 3){
 				console.log('right top small');
 				ui.draggable.css("top", $(this).position().top + 3);
