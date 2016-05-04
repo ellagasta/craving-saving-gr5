@@ -75,8 +75,8 @@
                             <div class="row" style="padding-right:0px;padding-left:0px;">
                                 <div class="col-md-10">
                                     <div class="progress maingoal-bar">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped maingoal-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-                                        <span class="progress-bar-text">0</span>%
+                                        <div class="progress-bar progress-bar-success progress-bar-striped maingoal-progress" role="progressbar" aria-valuenow="<%=user.goals[id].saved%>" aria-valuemin="0" aria-valuemax="<%=user.goals[id].price%>" style="width:<%=user.goals[id].saved/user.goals[id].price*100+"%"%>">
+                                        <span class="progress-bar-text"> <%=Math.round(user.goals[id].saved/user.goals[id].price*100)%>% </span>
                                         </div>
                                     </div>
                                 </div>
