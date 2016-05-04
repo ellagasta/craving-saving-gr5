@@ -4,14 +4,16 @@ $(".modal-body.add-money-body").ready(function(){
 	MARGIN_TOP = 62/510*$(".modal-body.add-money-body").height();
 	MARGIN_LEFT_RIGHT = 720/1224*$(".modal-body.add-money-body").width();
 
-	$('#modal-add-money').on('hidden.bs.modal', function(){
-		left_balance = balance;
-		right_balance = 0;
-		$("#transfer").val("0.00");
-		$("#warning-transfer-money").hide();
-		refreshDisplay();
-	});
+	$('#modal-add-money').on('hidden.bs.modal', resetModal);
 });
+
+function resetModal(){
+	left_balance = balance;
+	right_balance = 0;
+	$("#transfer").val("0.00");
+	$("#warning-transfer-money").hide();
+	refreshDisplay();
+}
 
 function addMoney(denomination, num, side){
 	var overflowX = false;
@@ -409,6 +411,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
 			},function() {
 				$.post('/profile',{balance:balance, user:user},function(data){
+					resetModal();
 					window.location.reload();
 				});
 			});
@@ -449,13 +452,14 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
 			},function() {
 				$.post('/savings',{addedSavings:right_balance},function(data){
+					resetModal();
 					window.location.reload();
 				});
 			});
 		});
 
 	}else if (typeCode == 2){
-		$(".modal-header").find("h3").text("Transfer Money to "+user.goals[goalID].goalName);
+		$(".modal-header").find("h3").text("Add Money to "+user.goals[goalID].goalName);
 		$("#transfer").spinner({
 			change: function(event,ui){
 				console.log('change',user.goals[goalID]);	
@@ -585,6 +589,7 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	            availableFundsBalance : "$" + left_balance.toFixed(2)
 			},function(){
 				$.post('/goals/'+goalID,{balance:balance, addedValue: right_balance},function(data){
+					resetModal();
 					window.location.reload();
 				});				
 			});
