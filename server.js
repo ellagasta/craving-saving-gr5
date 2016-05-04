@@ -20,7 +20,8 @@ require('./config/passport')(passport); // pass passport for configuration
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +31,6 @@ app.use(session({ secret: '6.813CravingSaving' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
-
 app.use(express.static('public'));
 
 // routes ======================================================================
