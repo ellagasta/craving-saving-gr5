@@ -61,27 +61,28 @@ $(document).ready(function (){
 	});
 
 	$("#purchase-btn").click(function(){
-		// $.post('/history',{
-		// 	date : getDate(),
-  //           imageURL : 'images/piggy-broken-transparent.png',
-		// 	eventDescription : "Purchase " + user.goals[id].goalName + " Goal",
-  //           availableFundsBalance : "$" + user.balance.toFixed(2)
-		// },function() {
+		$.post('/history',{
+		 	date : getDate(),
+            imageURL : user.goals[id].imageURL,
+		 	eventDescription : "Purchase " + user.goals[id].goalName,
+			changeToBalance : "$0.00",
+			availableFundsBalance : "$" + user.balance.toFixed(2)
+		 },function() {
 			$.post('/goals/'+id+'/purchase',null,function(){
 				window.location.href = '/profile';
 			});
-		// });		
+		});		
 
-	})
+	});
 
 	$('#history-tab').click(function(){
 		console.log("history clicked");
-		window.location.href = "/history"; // TODO this doesn't work
+		window.location.href = "/history";
 	});
 
 	$('#earn-tab').click(function(){
 		console.log("earn clicked");
-		window.location.href = "/earn"; // TODO this doesn't work
+		window.location.href = "/earn";
 	});
 
 });
