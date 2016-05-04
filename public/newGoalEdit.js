@@ -9,11 +9,6 @@ $(document).ready(function (){
 		refreshDisplay();
 	});
 
-	$('#spend-now-btn').click(function(){
-		setupModal(0);
-		$("#modal-add-money").modal({show:true});
-	});
-
 	var newPhoto = "";
 
 	$("#edit-goal-name").click(function(){
@@ -28,20 +23,8 @@ $(document).ready(function (){
 		$('#backFromNewEditModal').modal({show:true});
 	});
 
-	$("#cancel-btn, #modal-cancel-btn").click(function(){
-		// if(user.goals[id].created){
-		// 	window.location.href = '/goals/'+id;
-		// } else {
-			// $.ajax({
-			//     url: '/goals/'+id,
-			//     type: 'DELETE',
-			//     success: function(result) {
-			//     	window.location.href = '/profile';
-			//     }
-			// },function(){
-				window.location.href = "/profile";
-			// });
-		//}
+	$("#cancel-btn, #modal-return-to-goals-btn").click(function(){
+		window.location.href = "/profile";
 	});
 
 	$("#save-btn").click(function(){
@@ -55,93 +38,16 @@ $(document).ready(function (){
 		});	
 	});
 
-	$("#modal-save-btn").click(function(){
-		$.post('/goals',{
-			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val(),
-			created : true,
-			imageURL : $("#goal-photo")[0].src
-		},function(){
-			window.location.href = '/profile';
-		});	
+	$("#history-modal-go-to-history-btn").click(function(){
+		window.location.href = "/history";
 	});
 
-	$("#to-history-modal-cancel-btn").click(function(){
-		// if(user.goals[id].created){
-		// 	window.location.href = '/history';
-		// } else {
-		// 	$.ajax({
-		// 	    url: '/goals/'+id,
-		// 	    type: 'DELETE',
-		// 	    success: function(result) {
-		// 	    	window.location.href = '/history';
-		// 	    }
-		// 	});
-			window.location.href = "/history";
-		// }
+	$("#earn-modal-go-to-earn-btn").click(function(){
+		window.location.href = "/earn";
 	});
 
-	$("#to-history-modal-save-btn").click(function(){
-		$.post('/goals',{
-			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val(),
-			created : true,
-			imageURL : $("#goal-photo")[0].src
-		},function(){
-			window.location.href = '/history';
-		});	
-	});
-
-	$("#to-earn-modal-cancel-btn").click(function(){
-		// if(user.goals[id].created){
-		// 	window.location.href = '/earn';
-		// } else {
-		// 	$.ajax({
-		// 	    url: '/goals/'+id,
-		// 	    type: 'DELETE',
-		// 	    success: function(result) {
-		// 	    	window.location.href = '/earn';
-		// 	    }
-		// 	});
-			window.location.href = "/earn";
-		// }
-	});
-
-	$("#to-earn-modal-save-btn").click(function(){
-		$.post('/goals',{
-			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val(),
-			created : true,
-			imageURL : $("#goal-photo")[0].src
-		},function(){
-			window.location.href = '/earn';
-		});	
-	});
-
-	$("#logout-modal-cancel-btn").click(function(){
-		// if(user.goals[id].created){
-		// 	window.location.href = '/';
-		// } else {
-		// 	$.ajax({
-		// 	    url: '/goals/'+id,
-		// 	    type: 'DELETE',
-		// 	    success: function(result) {
-		// 	    	window.location.href = '/';
-		// 	    }
-		// 	});
-			window.location.href = "/";
-		// }
-	});
-
-	$("#logout-modal-save-btn").click(function(){
-		$.post('/goals',{
-			price : Number($("#goal-price").val()),
-			goalName : $("#edit-goal-name").val(),
-			created : true,
-			imageURL : $("#goal-photo")[0].src
-		},function(){
-			window.location.href = '/';
-		});	
+	$("#logout-modal-logout-btn").click(function(){
+		window.location.href = "/";
 	});
 
 	$("#goal-photobox").mouseenter(function(){
