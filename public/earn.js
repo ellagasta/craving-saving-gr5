@@ -12,9 +12,5 @@ $(document).ready(function (){
 		window.location.href = "/";
 	});
 
-	$('#spend-now-btn').click(function(){
-		setupModal(0);
-		$("#modal-add-money").modal({show:true});
-	});
 });
 
