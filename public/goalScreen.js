@@ -69,7 +69,7 @@ $(document).ready(function (){
 
 	});
 
-	$('#goal-tab').click(function(){
+	$('#goals-tab').click(function(){
 		window.location.href = "/profile";
 	});
 

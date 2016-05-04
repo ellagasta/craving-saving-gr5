@@ -59,6 +59,10 @@ $(document).ready(function (){
 		window.location.href = "/";
 	});
 
+	$('#goals-tab').click(function(){
+		window.location.href = "/profile";
+	});
+
 });
 
 function getDate() {
