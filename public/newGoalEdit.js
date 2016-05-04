@@ -25,29 +25,116 @@ $(document).ready(function (){
 	});
 
 	$("#back").click(function(){
-		window.location.href = "/profile";
+		$('#backFromNewEditModal').modal({show:true});
 	});
 
-	$("#cancel-btn").click(function(){
-		window.location.href = "/profile";
+	$("#cancel-btn, #modal-cancel-btn").click(function(){
+		// if(user.goals[id].created){
+		// 	window.location.href = '/goals/'+id;
+		// } else {
+			// $.ajax({
+			//     url: '/goals/'+id,
+			//     type: 'DELETE',
+			//     success: function(result) {
+			//     	window.location.href = '/profile';
+			//     }
+			// },function(){
+				window.location.href = "/profile";
+			// });
+		//}
 	});
 
 	$("#save-btn").click(function(){
-		// $.post('/history',{
-		// 	date : getDate(),
-  //           imageURL : $("#goal-photo")[0].src,
-		// 	eventDescription : "Create " + $("#edit-goal-name").val() + " Goal of Amount " + $("#goal-price").val(),
-  //           availableFundsBalance : "$" + user.balance.toFixed(2)
-		// },function(){
-			$.post('/goals',{
-				price : Number($("#goal-price").val()),
-				goalName : $("#edit-goal-name").val(),
-				created : true,
-				imageURL : $("#goal-photo")[0].src
-			},function(){
-				window.location.href = '/goals/'+id;
-			});	
-		// });		
+		$.post('/goals',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/goals/'+id;
+		});	
+	});
+
+	$("#modal-save-btn").click(function(){
+		$("#backFromNewEditModal").modal({show:false});
+	});
+
+	$("#to-history-modal-cancel-btn").click(function(){
+		// if(user.goals[id].created){
+		// 	window.location.href = '/history';
+		// } else {
+		// 	$.ajax({
+		// 	    url: '/goals/'+id,
+		// 	    type: 'DELETE',
+		// 	    success: function(result) {
+		// 	    	window.location.href = '/history';
+		// 	    }
+		// 	});
+			window.location.href = "/history";
+		// }
+	});
+
+	$("#to-history-modal-save-btn").click(function(){
+		$.post('/goals',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/history';
+		});	
+	});
+
+	$("#to-earn-modal-cancel-btn").click(function(){
+		// if(user.goals[id].created){
+		// 	window.location.href = '/earn';
+		// } else {
+		// 	$.ajax({
+		// 	    url: '/goals/'+id,
+		// 	    type: 'DELETE',
+		// 	    success: function(result) {
+		// 	    	window.location.href = '/earn';
+		// 	    }
+		// 	});
+			window.location.href = "/earn";
+		// }
+	});
+
+	$("#to-earn-modal-save-btn").click(function(){
+		$.post('/goals',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/earn';
+		});	
+	});
+
+	$("#logout-modal-cancel-btn").click(function(){
+		// if(user.goals[id].created){
+		// 	window.location.href = '/';
+		// } else {
+		// 	$.ajax({
+		// 	    url: '/goals/'+id,
+		// 	    type: 'DELETE',
+		// 	    success: function(result) {
+		// 	    	window.location.href = '/';
+		// 	    }
+		// 	});
+			window.location.href = "/";
+		// }
+	});
+
+	$("#logout-modal-save-btn").click(function(){
+		$.post('/goals',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/';
+		});	
 	});
 
 	$("#goal-photobox").mouseenter(function(){
@@ -72,6 +159,18 @@ $(document).ready(function (){
     $("#goal-price").change(function(){
         $("#goal-price").val(Number($("#goal-price").val()).toFixed(2));
     });
+
+    $('#history-tab').click(function(){
+		$('#historyFromNewEditModal').modal({show:true});
+	});
+
+	$('#earn-tab').click(function(){
+		$('#earnFromNewEditModal').modal({show:true});
+	});
+
+	$('#logout-btn').click(function(){
+		$('#logoutFromNewEditModal').modal({show:true});
+	});
 });
 
 function readURL(input) {

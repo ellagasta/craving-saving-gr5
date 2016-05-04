@@ -50,22 +50,71 @@ $(document).ready(function (){
 		}
 	});
 
-	$("#save-btn, #modal-save-btn").click(function(){
-		// $.post('/history',{
-		// 	date : getDate(),
-  //           imageURL : $("#goal-photo")[0].src,
-		// 	eventDescription : "Edit Goal " + $("#edit-goal-name").val(), // TODO fix this
-  //           availableFundsBalance : "$" + user.balance.toFixed(2)
-		// },function() {
-			$.post('/goals/'+id+'/edit',{
-				price : Number($("#goal-price").val()),
-				goalName : $("#edit-goal-name").val(),
-				created : true,
-				imageURL : $("#goal-photo")[0].src
-			},function(){
-				window.location.href = '/goals/'+id;
-			});
-		// });
+	$("#save-btn").click(function(){
+		$.post('/goals/'+id+'/edit',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/goals/'+id;
+		});
+	});
+
+	$("#modal-save-btn").click(function(){
+		$.post('/goals/'+id+'/edit',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/profile';
+		});
+	});
+
+	$("#to-earn-modal-save-btn").click(function(){
+		$.post('/goals/'+id+'/edit',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/earn';
+		});
+	});
+
+	$("#to-earn-modal-cancel-btn").click(function(){
+		window.location.href = "/earn";
+	});
+
+	$("#to-history-modal-save-btn").click(function(){
+		$.post('/goals/'+id+'/edit',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/history';
+		});
+	});
+
+	$("#logout-modal-cancel-btn").click(function(){
+		window.location.href = "/";
+	});
+
+	$("#logout-modal-save-btn").click(function(){
+		$.post('/goals/'+id+'/edit',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/';
+		});
+	});
+
+	$("#to-history-modal-cancel-btn").click(function(){
+		window.location.href = "/history";
 	});
 
 	$("#goal-photobox").mouseenter(function(){
@@ -90,6 +139,19 @@ $(document).ready(function (){
     $("#goal-price").change(function(){
         $("#goal-price").val(Number($("#goal-price").val()).toFixed(2));
     });
+
+    $('#history-tab').click(function(){
+		$('#historyFromEditModal').modal({show:true});
+	});
+
+	$('#earn-tab').click(function(){
+		$('#earnFromEditModal').modal({show:true});
+	});
+
+	$('#logout-btn').click(function(){
+		$('#logoutFromEditModal').modal({show:true});
+	});
+
 });
 
 function readURL(input) {
@@ -104,29 +166,6 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
-
-
-
-// function goalEditGetsHistoryEvent(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
-// 	return oldImageURL != newImageURL || oldGoalName != newGoalName || oldGoalPrice != newGoalPrice;
-// }
-
-// function getEditGoalDescription(oldImageURL, newImageURL, oldGoalName, newGoalName, oldGoalPrice, newGoalPrice) {
-// 	var eventDescription = "";
-// 	if (newGoalName != oldGoalName) {
-// 		eventDescription += "Change Goal Name from " + oldGoalName + " to " + newGoalName;
-// 		if (oldGoalPrice != newGoalPrice) {
-// 			eventDescription += " and ";
-// 		}
-// 	}
-// 	if (oldGoalPrice != newGoalPrice) {
-// 		eventDescription += "Change Goal Amount from " + oldGoalPrice + " to " + newGoalPrice;
-// 	}
-// 	if (eventDescription == "") {
-// 		eventDescription += "Update " + newGoalName + " Goal photo";
-// 	}
-// 	return eventDescription;
-// }
 
 function getDate() {
     var today = new Date();
