@@ -29,18 +29,7 @@ $(document).ready(function (){
 	});
 
 	$("#cancel-btn").click(function(){
-		if(user.goals[id].created){
-			window.location.href = '/goals/'+id;
-		} else {
-			$.ajax({
-			    url: '/goals/'+id,
-			    type: 'DELETE',
-			    success: function(result) {
-			    	window.location.href = '/profile';
-			    }
-			});
-			window.location.href = "/profile";
-		}
+		window.location.href = "/profile";
 	});
 
 	$("#save-btn").click(function(){
