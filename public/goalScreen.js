@@ -54,11 +54,6 @@ $(document).ready(function (){
 		$("#purchaseModal").modal({show:true});
 	})
 
-	$('#spend-now-btn').click(function(){
-		setupModal(0);
-		$("#modal-add-money").modal({show:true});
-	});
-
 	$("#purchase-btn").click(function(){
 		$.post('/history',{
 		 	date : getDate(),
@@ -72,6 +67,10 @@ $(document).ready(function (){
 			});
 		});		
 
+	});
+
+	$('#goal-tab').click(function(){
+		window.location.href = "/profile";
 	});
 
 	$('#history-tab').click(function(){
