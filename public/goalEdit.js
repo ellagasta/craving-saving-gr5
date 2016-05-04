@@ -1,6 +1,6 @@
 $(document).ready(function (){
-    $('[data-toggle="popover"]').popover(); 
-    $('[data-toggle="tooltip"]').tooltip({ 
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip({
 	    placement : 'bottom'
 	});
 
@@ -115,11 +115,13 @@ $(document).ready(function (){
 	$("#goal-photobox").mouseenter(function(){
 		$('html,body').css('cursor','pointer');
 		$("#goal-photobox .goal-img").css("opacity", .5);
+        $("#goal-photobox #goal-photo-hover").css("opacity", .5);
 	})
 
 	$("#goal-photobox").mouseleave(function(){
 		$('html,body').css('cursor','default');
 		$("#goal-photobox .goal-img").css("opacity", 1);
+        $("#goal-photobox #goal-photo-hover").css("opacity", 0);
 	})
 
 	$("#goal-photobox").click(function(){
@@ -130,7 +132,7 @@ $(document).ready(function (){
 		newPhoto = $('#new-goal-photo')[0].src
 		$("#goal-photo")[0].src = newPhoto;
 	});
-    
+
     $("#goal-price").change(function(){
         $("#goal-price").val(Number($("#goal-price").val()).toFixed(2));
     });
@@ -174,12 +176,11 @@ function getDate() {
     var yy = today.getFullYear() % 100;
     if(dd<10) {
         dd='0'+dd
-    } 
+    }
     if(mm<10) {
         mm='0'+mm
-    } 
+    }
     today = mm+'/'+dd+'/'+yy;
     console.log(today);
     return today;
 }
-
