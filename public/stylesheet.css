@@ -755,7 +755,7 @@ th.history-table-icon {
 
 #header-row-1 > th {
 	border-bottom: 0px;
-	padding: 0px;
+	padding-bottom: 0px;
 }
 
 #header-row-1 {
@@ -769,7 +769,8 @@ th.history-table-icon {
 }
 
 #available-funds-th {
-	text-align: center;
+	text-align: right;
+	padding-right: 70px;
 }
 
 .red-text {
@@ -784,4 +785,22 @@ th.history-table-icon {
 	color: blue;
 }
 
+.history-table-date {
+	width: 13%;
+}
 
+.history-table-icon {
+	width: 7%;
+}
+
+.history-table-event {
+	width: 50%;
+}
+
+.history-table-change {
+	width: 11%;
+}
+
+.history-table-balance {
+	width: 15%;
+}
