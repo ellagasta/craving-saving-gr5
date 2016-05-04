@@ -294,6 +294,10 @@ var setupModal = function(typeCode, goalID){ // typeCode: 0 is spend money now, 
 	refreshDisplay();
 
 	// $("#transfer").unbind();
+	$("#transfer").click(function(){
+		$(this).select();
+
+	})
 	$("#organize-button").unbind();
 	$("#cancel-transaction-button").unbind();
 	$("#confirm-transaction-button").unbind();
