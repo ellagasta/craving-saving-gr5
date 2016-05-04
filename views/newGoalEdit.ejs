@@ -58,8 +58,11 @@
                                 </button>
                             </div>
         					<div class="row">
-        						<div id = "goal-photobox" class="col-md-4 goal-photobox">
+                                <div id = "goal-photobox" class="col-md-4 goal-photobox">
         							<img id="goal-photo" src="/images/placeholder-square.jpg" class="goal-pic center-block goal-img">
+                                    <div id="goal-photo-hover">
+                                        Upload Photo <i class="glyphicon glyphicon-camera" aria-hidden="true"></i>
+                                    </div>
         						</div>
 
         						<div class="col-md-8 text-center goal-info">
@@ -84,7 +87,7 @@
         						</div>
         					</div>
 
-        					<div id="photoModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div id="photoModal" class="modal fade" tabindex="-1" role="dialog">
         						<div class="modal-dialog">
         							<div class="modal-content">
         								<div class="modal-header">
@@ -92,8 +95,15 @@
         									<h3>Upload Photo</h3>
         								</div>
         								<div class="modal-body" style="text-align:center;">
-                                            <input type='file' onchange="readURL(this);" style="margin: 0 auto;padding-top:15px;" />
-                                            <img id="new-goal-photo" src="/images/placeholder-square.jpg" style="padding-top:15px;"/>
+                                            <input id="fileUpload" type='file' onchange="readURL(this);"/>
+                                            <div id="photo-upload-failure" class="alert alert-danger">
+                                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                                <span class="sr-only">Error:</span>
+                                                Please upload a file that is less than 500KB.
+                                            </div>
+                                            <div id="new-goal-photo-container">
+                                                <img id="new-goal-photo" src="/images/placeholder-square.jpg"/>
+                                            </div>
         								</div>
         								<div class="modal-footer">
         									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

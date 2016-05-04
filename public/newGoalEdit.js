@@ -1,6 +1,6 @@
 $(document).ready(function (){
-    $('[data-toggle="popover"]').popover(); 
-    $('[data-toggle="tooltip"]').tooltip({ 
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip({
 	    placement : 'bottom'
 	});
 
@@ -35,7 +35,7 @@ $(document).ready(function (){
 			imageURL : $("#goal-photo")[0].src
 		},function(){
 			window.location.href = '/goals/'+id;
-		});	
+		});
 	});
 
 	$("#history-modal-go-to-history-btn").click(function(){
@@ -50,14 +50,16 @@ $(document).ready(function (){
 		window.location.href = "/";
 	});
 
-	$("#goal-photobox").mouseenter(function(){
+    $("#goal-photobox").mouseenter(function(){
 		$('html,body').css('cursor','pointer');
 		$("#goal-photobox .goal-img").css("opacity", .5);
+        $("#goal-photobox #goal-photo-hover").css("opacity", .5);
 	})
 
 	$("#goal-photobox").mouseleave(function(){
 		$('html,body').css('cursor','default');
 		$("#goal-photobox .goal-img").css("opacity", 1);
+        $("#goal-photobox #goal-photo-hover").css("opacity", 0);
 	})
 
 	$("#goal-photobox").click(function(){
@@ -68,7 +70,7 @@ $(document).ready(function (){
 		newPhoto = $('#new-goal-photo')[0].src
 		$("#goal-photo")[0].src = newPhoto;
 	});
-    
+
     $("#goal-price").change(function(){
         $("#goal-price").val(Number($("#goal-price").val()).toFixed(2));
     });
@@ -89,13 +91,18 @@ $(document).ready(function (){
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
+        var filesize = ((input.files[0].size/1024)/1024).toFixed(4); // MB
 
-		reader.onload = function (e) {
-			$('#new-goal-photo')
-				.attr('src', e.target.result).height(300);
-		};
-
-		reader.readAsDataURL(input.files[0]);
+        if (filesize > 0.5){
+            $('#photo-upload-failure').show();
+        } else {
+            $('#photo-upload-failure').hide();
+            reader.onload = function (e) {
+    			$('#new-goal-photo')
+    				.attr('src', e.target.result).height(300);
+    		};
+    		reader.readAsDataURL(input.files[0]);
+        }
 	}
 }
 
@@ -106,10 +113,10 @@ function getDate() {
     var yy = today.getFullYear() % 100;
     if(dd<10) {
         dd='0'+dd
-    } 
+    }
     if(mm<10) {
         mm='0'+mm
-    } 
+    }
     today = mm+'/'+dd+'/'+yy;
     return today;
 }
