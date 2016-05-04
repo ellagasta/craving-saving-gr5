@@ -56,7 +56,14 @@ $(document).ready(function (){
 	});
 
 	$("#modal-save-btn").click(function(){
-		$("#backFromNewEditModal").modal({show:false});
+		$.post('/goals',{
+			price : Number($("#goal-price").val()),
+			goalName : $("#edit-goal-name").val(),
+			created : true,
+			imageURL : $("#goal-photo")[0].src
+		},function(){
+			window.location.href = '/profile';
+		});	
 	});
 
 	$("#to-history-modal-cancel-btn").click(function(){
