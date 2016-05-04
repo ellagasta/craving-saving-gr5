@@ -10,6 +10,10 @@ $(document).ready(function (){
 		window.location.href = "/earn";
 	});
 
+	$('#logout-btn').click(function(){
+		window.location.href = "/";
+	});
+
 });
 
 function createTableBody() {

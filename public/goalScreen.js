@@ -48,7 +48,6 @@ $(document).ready(function (){
 	$("#add-money-to-goal-btn").click(function(){
 		setupModal(2);
 		$("#modal-add-money").modal({show:true});
-
 	})
 
 	$("#purchase-goal-btn").click(function(){
@@ -76,15 +75,16 @@ $(document).ready(function (){
 	});
 
 	$('#history-tab').click(function(){
-		console.log("history clicked");
 		window.location.href = "/history";
 	});
 
 	$('#earn-tab').click(function(){
-		console.log("earn clicked");
 		window.location.href = "/earn";
 	});
 
+	$('#logout-btn').click(function(){
+		window.location.href = "/";
+	});
 });
 
 function getDate() {

@@ -8,5 +8,8 @@ $(document).ready(function (){
 		window.location.href = "/history";
 	});
 	
+	$('#logout-btn').click(function(){
+		window.location.href = "/";
+	});
 });
 
