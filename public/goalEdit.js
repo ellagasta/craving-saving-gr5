@@ -159,13 +159,18 @@ $(document).ready(function (){
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
+        var filesize = ((input.files[0].size/1024)/1024).toFixed(4); // MB
 
-		reader.onload = function (e) {
-			$('#new-goal-photo')
-				.attr('src', e.target.result).height(300);
-		};
-
-		reader.readAsDataURL(input.files[0]);
+        if (filesize > 0.5){
+            $('#photo-upload-failure').show();
+        } else {
+            $('#photo-upload-failure').hide();
+            reader.onload = function (e) {
+    			$('#new-goal-photo')
+    				.attr('src', e.target.result).height(300);
+    		};
+    		reader.readAsDataURL(input.files[0]);
+        }
 	}
 }
 

@@ -94,8 +94,15 @@
         									<h3>Upload Photo</h3>
         								</div>
         								<div class="modal-body" style="text-align:center;">
-                                            <input type='file' onchange="readURL(this);" style="margin: 0 auto;padding-top:15px;" />
-                                            <img id="new-goal-photo" src="<%= user.goals[id].imageURL %>" style="padding-top:15px;"/>
+                                            <input id="fileUpload" type='file' onchange="readURL(this);"/>
+                                            <div id="photo-upload-failure" class="alert alert-danger">
+                                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                                <span class="sr-only">Error:</span>
+                                                Please upload a file that is less than 500KB.
+                                            </div>
+                                            <div id="new-goal-photo-container">
+                                                <img id="new-goal-photo" src="<%= user.goals[id].imageURL %>"/>
+                                            </div>
         								</div>
         								<div class="modal-footer">
         									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
