@@ -83,7 +83,7 @@ h1 {
 	display:inline-block;
 	font-size: 35px;
 }
-#tooltip-add-money{	
+#tooltip-add-money{
 	display:inline-block;
 	margin-bottom: 13px;
 	margin-left: 10px;
@@ -510,6 +510,19 @@ body {
 	position: relative;
 }
 
+#goal-photo-hover {
+	position:absolute;
+	bottom:10px;
+	left:25px;
+	height:120px;
+	width:390px;
+	background-color:white;
+	opacity:0;
+	font-size:30px;
+	padding:40px;
+	text-align:center;
+}
+
 /*.goal-amtedit {
 	position: absolute;
 	font-size: 40px;
@@ -689,7 +702,7 @@ body {
 	margin-top: -5px;
 }
 
-.glyphicon-remove, .glyphicon-edit, .glyphicon-cog {
+.glyphicon-remove, .glyphicon-edit, .glyphicon-cog, .glyphicon-camera {
 	top: .15em;
 }
 
